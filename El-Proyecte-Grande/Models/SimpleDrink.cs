@@ -1,6 +1,6 @@
 ﻿namespace El_Proyecte_Grande.Models
 {
-    public class SimpleCocktail
+    public class SimpleDrink
     {
         public string strDrink { get; set; }
 

@@ -2,7 +2,7 @@
 {
     public class Drink
     {
-        public List<SimpleCocktail> drinks;
+        public List<SimpleDrink> drinks;
 
         public Drink()
         {

@@ -10,8 +10,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<SimpleCocktailService>();
-builder.Services.AddScoped<CocktailRepository>();
+builder.Services.AddScoped<DrinkCategoryService>();
+builder.Services.AddScoped<DrinkCategoryRepository>();
 
 var app = builder.Build();
 
