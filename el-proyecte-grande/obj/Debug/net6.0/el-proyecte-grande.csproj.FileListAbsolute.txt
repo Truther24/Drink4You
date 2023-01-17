@@ -1,33 +1,33 @@
-C:\Users\Asus\OneDrive\Рабочий стол\Codecool\advanced\weekpair1\el-proyecte-grande-sprint-1-csharp-Truther24\el-proyecte-grande\bin\Debug\net6.0\appsettings.Development.json
-C:\Users\Asus\OneDrive\Рабочий стол\Codecool\advanced\weekpair1\el-proyecte-grande-sprint-1-csharp-Truther24\el-proyecte-grande\bin\Debug\net6.0\appsettings.json
-C:\Users\Asus\OneDrive\Рабочий стол\Codecool\advanced\weekpair1\el-proyecte-grande-sprint-1-csharp-Truther24\el-proyecte-grande\bin\Debug\net6.0\el-proyecte-grande.exe
-C:\Users\Asus\OneDrive\Рабочий стол\Codecool\advanced\weekpair1\el-proyecte-grande-sprint-1-csharp-Truther24\el-proyecte-grande\bin\Debug\net6.0\el-proyecte-grande.deps.json
-C:\Users\Asus\OneDrive\Рабочий стол\Codecool\advanced\weekpair1\el-proyecte-grande-sprint-1-csharp-Truther24\el-proyecte-grande\bin\Debug\net6.0\el-proyecte-grande.runtimeconfig.json
-C:\Users\Asus\OneDrive\Рабочий стол\Codecool\advanced\weekpair1\el-proyecte-grande-sprint-1-csharp-Truther24\el-proyecte-grande\bin\Debug\net6.0\el-proyecte-grande.dll
-C:\Users\Asus\OneDrive\Рабочий стол\Codecool\advanced\weekpair1\el-proyecte-grande-sprint-1-csharp-Truther24\el-proyecte-grande\bin\Debug\net6.0\el-proyecte-grande.pdb
-C:\Users\Asus\OneDrive\Рабочий стол\Codecool\advanced\weekpair1\el-proyecte-grande-sprint-1-csharp-Truther24\el-proyecte-grande\bin\Debug\net6.0\Microsoft.OpenApi.dll
-C:\Users\Asus\OneDrive\Рабочий стол\Codecool\advanced\weekpair1\el-proyecte-grande-sprint-1-csharp-Truther24\el-proyecte-grande\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
-C:\Users\Asus\OneDrive\Рабочий стол\Codecool\advanced\weekpair1\el-proyecte-grande-sprint-1-csharp-Truther24\el-proyecte-grande\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-C:\Users\Asus\OneDrive\Рабочий стол\Codecool\advanced\weekpair1\el-proyecte-grande-sprint-1-csharp-Truther24\el-proyecte-grande\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-C:\Users\Asus\OneDrive\Рабочий стол\Codecool\advanced\weekpair1\el-proyecte-grande-sprint-1-csharp-Truther24\el-proyecte-grande\obj\Debug\net6.0\el-proyecte-grande.csproj.AssemblyReference.cache
-C:\Users\Asus\OneDrive\Рабочий стол\Codecool\advanced\weekpair1\el-proyecte-grande-sprint-1-csharp-Truther24\el-proyecte-grande\obj\Debug\net6.0\el-proyecte-grande.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Asus\OneDrive\Рабочий стол\Codecool\advanced\weekpair1\el-proyecte-grande-sprint-1-csharp-Truther24\el-proyecte-grande\obj\Debug\net6.0\el-proyecte-grande.AssemblyInfoInputs.cache
-C:\Users\Asus\OneDrive\Рабочий стол\Codecool\advanced\weekpair1\el-proyecte-grande-sprint-1-csharp-Truther24\el-proyecte-grande\obj\Debug\net6.0\el-proyecte-grande.AssemblyInfo.cs
-C:\Users\Asus\OneDrive\Рабочий стол\Codecool\advanced\weekpair1\el-proyecte-grande-sprint-1-csharp-Truther24\el-proyecte-grande\obj\Debug\net6.0\el-proyecte-grande.csproj.CoreCompileInputs.cache
-C:\Users\Asus\OneDrive\Рабочий стол\Codecool\advanced\weekpair1\el-proyecte-grande-sprint-1-csharp-Truther24\el-proyecte-grande\obj\Debug\net6.0\el-proyecte-grande.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\Asus\OneDrive\Рабочий стол\Codecool\advanced\weekpair1\el-proyecte-grande-sprint-1-csharp-Truther24\el-proyecte-grande\obj\Debug\net6.0\el-proyecte-grande.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Asus\OneDrive\Рабочий стол\Codecool\advanced\weekpair1\el-proyecte-grande-sprint-1-csharp-Truther24\el-proyecte-grande\obj\Debug\net6.0\staticwebassets\msbuild.el-proyecte-grande.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\Asus\OneDrive\Рабочий стол\Codecool\advanced\weekpair1\el-proyecte-grande-sprint-1-csharp-Truther24\el-proyecte-grande\obj\Debug\net6.0\staticwebassets\msbuild.build.el-proyecte-grande.props
-C:\Users\Asus\OneDrive\Рабочий стол\Codecool\advanced\weekpair1\el-proyecte-grande-sprint-1-csharp-Truther24\el-proyecte-grande\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.el-proyecte-grande.props
-C:\Users\Asus\OneDrive\Рабочий стол\Codecool\advanced\weekpair1\el-proyecte-grande-sprint-1-csharp-Truther24\el-proyecte-grande\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.el-proyecte-grande.props
-C:\Users\Asus\OneDrive\Рабочий стол\Codecool\advanced\weekpair1\el-proyecte-grande-sprint-1-csharp-Truther24\el-proyecte-grande\obj\Debug\net6.0\staticwebassets.pack.json
-C:\Users\Asus\OneDrive\Рабочий стол\Codecool\advanced\weekpair1\el-proyecte-grande-sprint-1-csharp-Truther24\el-proyecte-grande\obj\Debug\net6.0\staticwebassets.build.json
-C:\Users\Asus\OneDrive\Рабочий стол\Codecool\advanced\weekpair1\el-proyecte-grande-sprint-1-csharp-Truther24\el-proyecte-grande\obj\Debug\net6.0\staticwebassets.development.json
-C:\Users\Asus\OneDrive\Рабочий стол\Codecool\advanced\weekpair1\el-proyecte-grande-sprint-1-csharp-Truther24\el-proyecte-grande\obj\Debug\net6.0\scopedcss\bundle\el-proyecte-grande.styles.css
-C:\Users\Asus\OneDrive\Рабочий стол\Codecool\advanced\weekpair1\el-proyecte-grande-sprint-1-csharp-Truther24\el-proyecte-grande\obj\Debug\net6.0\el-proyecte-grande.csproj.CopyComplete
-C:\Users\Asus\OneDrive\Рабочий стол\Codecool\advanced\weekpair1\el-proyecte-grande-sprint-1-csharp-Truther24\el-proyecte-grande\obj\Debug\net6.0\el-proyecte-grande.dll
-C:\Users\Asus\OneDrive\Рабочий стол\Codecool\advanced\weekpair1\el-proyecte-grande-sprint-1-csharp-Truther24\el-proyecte-grande\obj\Debug\net6.0\refint\el-proyecte-grande.dll
-C:\Users\Asus\OneDrive\Рабочий стол\Codecool\advanced\weekpair1\el-proyecte-grande-sprint-1-csharp-Truther24\el-proyecte-grande\obj\Debug\net6.0\el-proyecte-grande.pdb
-C:\Users\Asus\OneDrive\Рабочий стол\Codecool\advanced\weekpair1\el-proyecte-grande-sprint-1-csharp-Truther24\el-proyecte-grande\obj\Debug\net6.0\el-proyecte-grande.genruntimeconfig.cache
-C:\Users\Asus\OneDrive\Рабочий стол\Codecool\advanced\weekpair1\el-proyecte-grande-sprint-1-csharp-Truther24\el-proyecte-grande\obj\Debug\net6.0\ref\el-proyecte-grande.dll
-C:\Users\Asus\OneDrive\Рабочий стол\Codecool\advanced\weekpair1\el-proyecte-grande-sprint-1-csharp-Truther24\el-proyecte-grande\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\alex\Desktop\projects\el-proyecte-grande-sprint-1-csharp-Truther24\El-Proyecte-Grande\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\alex\Desktop\projects\el-proyecte-grande-sprint-1-csharp-Truther24\El-Proyecte-Grande\bin\Debug\net6.0\appsettings.json
+C:\Users\alex\Desktop\projects\el-proyecte-grande-sprint-1-csharp-Truther24\El-Proyecte-Grande\bin\Debug\net6.0\El-Proyecte-Grande.exe
+C:\Users\alex\Desktop\projects\el-proyecte-grande-sprint-1-csharp-Truther24\El-Proyecte-Grande\bin\Debug\net6.0\El-Proyecte-Grande.deps.json
+C:\Users\alex\Desktop\projects\el-proyecte-grande-sprint-1-csharp-Truther24\El-Proyecte-Grande\bin\Debug\net6.0\El-Proyecte-Grande.runtimeconfig.json
+C:\Users\alex\Desktop\projects\el-proyecte-grande-sprint-1-csharp-Truther24\El-Proyecte-Grande\bin\Debug\net6.0\El-Proyecte-Grande.dll
+C:\Users\alex\Desktop\projects\el-proyecte-grande-sprint-1-csharp-Truther24\El-Proyecte-Grande\bin\Debug\net6.0\El-Proyecte-Grande.pdb
+C:\Users\alex\Desktop\projects\el-proyecte-grande-sprint-1-csharp-Truther24\El-Proyecte-Grande\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\alex\Desktop\projects\el-proyecte-grande-sprint-1-csharp-Truther24\El-Proyecte-Grande\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\alex\Desktop\projects\el-proyecte-grande-sprint-1-csharp-Truther24\El-Proyecte-Grande\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\alex\Desktop\projects\el-proyecte-grande-sprint-1-csharp-Truther24\El-Proyecte-Grande\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\alex\Desktop\projects\el-proyecte-grande-sprint-1-csharp-Truther24\El-Proyecte-Grande\obj\Debug\net6.0\El-Proyecte-Grande.csproj.AssemblyReference.cache
+C:\Users\alex\Desktop\projects\el-proyecte-grande-sprint-1-csharp-Truther24\El-Proyecte-Grande\obj\Debug\net6.0\El-Proyecte-Grande.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\alex\Desktop\projects\el-proyecte-grande-sprint-1-csharp-Truther24\El-Proyecte-Grande\obj\Debug\net6.0\El-Proyecte-Grande.AssemblyInfoInputs.cache
+C:\Users\alex\Desktop\projects\el-proyecte-grande-sprint-1-csharp-Truther24\El-Proyecte-Grande\obj\Debug\net6.0\El-Proyecte-Grande.AssemblyInfo.cs
+C:\Users\alex\Desktop\projects\el-proyecte-grande-sprint-1-csharp-Truther24\El-Proyecte-Grande\obj\Debug\net6.0\El-Proyecte-Grande.csproj.CoreCompileInputs.cache
+C:\Users\alex\Desktop\projects\el-proyecte-grande-sprint-1-csharp-Truther24\El-Proyecte-Grande\obj\Debug\net6.0\El-Proyecte-Grande.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\alex\Desktop\projects\el-proyecte-grande-sprint-1-csharp-Truther24\El-Proyecte-Grande\obj\Debug\net6.0\El-Proyecte-Grande.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\alex\Desktop\projects\el-proyecte-grande-sprint-1-csharp-Truther24\El-Proyecte-Grande\obj\Debug\net6.0\staticwebassets\msbuild.El-Proyecte-Grande.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\alex\Desktop\projects\el-proyecte-grande-sprint-1-csharp-Truther24\El-Proyecte-Grande\obj\Debug\net6.0\staticwebassets\msbuild.build.El-Proyecte-Grande.props
+C:\Users\alex\Desktop\projects\el-proyecte-grande-sprint-1-csharp-Truther24\El-Proyecte-Grande\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.El-Proyecte-Grande.props
+C:\Users\alex\Desktop\projects\el-proyecte-grande-sprint-1-csharp-Truther24\El-Proyecte-Grande\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.El-Proyecte-Grande.props
+C:\Users\alex\Desktop\projects\el-proyecte-grande-sprint-1-csharp-Truther24\El-Proyecte-Grande\obj\Debug\net6.0\staticwebassets.pack.json
+C:\Users\alex\Desktop\projects\el-proyecte-grande-sprint-1-csharp-Truther24\El-Proyecte-Grande\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\alex\Desktop\projects\el-proyecte-grande-sprint-1-csharp-Truther24\El-Proyecte-Grande\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\alex\Desktop\projects\el-proyecte-grande-sprint-1-csharp-Truther24\El-Proyecte-Grande\obj\Debug\net6.0\scopedcss\bundle\El-Proyecte-Grande.styles.css
+C:\Users\alex\Desktop\projects\el-proyecte-grande-sprint-1-csharp-Truther24\El-Proyecte-Grande\obj\Debug\net6.0\El-Proyecte-Grande.csproj.CopyComplete
+C:\Users\alex\Desktop\projects\el-proyecte-grande-sprint-1-csharp-Truther24\El-Proyecte-Grande\obj\Debug\net6.0\El-Proyecte-Grande.dll
+C:\Users\alex\Desktop\projects\el-proyecte-grande-sprint-1-csharp-Truther24\El-Proyecte-Grande\obj\Debug\net6.0\refint\El-Proyecte-Grande.dll
+C:\Users\alex\Desktop\projects\el-proyecte-grande-sprint-1-csharp-Truther24\El-Proyecte-Grande\obj\Debug\net6.0\El-Proyecte-Grande.pdb
+C:\Users\alex\Desktop\projects\el-proyecte-grande-sprint-1-csharp-Truther24\El-Proyecte-Grande\obj\Debug\net6.0\El-Proyecte-Grande.genruntimeconfig.cache
+C:\Users\alex\Desktop\projects\el-proyecte-grande-sprint-1-csharp-Truther24\El-Proyecte-Grande\obj\Debug\net6.0\ref\El-Proyecte-Grande.dll
+C:\Users\alex\Desktop\projects\el-proyecte-grande-sprint-1-csharp-Truther24\El-Proyecte-Grande\bin\Debug\net6.0\Newtonsoft.Json.dll

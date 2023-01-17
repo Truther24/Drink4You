@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>el_proyecte_grande</RootNamespace>
+    <RootNamespace>El_Proyecte_Grande</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

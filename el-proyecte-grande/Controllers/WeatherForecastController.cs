@@ -1,7 +1,6 @@
-using el_proyecte_grande.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace el_proyecte_grande.Controllers
+namespace El_Proyecte_Grande.Controllers
 {
     [ApiController]
     [Route("[controller]")]

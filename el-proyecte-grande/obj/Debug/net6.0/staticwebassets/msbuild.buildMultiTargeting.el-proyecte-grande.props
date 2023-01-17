@@ -1,3 +1,3 @@
 ﻿<Project>
-  <Import Project="..\build\el-proyecte-grande.props" />
+  <Import Project="..\build\El-Proyecte-Grande.props" />
 </Project>

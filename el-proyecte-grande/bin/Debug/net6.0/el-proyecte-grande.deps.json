@@ -6,13 +6,13 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "el-proyecte-grande/1.0.0": {
+      "El-Proyecte-Grande/1.0.0": {
         "dependencies": {
           "Newtonsoft.Json": "13.0.2",
           "Swashbuckle.AspNetCore": "6.2.3"
         },
         "runtime": {
-          "el-proyecte-grande.dll": {}
+          "El-Proyecte-Grande.dll": {}
         }
       },
       "Microsoft.Extensions.ApiDescription.Server/3.0.0": {},
@@ -73,7 +73,7 @@
     }
   },
   "libraries": {
-    "el-proyecte-grande/1.0.0": {
+    "El-Proyecte-Grande/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
