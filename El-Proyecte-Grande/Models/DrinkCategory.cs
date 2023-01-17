@@ -2,6 +2,6 @@
 {
     public class DrinkCategory
     {
-        public string? strCategory { get; set; }
+        public string? StrCategory { get; set; }
     }
 }

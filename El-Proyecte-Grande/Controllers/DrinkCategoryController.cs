@@ -15,6 +15,7 @@ namespace El_Proyecte_Grande.Controllers
         }
 
 
+
         [HttpGet("categories")]
         public async Task<IActionResult> Categories()
         {
@@ -91,5 +92,13 @@ namespace El_Proyecte_Grande.Controllers
             var drinks = await _drinkCategoryService.GetAllSoftDrinks();
             return Ok(drinks);
         }
+
+        [HttpGet("drink/{id}")]
+        public async Task<IActionResult> GetDrinkById(string id)
+        {
+            var drink = await _drinkCategoryService.GetDrinkById(id);
+            return Ok(drink);
+        }
+
     }
 }

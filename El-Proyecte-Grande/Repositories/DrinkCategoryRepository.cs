@@ -5,6 +5,9 @@ namespace El_Proyecte_Grande.Repositories
 {
     public class DrinkCategoryRepository
     {
+
+
+
         public async Task<List<DrinkCategory>> GetAllCategories()
         {
             HttpClient client = new();
@@ -23,7 +26,7 @@ namespace El_Proyecte_Grande.Repositories
             string response = await client.GetStringAsync($"https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail");
 
 
-            Drink? drink = JsonConvert.DeserializeObject<Drink>(response);
+            DrinkList? drink = JsonConvert.DeserializeObject<DrinkList>(response);
             return drink.drinks;
         }
 
@@ -33,7 +36,7 @@ namespace El_Proyecte_Grande.Repositories
             string response = await client.GetStringAsync($"https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink");
 
 
-            Drink? drink = JsonConvert.DeserializeObject<Drink>(response);
+            DrinkList? drink = JsonConvert.DeserializeObject<DrinkList>(response);
             return drink.drinks;
         }
 
@@ -43,7 +46,7 @@ namespace El_Proyecte_Grande.Repositories
             string response = await client.GetStringAsync($"https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Shake");
 
 
-            Drink? drink = JsonConvert.DeserializeObject<Drink>(response);
+            DrinkList? drink = JsonConvert.DeserializeObject<DrinkList>(response);
             return drink.drinks;
         }
 
@@ -53,7 +56,7 @@ namespace El_Proyecte_Grande.Repositories
             string response = await client.GetStringAsync($"https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocoa");
 
 
-            Drink? drink = JsonConvert.DeserializeObject<Drink>(response);
+            DrinkList? drink = JsonConvert.DeserializeObject<DrinkList>(response);
             return drink.drinks;
         }
 
@@ -63,7 +66,7 @@ namespace El_Proyecte_Grande.Repositories
             string response = await client.GetStringAsync($"https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Shot");
 
 
-            Drink? drink = JsonConvert.DeserializeObject<Drink>(response);
+            DrinkList? drink = JsonConvert.DeserializeObject<DrinkList>(response);
             return drink.drinks;
         }
 
@@ -73,7 +76,7 @@ namespace El_Proyecte_Grande.Repositories
             string response = await client.GetStringAsync($"https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Coffee_/_Tea");
 
 
-            Drink? drink = JsonConvert.DeserializeObject<Drink>(response);
+            DrinkList? drink = JsonConvert.DeserializeObject<DrinkList>(response);
             return drink.drinks;
         }
 
@@ -83,7 +86,7 @@ namespace El_Proyecte_Grande.Repositories
             string response = await client.GetStringAsync($"https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Homemade_Liqueur");
 
 
-            Drink? drink = JsonConvert.DeserializeObject<Drink>(response);
+            DrinkList? drink = JsonConvert.DeserializeObject<DrinkList>(response);
             return drink.drinks;
         }
 
@@ -93,7 +96,7 @@ namespace El_Proyecte_Grande.Repositories
             string response = await client.GetStringAsync($"https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Punch_/_Party_Drink");
 
 
-            Drink? drink = JsonConvert.DeserializeObject<Drink>(response);
+            DrinkList? drink = JsonConvert.DeserializeObject<DrinkList>(response);
             return drink.drinks;
         }
 
@@ -103,7 +106,7 @@ namespace El_Proyecte_Grande.Repositories
             string response = await client.GetStringAsync($"https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Beer");
 
 
-            Drink? drink = JsonConvert.DeserializeObject<Drink>(response);
+            DrinkList? drink = JsonConvert.DeserializeObject<DrinkList>(response);
             return drink.drinks;
         }
 
@@ -113,8 +116,20 @@ namespace El_Proyecte_Grande.Repositories
             string response = await client.GetStringAsync($"https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Soft_Drink");
 
 
-            Drink? drink = JsonConvert.DeserializeObject<Drink>(response);
+            DrinkList? drink = JsonConvert.DeserializeObject<DrinkList>(response);
             return drink.drinks;
         }
+
+        public async Task<Drink> GetDrinkById(string id)
+        {
+            HttpClient client = new();
+            string response = await client.GetStringAsync($"https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i={id}");
+
+
+            ComplexDrink complexDrink = JsonConvert.DeserializeObject<ComplexDrink>(response);
+            return complexDrink.drinks[0];
+        }
+
+
     }
 }

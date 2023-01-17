@@ -53,10 +53,17 @@ namespace El_Proyecte_Grande.Services
         public async Task<List<SimpleDrink>> GetAllBeers()
         {
             return await _drinkCategoryRepository.GetAllBeers();
-        }public async Task<List<SimpleDrink>> GetAllSoftDrinks()
+        }
+        public async Task<List<SimpleDrink>> GetAllSoftDrinks()
         {
             return await _drinkCategoryRepository.GetAllSoftDrinks();
         }
+
+        public async Task<Drink> GetDrinkById(string id)
+        {
+            return await _drinkCategoryRepository.GetDrinkById(id);
+        }
+
 
 
     }
