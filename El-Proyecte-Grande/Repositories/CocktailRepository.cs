@@ -1,7 +1,7 @@
-﻿using el_proyecte_grande.Models;
+﻿using El_Proyecte_Grande.Models;
 using Newtonsoft.Json;
 
-namespace el_proyecte_grande.Repositories
+namespace El_Proyecte_Grande.Repositories
 {
     public class CocktailRepository
     {
@@ -12,7 +12,7 @@ namespace el_proyecte_grande.Repositories
             string response = await client.GetStringAsync($"https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail");
 
 
-            Drink drink = JsonConvert.DeserializeObject<Drink>(response);
+            Drink? drink = JsonConvert.DeserializeObject<Drink>(response);
             return drink.drinks;
         }
 

@@ -1,8 +1,8 @@
 ﻿
-using el_proyecte_grande.Models;
-using el_proyecte_grande.Repositories;
+using El_Proyecte_Grande.Models;
+using El_Proyecte_Grande.Repositories;
 
-namespace el_proyecte_grande.Services
+namespace El_Proyecte_Grande.Services
 {
     public class SimpleCocktailService
     {

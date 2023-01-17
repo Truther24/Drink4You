@@ -1,4 +1,4 @@
-﻿namespace el_proyecte_grande.Models
+﻿namespace El_Proyecte_Grande.Models
 {
     public class SimpleCocktail
     {

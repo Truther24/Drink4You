@@ -1,8 +1,8 @@
-﻿using el_proyecte_grande.Repositories;
-using el_proyecte_grande.Services;
+﻿using El_Proyecte_Grande.Repositories;
+using El_Proyecte_Grande.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace el_proyecte_grande.Controllers
+namespace El_Proyecte_Grande.Controllers
 {
     [ApiController]
     public class CocktailController : Controller
