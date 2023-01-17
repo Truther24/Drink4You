@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\el-proyecte-grande.props" />
+</Project>
