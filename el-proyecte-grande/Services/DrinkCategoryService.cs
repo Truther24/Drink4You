@@ -1,6 +1,7 @@
 ﻿
 using El_Proyecte_Grande.Models;
 using El_Proyecte_Grande.Repositories;
+using Newtonsoft.Json;
 
 namespace El_Proyecte_Grande.Services
 {
@@ -14,7 +15,10 @@ namespace El_Proyecte_Grande.Services
 
         public async Task<List<DrinkCategory>> GetAllCategories()
         {
-            return await _drinkCategoryRepository.GetAllCategories();
+            string response= await _drinkCategoryRepository.GetAllCategories();
+            DrinkCategoryList drinkCategoryList = JsonConvert.DeserializeObject<DrinkCategoryList>(response);
+
+            return drinkCategoryList.drinks;
         }
 
         public async Task<List<SimpleDrink>> GetAllCocktails()

@@ -8,14 +8,13 @@ namespace El_Proyecte_Grande.Repositories
 
 
 
-        public async Task<List<DrinkCategory>> GetAllCategories()
+        public async Task<string> GetAllCategories()
         {
             HttpClient client = new();
-            string response = await client.GetStringAsync($"https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list");
+            return await client.GetStringAsync($"https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list");
 
 
-            DrinkCategoryList drinkCategoryList = JsonConvert.DeserializeObject<DrinkCategoryList>(response);
-            return drinkCategoryList.drinks;
+           
         }
 
 
