@@ -12,6 +12,9 @@ namespace El_Proyecte_Grande.Repositories
         {
             HttpClient client = new();
             return await client.GetStringAsync($"https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list");
+
+
+           
         }
 
 

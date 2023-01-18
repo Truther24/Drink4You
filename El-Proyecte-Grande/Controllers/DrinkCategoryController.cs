@@ -20,7 +20,7 @@ namespace El_Proyecte_Grande.Controllers
         public async Task<IActionResult> Categories()
         {
             var drinks = await _drinkCategoryService.GetAllCategories();
-            return Ok(drinks);
+            return Ok(drinks); 
         }
 
         [HttpGet("categories/cocktails")]
@@ -29,7 +29,7 @@ namespace El_Proyecte_Grande.Controllers
             var drinks = await _drinkCategoryService.GetAllCocktails();
             return Ok(drinks);
         }
-
+         
         [HttpGet("categories/ordinary_drinks")]
         public async Task<IActionResult> OrdinaryDrinks()
         {

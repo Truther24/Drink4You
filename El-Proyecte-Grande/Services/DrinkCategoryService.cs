@@ -13,16 +13,12 @@ namespace El_Proyecte_Grande.Services
             _drinkCategoryRepository = drinkCategoryRepository;
         }
 
-        public async Task<string> GetAllCategories()
+        public async Task<List<DrinkCategory>> GetAllCategories()
         {
-            string response = await _drinkCategoryRepository.GetAllCategories();
-
+            string response= await _drinkCategoryRepository.GetAllCategories();
             DrinkCategoryList drinkCategoryList = JsonConvert.DeserializeObject<DrinkCategoryList>(response);
 
-            var jsonString = JsonConvert.SerializeObject(drinkCategoryList);
-
-            return jsonString;
-
+            return drinkCategoryList.drinks;
         }
 
         public async Task<List<SimpleDrink>> GetAllCocktails()

@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\alex\\Desktop\\projects\\el-proyecte-grande-sprint-1-csharp-Truther24\\El-Proyecte-Grande\\El-Proyecte-Grande.csproj": {}
+    "C:\\Users\\alex\\Desktop\\projects\\el-proyecte-grande-sprint-1-csharp-Truther24\\El-Proyecte-Grande\\el-proyecte-grande.csproj": {}
   },
   "projects": {
-    "C:\\Users\\alex\\Desktop\\projects\\el-proyecte-grande-sprint-1-csharp-Truther24\\El-Proyecte-Grande\\El-Proyecte-Grande.csproj": {
+    "C:\\Users\\alex\\Desktop\\projects\\el-proyecte-grande-sprint-1-csharp-Truther24\\El-Proyecte-Grande\\el-proyecte-grande.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\alex\\Desktop\\projects\\el-proyecte-grande-sprint-1-csharp-Truther24\\El-Proyecte-Grande\\El-Proyecte-Grande.csproj",
-        "projectName": "El-Proyecte-Grande",
-        "projectPath": "C:\\Users\\alex\\Desktop\\projects\\el-proyecte-grande-sprint-1-csharp-Truther24\\El-Proyecte-Grande\\El-Proyecte-Grande.csproj",
+        "projectUniqueName": "C:\\Users\\alex\\Desktop\\projects\\el-proyecte-grande-sprint-1-csharp-Truther24\\El-Proyecte-Grande\\el-proyecte-grande.csproj",
+        "projectName": "el-proyecte-grande",
+        "projectPath": "C:\\Users\\alex\\Desktop\\projects\\el-proyecte-grande-sprint-1-csharp-Truther24\\El-Proyecte-Grande\\el-proyecte-grande.csproj",
         "packagesPath": "C:\\Users\\alex\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\alex\\Desktop\\projects\\el-proyecte-grande-sprint-1-csharp-Truther24\\El-Proyecte-Grande\\obj\\",
         "projectStyle": "PackageReference",

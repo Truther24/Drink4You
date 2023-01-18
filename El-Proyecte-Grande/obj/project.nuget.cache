@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Cy399hG8OdroXikU/qDXMACq/B4yB2NdHRe5aw24GmGIw51nupMZy4Q3RQLAqLCwmmTcfPjFxqBMV+6wf+Mo2w==",
+  "dgSpecHash": "pExM003CEgRytMkGWluMUwX6JDeMNDCoAmrgqZN9aHPto3warcVUXXLbabIjOBypkm3z8WYmXS30GqRLF7Y1Dw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\alex\\Desktop\\projects\\el-proyecte-grande-sprint-1-csharp-Truther24\\El-Proyecte-Grande\\El-Proyecte-Grande.csproj",
+  "projectFilePath": "C:\\Users\\alex\\Desktop\\projects\\el-proyecte-grande-sprint-1-csharp-Truther24\\El-Proyecte-Grande\\el-proyecte-grande.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\alex\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\alex\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
