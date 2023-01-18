@@ -274,9 +274,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Asus\\OneDrive\\Рабочий стол\\Codecool\\advanced\\weekpair1\\el-proyecte-grande-sprint-1-csharp-Truther24\\el-proyecte-grande\\El_Proyecte_Grande.csproj",
-      "projectName": "El_Proyecte_Grande",
-      "projectPath": "C:\\Users\\Asus\\OneDrive\\Рабочий стол\\Codecool\\advanced\\weekpair1\\el-proyecte-grande-sprint-1-csharp-Truther24\\el-proyecte-grande\\El_Proyecte_Grande.csproj",
+      "projectUniqueName": "C:\\Users\\Asus\\OneDrive\\Рабочий стол\\Codecool\\advanced\\weekpair1\\el-proyecte-grande-sprint-1-csharp-Truther24\\el-proyecte-grande\\el-proyecte-grande.csproj",
+      "projectName": "el-proyecte-grande",
+      "projectPath": "C:\\Users\\Asus\\OneDrive\\Рабочий стол\\Codecool\\advanced\\weekpair1\\el-proyecte-grande-sprint-1-csharp-Truther24\\el-proyecte-grande\\el-proyecte-grande.csproj",
       "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Asus\\OneDrive\\Рабочий стол\\Codecool\\advanced\\weekpair1\\el-proyecte-grande-sprint-1-csharp-Truther24\\el-proyecte-grande\\obj\\",
       "projectStyle": "PackageReference",
