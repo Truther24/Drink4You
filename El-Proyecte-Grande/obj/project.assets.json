@@ -273,11 +273,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\alex\\Desktop\\projects\\el-proyecte-grande-sprint-1-csharp-Truther24\\El-Proyecte-Grande\\El-Proyecte-Grande.csproj",
-      "projectName": "El-Proyecte-Grande",
-      "projectPath": "C:\\Users\\alex\\Desktop\\projects\\el-proyecte-grande-sprint-1-csharp-Truther24\\El-Proyecte-Grande\\El-Proyecte-Grande.csproj",
+      "projectUniqueName": "C:\\Users\\alex\\Desktop\\projects\\el-proyecte-grande-sprint-1-csharp-Truther24\\el-proyecte-grande\\El_Proyecte_Grande.csproj",
+      "projectName": "El_Proyecte_Grande",
+      "projectPath": "C:\\Users\\alex\\Desktop\\projects\\el-proyecte-grande-sprint-1-csharp-Truther24\\el-proyecte-grande\\El_Proyecte_Grande.csproj",
       "packagesPath": "C:\\Users\\alex\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\alex\\Desktop\\projects\\el-proyecte-grande-sprint-1-csharp-Truther24\\El-Proyecte-Grande\\obj\\",
+      "outputPath": "C:\\Users\\alex\\Desktop\\projects\\el-proyecte-grande-sprint-1-csharp-Truther24\\el-proyecte-grande\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\alex\\AppData\\Roaming\\NuGet\\NuGet.Config",

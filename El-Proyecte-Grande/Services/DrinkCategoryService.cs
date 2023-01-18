@@ -1,10 +1,13 @@
 ﻿
 using El_Proyecte_Grande.Models;
 using El_Proyecte_Grande.Repositories;
+using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace El_Proyecte_Grande.Services
 {
+    
     public class DrinkCategoryService
     {
         private readonly DrinkCategoryRepository _drinkCategoryRepository;
@@ -13,12 +16,14 @@ namespace El_Proyecte_Grande.Services
             _drinkCategoryRepository = drinkCategoryRepository;
         }
 
-        public async Task<List<DrinkCategory>> GetAllCategories()
+        public async Task<string> GetAllCategories()
         {
             string response= await _drinkCategoryRepository.GetAllCategories();
             DrinkCategoryList drinkCategoryList = JsonConvert.DeserializeObject<DrinkCategoryList>(response);
 
-            return drinkCategoryList.drinks;
+            string jsonString = JsonConvert.SerializeObject(drinkCategoryList);
+
+            return jsonString;
         }
 
         public async Task<List<SimpleDrink>> GetAllCocktails()

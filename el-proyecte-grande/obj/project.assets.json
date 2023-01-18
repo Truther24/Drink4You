@@ -268,24 +268,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Asus\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\alex\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Asus\\OneDrive\\Рабочий стол\\Codecool\\advanced\\weekpair1\\el-proyecte-grande-sprint-1-csharp-Truther24\\el-proyecte-grande\\El_Proyecte_Grande.csproj",
+      "projectUniqueName": "C:\\Users\\alex\\Desktop\\projects\\el-proyecte-grande-sprint-1-csharp-Truther24\\el-proyecte-grande\\El_Proyecte_Grande.csproj",
       "projectName": "El_Proyecte_Grande",
-      "projectPath": "C:\\Users\\Asus\\OneDrive\\Рабочий стол\\Codecool\\advanced\\weekpair1\\el-proyecte-grande-sprint-1-csharp-Truther24\\el-proyecte-grande\\El_Proyecte_Grande.csproj",
-      "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Asus\\OneDrive\\Рабочий стол\\Codecool\\advanced\\weekpair1\\el-proyecte-grande-sprint-1-csharp-Truther24\\el-proyecte-grande\\obj\\",
+      "projectPath": "C:\\Users\\alex\\Desktop\\projects\\el-proyecte-grande-sprint-1-csharp-Truther24\\el-proyecte-grande\\El_Proyecte_Grande.csproj",
+      "packagesPath": "C:\\Users\\alex\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\alex\\Desktop\\projects\\el-proyecte-grande-sprint-1-csharp-Truther24\\el-proyecte-grande\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\alex\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -339,7 +334,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }
