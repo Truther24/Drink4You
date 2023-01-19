@@ -49,6 +49,18 @@ namespace El_Proyecte_Grande.Repositories
             return drink.drinks;
         }
 
+
+        public async Task<List<SimpleDrink>> GetAllOtherUnknown()
+        {
+            HttpClient client = new();
+            string response = await client.GetStringAsync($"https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Other%20/%20Unknown");
+
+
+            DrinkList? drink = JsonConvert.DeserializeObject<DrinkList>(response);
+            return drink.drinks;
+        }
+
+
         public async Task<List<SimpleDrink>> GetAllCocoas()
         {
             HttpClient client = new();
