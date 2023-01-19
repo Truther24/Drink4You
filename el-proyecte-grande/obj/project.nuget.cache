@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TCVVob2GUUlS1QEkIRzjDUofssNGrl7IJUKpDZ8rWQaxr2s7uLDbg8o5fmgyDpa30DNYFjLFKI2VDqyX3or2NA==",
+  "dgSpecHash": "2BxmeELbGpmM9T1isZUXyPbJvdX7VcstpdzYoBS/TJeqrVDzwxtibCVdadKegKjsMBXAj3iZYM3AcW7O1cbBjg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Asus\\OneDrive\\Рабочий стол\\Codecool\\advanced\\weekpair1\\el-proyecte-grande-sprint-1-csharp-Truther24\\el-proyecte-grande\\el-proyecte-grande.csproj",
+  "projectFilePath": "C:\\Users\\Asus\\OneDrive\\Рабочий стол\\Codecool\\advanced\\weekpair1\\el-proyecte-grande-sprint-1-csharp-Truther24\\el-proyecte-grande\\El_Proyecte_Grande.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
@@ -12,5 +12,12 @@
     "C:\\Users\\Asus\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
     "C:\\Users\\Asus\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\Asus\\OneDrive\\Рабочий стол\\Codecool\\advanced\\weekpair1\\el-proyecte-grande-sprint-1-csharp-Truther24\\el-proyecte-grande\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
