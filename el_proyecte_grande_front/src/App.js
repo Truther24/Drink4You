@@ -5,23 +5,23 @@ import Navbar from './Navbar';
 import About from './pages/About';
 import Categories from './pages/Categories';
 
-import {Route, Routes} from 'react-router-dom' 
+import { Route, Routes } from 'react-router-dom'
 
 function App() {
-  
+
   return (
     <>
-  <Navbar/>
-  <div className="container">
-  <Routes>
-    <Route path="/" element={<Home/>}/>
-    <Route path="/categories" element={<Categories/>}/>
+      <Navbar />
+      <div className="container">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/categories" element={<Categories />} />
 
-    <Route path="/about" element={<About/>}/>
+          <Route path="/about" element={<About />} />
 
-  </Routes>
+        </Routes>
 
-  </div>
+      </div>
     </>
   )
 }

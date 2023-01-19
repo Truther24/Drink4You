@@ -17,6 +17,13 @@ export default function Categories() {
     }, [])
 
 
+    const getCategoryData = async (categoryName) =>{
+        console.log(categoryName.toLowerCase().replace(" / ","_").replace(" ","_") + "s")
+        
+    };
+        
+    
+
     return (
 
         <div>
@@ -28,8 +35,8 @@ export default function Categories() {
             <br/>
             {categories.map((category, index) => {
                 return (
-                    <div key={index}>
-                        <h4>
+                    <div onClick={()=>getCategoryData(category.StrCategory)} key={index} >
+                        <h4 >
                             {index+1}. {category.StrCategory}
                         </h4>
                     </div>

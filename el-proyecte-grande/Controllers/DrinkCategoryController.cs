@@ -46,6 +46,14 @@ namespace El_Proyecte_Grande.Controllers
             return Ok(drinks);
         }
 
+        [HttpGet("categories/other_unknowns")]
+        public async Task<IActionResult> Other()
+        {
+            var drinks = await _drinkCategoryService.GetAllOtherUknown();
+            return Ok(drinks);
+        }
+
+
         [HttpGet("categories/cocoas")]
         public async Task<IActionResult> Cocoas()
         {
@@ -60,7 +68,7 @@ namespace El_Proyecte_Grande.Controllers
             return Ok(drinks);
         }
 
-        [HttpGet("categories/coffee_and_teas")]
+        [HttpGet("categories/coffee_teas")]
         public async Task<IActionResult> CoffeeAndTeas()
         {
             var drinks = await _drinkCategoryService.GetAllCoffeeAndTeas();
@@ -74,7 +82,7 @@ namespace El_Proyecte_Grande.Controllers
             return Ok(drinks);
         }
 
-        [HttpGet("categories/party_drinks")]
+        [HttpGet("categories/punch_party_drinks")]
         public async Task<IActionResult> PartyDrinks()
         {
             var drinks = await _drinkCategoryService.GetAllPartyDrinks();

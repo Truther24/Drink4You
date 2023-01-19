@@ -3,43 +3,58 @@
 }
 
 body {
-  margin: 0;
+  margin: 0 ;
+}
+
+.backgroundImage {
+  height: '100vh';
+  margin-top: '-70px';
+    font-size:'50px';
+    background-size: 'cover';
+    background-repeat: 'no-repeat',
 }
 
 .container {
-  margin: 1rem;
-  text-align: center;
+  text-align:  center;
+  height: 100vh;
+    display: block;
+
 }
+
 
 .nav {
   background-color: #333;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch;
-  gap: 2rem;
-  padding: 0 1rem;
+color: white;
+display: flex;
+justify-content: space-between;
+align-items: stretch;
+gap: 2rem;
+padding: 0 1rem;
 }
 
-.site-title {
+.site-title{
   font-size: 2rem;
+
 }
+
 
 .nav ul {
   padding: 0;
   margin: 0;
   list-style: none;
-  display: flex;
-  gap: 1rem;
+  display:  flex;
+  gap:  1rem;
 }
 
-.nav a {
+
+.nav a{
   color: inherit;
   text-decoration: none;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  padding: .25rem;
+height: 100%;
+display: flex;
+align-items: center;
+padding: .25rem;
+
 }
 
 .nav li.active {
@@ -49,3 +64,4 @@ body {
 .nav li:hover {
   background-color: #777;
 }
+
