@@ -1,4 +1,3 @@
-import { Children } from "react"
 import "./App.css"
 import {Link, useMatch, useResolvedPath } from "react-router-dom"
 
@@ -11,7 +10,10 @@ export default function Navbar () {
         </Link>
 
         <ul>
-        <CustomLink to="/pricing">Pricing</CustomLink>
+        <CustomLink to="/categories">
+            
+            Categories
+        </CustomLink>
         <CustomLink to="/about">About</CustomLink>
             
             
