@@ -10,8 +10,9 @@ export default function Home() {
     display: 'block',
     backgroundRepeat : 'no-repeat',
     backgroundSize: 'cover',
-    backgroundPosition : 'center'}}>
-        <div style={{color:"white", fontSize: 34}}>
+    backgroundPosition : 'center',
+    opacity: 0.9}}>
+        <div style={{color:"white", fontSize: 26}}>
       <h1 >Welcome to Drink4You main page!</h1>
     <h3>Check all the drink categories we got for you </h3>
     <Link to="/categories">Drink categories</Link>
