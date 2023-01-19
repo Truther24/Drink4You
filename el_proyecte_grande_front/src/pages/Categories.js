@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom"
 
 export default function Categories() {
 
     const [categories, setCategories] = useState([]);
+    // const [category, setCategory] = useState([])
 
     useEffect(() => {
 
@@ -16,13 +18,11 @@ export default function Categories() {
         fetchGet();
     }, [])
 
-
-    const getCategoryData = async (categoryName) =>{
-        console.log(categoryName.toLowerCase().replace(" / ","_").replace(" ","_") + "s")
-        
-    };
-        
-    
+    // const sendToCategory = async (categoryName) => 
+    // {
+    //     categoryName = categoryName.toLowerCase().replace(" / ","_").replace(" ","_") + "s"
+    //     window.location.replace(`/categories/${categoryName}`)
+    // }
 
     return (
 
@@ -35,11 +35,15 @@ export default function Categories() {
             <br/>
             {categories.map((category, index) => {
                 return (
-                    <div onClick={()=>getCategoryData(category.StrCategory)} key={index} >
+                    <Link style={{cursor: 'default'}}
+                    key={index} 
+                    to={`/categories/${category.StrCategory.toLowerCase().replace(" / ","_").replace(" ","_") + "s"}`}>
+                    <div  key={index} >
                         <h4 >
                             {index+1}. {category.StrCategory}
                         </h4>
                     </div>
+                    </Link>
                 )
             })}
 
