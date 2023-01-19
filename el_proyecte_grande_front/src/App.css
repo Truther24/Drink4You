@@ -6,9 +6,18 @@ body {
   margin: 0 ;
 }
 
+.backgroundImage {
+  height: '100vh';
+  margin-top: '-70px';
+    font-size:'50px';
+    background-size: 'cover';
+    background-repeat: 'no-repeat',
+}
+
 .container {
-  margin:  1rem;
   text-align:  center;
+  height: 100vh;
+    display: block;
 
 }
 
