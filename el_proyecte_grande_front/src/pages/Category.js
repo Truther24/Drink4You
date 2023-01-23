@@ -21,8 +21,8 @@ export default function Category() {
 
   return (
     <div>
-      <h1 >
-        {category}
+      <h1 style={{fontSize:40 , color:'blue'}} >
+        {category }
       </h1>
 
          <br />
