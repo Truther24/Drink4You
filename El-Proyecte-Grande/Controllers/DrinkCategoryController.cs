@@ -72,7 +72,7 @@ namespace El_Proyecte_Grande.Controllers
             return Ok(drinks);
         }
 
-        [HttpGet("categories/homemade_liquors")]
+        [HttpGet("categories/homemade_liqueurs")]
         public async Task<IActionResult> HomemadeLiqueors()
         {
             var drinks = await _drinkCategoryService.GetAllHomemadeLiqueors();

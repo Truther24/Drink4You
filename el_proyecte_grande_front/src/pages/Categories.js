@@ -17,6 +17,38 @@ export default function Categories() {
         fetchGet();
     }, [])
 
+    
+
+        console.log(categoryName.toLowerCase().replace(" / ","_").replace(" ","_") + "s")
+        
+    };
+        
+    
+
+        console.log(categoryName.toLowerCase().replace(" / ","_").replace(" ","_") + "s")
+        
+    };
+        
+    
+
+        console.log(categoryName.toLowerCase().replace(" / ","_").replace(" ","_") + "s")
+        
+    };
+        
+    
+
+        console.log(categoryName.toLowerCase().replace(" / ","_").replace(" ","_") + "s")
+        
+    };
+        
+    
+
+        console.log(categoryName.toLowerCase().replace(" / ","_").replace(" ","_") + "s")
+        
+    };
+        
+    
+
     return (
 
         <div>
