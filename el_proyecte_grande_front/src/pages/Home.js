@@ -6,6 +6,7 @@ export default function Home() {
         <>
 
             <div style={{ backgroundImage: `url(${cocktail})`, width: '100%',
+    padding : '40px',
     height: '100%',
     display: 'block',
     backgroundRepeat : 'no-repeat',

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom"
 export default function Categories() {
 
     const [categories, setCategories] = useState([]);
-    // const [category, setCategory] = useState([])
 
     useEffect(() => {
 
@@ -17,12 +16,6 @@ export default function Categories() {
         }
         fetchGet();
     }, [])
-
-    // const sendToCategory = async (categoryName) => 
-    // {
-    //     categoryName = categoryName.toLowerCase().replace(" / ","_").replace(" ","_") + "s"
-    //     window.location.replace(`/categories/${categoryName}`)
-    // }
 
     return (
 

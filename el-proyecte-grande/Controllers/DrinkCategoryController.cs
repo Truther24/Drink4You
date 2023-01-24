@@ -1,5 +1,4 @@
-﻿using El_Proyecte_Grande.Repositories;
-using El_Proyecte_Grande.Services;
+﻿using El_Proyecte_Grande.Services;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,8 +14,6 @@ namespace El_Proyecte_Grande.Controllers
         {
             this._drinkCategoryService = drinkCategoryService;
         }
-
-
 
         [HttpGet("categories")]
         public async Task<IActionResult> Categories()
