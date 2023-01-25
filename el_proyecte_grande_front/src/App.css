@@ -23,6 +23,14 @@ body {
 
 
 .nav {
+  position: fixed;
+    
+    will-change: auto;
+    backface-visibility: hidden;
+    
+    z-index: 997;
+    width: 100%;
+    
   background-color: #333;
 color: white;
 display: flex;
@@ -64,4 +72,3 @@ padding: .25rem;
 .nav li:hover {
   background-color: #777;
 }
-
