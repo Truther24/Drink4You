@@ -12,6 +12,14 @@ export default function Card(props) {
 
             <div className='card-content'>
                 <div className='card-title'>
+                    <h3 style={{color:'gray'}}>
+                        {props.categoryName}
+                    </h3>
+                </div>
+            </div>
+
+            <div className='card-content'>
+                <div className='card-title'>
                     <h3 id={props.myKey}>
                         {props.strDrink}
                     </h3>

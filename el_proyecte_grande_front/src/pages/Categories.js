@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom"
+import CategoryCard from "../CategoryCard"
 
 export default function Categories() {
 
@@ -19,39 +19,10 @@ export default function Categories() {
 
     
 
-        console.log(categoryName.toLowerCase().replace(" / ","_").replace(" ","_") + "s")
-        
-    };
-        
-    
-
-        console.log(categoryName.toLowerCase().replace(" / ","_").replace(" ","_") + "s")
-        
-    };
-        
-    
-
-        console.log(categoryName.toLowerCase().replace(" / ","_").replace(" ","_") + "s")
-        
-    };
-        
-    
-
-        console.log(categoryName.toLowerCase().replace(" / ","_").replace(" ","_") + "s")
-        
-    };
-        
-    
-
-        console.log(categoryName.toLowerCase().replace(" / ","_").replace(" ","_") + "s")
-        
-    };
-        
-    
-
     return (
 
-        <div>
+        <div style={{backgroundColor: 'black'}}>
+            <br/>
             <h1>
 
             Categories
@@ -60,15 +31,9 @@ export default function Categories() {
             <br/>
             {categories.map((category, index) => {
                 return (
-                    <Link style={{cursor: 'default'}}
-                    key={index} 
-                    to={`/categories/${category.StrCategory.toLowerCase().replace(" / ","_").replace(" ","_") + "s"}`}>
-                    <div  key={index} >
-                        <h4 >
-                            {index+1}. {category.StrCategory}
-                        </h4>
-                    </div>
-                    </Link>
+
+                    <CategoryCard categoryIndex= {index} categoryName= {category.StrCategory}/>
+                    
                 )
             })}
 

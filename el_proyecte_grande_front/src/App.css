@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -23,6 +24,14 @@ body {
 
 
 .nav {
+  position: fixed;
+    
+    will-change: auto;
+    backface-visibility: hidden;
+    
+    z-index: 997;
+    width: 100%;
+    
   background-color: #333;
 color: white;
 display: flex;

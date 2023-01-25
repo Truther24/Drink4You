@@ -7,6 +7,7 @@ export default function Category() {
   const { category } = useParams();
 
   const [data, setData] = useState([]);
+  useEffect(() => {
     const fetcher = async () => {
       const response = await fetch(`https://localhost:7090/categories/${category}`);
       const responseData = await response.json();
@@ -15,6 +16,7 @@ export default function Category() {
     }
     fetcher();
   }, [])
+
 
   console.log(data)
 
@@ -28,7 +30,12 @@ export default function Category() {
       {data.map((drink) => {
         return (
           
-          <Card strDrinkThumb={drink.strDrinkThumb} strDrink={drink.strDrink} myKey={drink.idDrink}  key={drink.idDrink} categoryName={category} />
+          <Card strDrinkThumb=
+          {drink.strDrinkThumb} 
+          strDrink={drink.strDrink}   
+          myKey={drink.idDrink}  
+          key={drink.idDrink} 
+          categoryName={category.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()).replace("_", " ").replace("_", " ")+ " recipe"} />
           )
           
       
