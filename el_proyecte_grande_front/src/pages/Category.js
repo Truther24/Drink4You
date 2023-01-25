@@ -17,6 +17,7 @@ export default function Category() {
     fetcher();
   }, [])
 
+
   console.log(data)
 
   return (
@@ -29,7 +30,12 @@ export default function Category() {
       {data.map((drink) => {
         return (
           
-          <Card strDrinkThumb={drink.strDrinkThumb} strDrink={drink.strDrink} myKey={drink.idDrink}  key={drink.idDrink} categoryName={category} />
+          <Card strDrinkThumb=
+          {drink.strDrinkThumb} 
+          strDrink={drink.strDrink}   
+          myKey={drink.idDrink}  
+          key={drink.idDrink} 
+          categoryName={category.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()).replace("_", " ").replace("_", " ")+ " recipe"} />
           )
           
       
