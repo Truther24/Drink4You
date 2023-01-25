@@ -13,16 +13,11 @@ export default function Home() {
     display: 'block',
     backgroundRepeat : 'no-repeat',
     backgroundSize: 'cover',
-<<<<<<< HEAD
-    backgroundPosition : 'center'}}>
-        
-=======
     backgroundPosition : 'center'
     }}>
       
 
        
->>>>>>> 551231496854c8cbcc761af431adc73616395f2a
     </div>
         </>
     )
