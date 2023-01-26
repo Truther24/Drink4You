@@ -1,20 +1,27 @@
 .drinkContainer{
     color: white;
+    position: relative;
 }
 
 
 .imageContainer{
     margin-right: 60%;
+    margin-top: 3%;
     height: min-content;
+    position: absolute;
     
 }
 
 .image{
-    width: 500px;
+    width: 70%;
 }
 
 .textContainer{
-    position:  fixed;
-    top: 10%;
-    left: 50%
+    position:  absolute;
+    left: 35%;
+    top: 300%;
+}
+
+.nameContainer{
+    
 }
