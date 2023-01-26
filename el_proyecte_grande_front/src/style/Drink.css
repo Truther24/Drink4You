@@ -1,0 +1,20 @@
+.drinkContainer{
+    color: white;
+}
+
+
+.imageContainer{
+    margin-right: 60%;
+    height: min-content;
+    
+}
+
+.image{
+    width: 500px;
+}
+
+.textContainer{
+    position:  fixed;
+    top: 10%;
+    left: 50%
+}

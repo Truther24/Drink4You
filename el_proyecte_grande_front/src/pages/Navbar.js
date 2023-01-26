@@ -1,5 +1,5 @@
 
-import "./App.css"
+import "../style/App.css"
 import { Link, useMatch, useResolvedPath } from "react-router-dom"
 
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import '../style/Drink.css'
 
 
 export default function Drink() {
@@ -22,12 +23,19 @@ export default function Drink() {
     console.log(data)
 
     return (
-        <div>
+        <div className='drinkContainer'>
+            <br />
             <ul>
                 <li>
-                    <h1> Name : {data.strDrink}</h1>
-                    <h3>Glass Type : {data.strGlass}</h3>
-                    <h3>Instructions : {data.strInstructions}</h3>
+                    <div className='imageContainer'>
+                        <img className='image' src={data.strDrinkThumb} alt=''></img>
+                    </div>
+
+                    <div className='textContainer'>
+                        <h1> Name : {data.strDrink}</h1>
+                        <h3>Glass Type : {data.strGlass}</h3>
+                        <h3>Instructions : {data.strInstructions}</h3>
+                    </div>
                 </li>
             </ul>
         </div>

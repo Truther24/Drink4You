@@ -1,6 +1,6 @@
-import './App.css';
+import './style/App.css';
 import Home from './pages/Home'
-import Navbar from './Navbar';
+import Navbar from './pages/Navbar';
 import About from './pages/About';
 import Categories from './pages/Categories';
 import Category from './pages/Category';
