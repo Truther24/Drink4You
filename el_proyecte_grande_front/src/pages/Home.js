@@ -1,4 +1,4 @@
-import cocktail from '../ash-edmonds-fsI-_MRsic0-unsplash.jpg'
+import cocktail from '../images/ash-edmonds-fsI-_MRsic0-unsplash.jpg'
 
 export default function Home() {
     return (
@@ -13,8 +13,15 @@ export default function Home() {
     display: 'block',
     backgroundRepeat : 'no-repeat',
     backgroundSize: 'cover',
-    backgroundPosition : 'center'
+    backgroundPosition : 'center',
+    color:'white',
+    fontSize:44
     }}>
+        <div style={{}}>
+
+
+        </div>
+        
       
 
        

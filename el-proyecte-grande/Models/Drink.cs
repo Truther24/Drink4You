@@ -12,7 +12,7 @@
         public string StrIngredient2 { get; set; }
         public string StrIngredient3 { get; set; }
         public string StrIngredient4 { get; set; }
-        public string StrImageSource { get; set; }
+        public string StrDrinkThumb { get; set; }
 
 
 

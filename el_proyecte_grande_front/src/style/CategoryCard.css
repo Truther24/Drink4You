@@ -3,6 +3,7 @@
     padding: 70px;
     display: flex;
     position: relative;
+    background-color:rgba(147, 114, 7, 0.208);
 
     
 
@@ -15,7 +16,7 @@
     background-size: contain;
     background-position: center;
     
-    filter: blur(2.5px);
+    filter: blur(1px) grayscale(50%);
     
     position: absolute;
     inset: 0;
@@ -23,7 +24,7 @@
 }
 
 .categoryContainer:hover .categoryImage{
-    filter: blur(0px);
+    filter: blur(0px) grayscale(0%);
 
 }
 
