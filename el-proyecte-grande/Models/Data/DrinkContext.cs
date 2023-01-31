@@ -18,6 +18,14 @@ namespace El_Proyecte_Grande.Models.Data
 
         }
 
+
+        public Task<List<User>> GetAllUsers()
+        {
+            return Users.ToListAsync();
+        }
+
+
+
         public async Task CreateUser(User user)
         {
             User newUser = new()
@@ -42,7 +50,25 @@ namespace El_Proyecte_Grande.Models.Data
             await SaveChangesAsync();
         }
 
+        public async Task<User> GetUserByID(Guid id)
+        {
+            return await Users.FindAsync(id);
+        }
 
+
+        public async Task UpdateUser(User user)
+        {
+            Users.Update(user);
+            await SaveChangesAsync();
+
+        }
+
+
+        public async Task DeleteAllUsers()
+        {
+            Users.RemoveRange(Users);
+            await SaveChangesAsync();
+        }
 
 
     }
