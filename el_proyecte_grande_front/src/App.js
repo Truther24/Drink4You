@@ -22,7 +22,7 @@ function App() {
           <Route path="/categories/:category" element={<Category />} />
           <Route path="/categories/:category/:drinkName/:drinkId" element={<Drink />} />
           <Route path="/about" element={<About />} />
-
+ 
         </Routes>
 
       </div>
