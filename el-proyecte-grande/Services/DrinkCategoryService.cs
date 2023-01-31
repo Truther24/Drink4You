@@ -1,5 +1,7 @@
 ﻿
 using El_Proyecte_Grande.Models;
+using El_Proyecte_Grande.Models.Data;
+using El_Proyecte_Grande.Models.Entities;
 using El_Proyecte_Grande.Repositories;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -11,9 +13,14 @@ namespace El_Proyecte_Grande.Services
     public class DrinkCategoryService
     {
         private readonly DrinkCategoryRepository _drinkCategoryRepository;
-        public DrinkCategoryService(DrinkCategoryRepository drinkCategoryRepository)
+
+        private readonly DrinkContext _context;
+        public DrinkCategoryService(DrinkCategoryRepository drinkCategoryRepository , DrinkContext drinkContext)
         {
             _drinkCategoryRepository = drinkCategoryRepository;
+
+            _context = drinkContext;
+
         }
 
         public async Task<string> GetAllCategories()
@@ -78,6 +85,8 @@ namespace El_Proyecte_Grande.Services
         }
 
 
+
+        
 
     }
 }

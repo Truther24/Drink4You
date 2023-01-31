@@ -1,4 +1,4 @@
-using El_Proyecte_Grande.Models;
+using El_Proyecte_Grande.Models.Data;
 using El_Proyecte_Grande.Repositories;
 using El_Proyecte_Grande.Services;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +26,7 @@ builder.Services.AddControllersWithViews()
 
 builder.Services.AddScoped<DrinkCategoryService>();
 builder.Services.AddScoped<DrinkCategoryRepository>();
+builder.Services.AddScoped<UserService>();
 
 builder.Services.AddCors(options =>
 {
