@@ -16,6 +16,9 @@ export default function Navbar() {
                     Categories
                 </CustomLink>
                 <CustomLink to="/about">About</CustomLink>
+                <CustomLink to="/register">Register</CustomLink>
+                <CustomLink to="/login">Login</CustomLink>
+
 
 
             </ul>
