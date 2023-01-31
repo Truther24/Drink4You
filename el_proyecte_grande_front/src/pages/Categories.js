@@ -9,9 +9,6 @@ export default function Categories() {
 
     const [isLoading, setisLoading] = useState(false);
 
-
-
-
     useEffect(() => {
 
 
@@ -28,7 +25,8 @@ export default function Categories() {
 
     const page = (
         <div>
-            <h1>
+            <br/>
+            <h1 className="title">
 
                 Categories
 

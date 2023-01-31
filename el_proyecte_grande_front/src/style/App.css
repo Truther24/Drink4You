@@ -5,7 +5,8 @@
 
 body {
   margin: 0 ;
-  background-color: black;
+  background-color: rgba(210, 205, 105, 0.89) ;
+  
   scroll-behavior: smooth;
 }
 

@@ -33,7 +33,7 @@ export default function Category() {
   const page = (
     <div>
       <br/>
-      <h1 style={{fontSize:40 , color:'rgba(207, 198, 16, 0.637)'}} >
+      <h1 style={{fontSize:40 , color: 'rgba(210, 205, 105, 0.89)' }} >
         {category.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()).replace("_", " ").replace("_", " ") }
       </h1>
 

@@ -11,8 +11,8 @@ export default function Card(props) {
             </div>
 
             <div className='card-content'>
-                <div className='card-title'>
-                    <h3 style={{color:'rgba(187, 185, 163, 0.823)'}}>
+                <div className='card-category-name'>
+                    <h3 >
                         {props.categoryName}
                     </h3>
                 </div>

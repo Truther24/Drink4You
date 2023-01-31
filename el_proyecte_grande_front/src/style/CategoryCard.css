@@ -1,9 +1,9 @@
 .categoryContainer{
-    color: rgb(84, 61, 7) ;
+    color: rgb(217, 224, 12) ;
     padding: 70px;
     display: flex;
     position: relative;
-    background-color:rgba(147, 114, 7, 0.208);
+    background-color:rgba(56, 105, 29, 0.723);
 
     
 
@@ -44,7 +44,7 @@
 
 
 .categoryCard :hover {
-    color:rgb(165, 111, 10);
+    color: white;
     transform: scale(1, 1);
     box-shadow: 0px 0px 15px 0px;
     animation:ease-in-out;
