@@ -30,22 +30,28 @@ export default function Drink() {
 
     console.log(data)
 
-    const page = (<div className='drinkContainer'>
-        <br />
-        <ul>
-            <li>
-                <div className='imageContainer'>
-                    <img className='image' src={data.strDrinkThumb} alt=''></img>
-                </div>
+    return (
+        <div className='drinkContainer'>
+            <br />
+            
+                    <div className='imageContainer'>
+                        <img className='image' src={data.strDrinkThumb} alt=''></img>
+                    </div>
 
-                <div className='textContainer'>
-                    <h1> Name : {data.strDrink}</h1>
-                    <h3>Glass Type : {data.strGlass}</h3>
-                    <h3>Instructions : {data.strInstructions}</h3>
-                </div>
-            </li>
-        </ul>
-    </div>)
-
-    return (<div>{isLoading ? <LoadingSpinner/> : page}</div> )
+                    <div className='textContainer'>
+                        <h1 className='nameContainer'> Name : {data.strDrink}</h1>
+                        <h3 className='glassContainer'>Glass Type : {data.strGlass}</h3>
+                        <h3 className='instructionsContainer'>Instructions : {data.strInstructions}</h3>
+                        <div className='ingredientsContainer'> Ingredients: 
+                            <li>
+                                <ul> {data.strIngredient1} </ul>
+                                <ul> {data.strIngredient2} </ul>
+                                <ul> {data.strIngredient3} </ul>
+                                <ul> {data.strIngredient4} </ul>
+                            </li>
+                        </div>
+                    </div>
+               
+        </div>
+    )
 }

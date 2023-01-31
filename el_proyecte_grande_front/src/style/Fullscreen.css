@@ -2,5 +2,15 @@
     
     
     
-    background-color: black;
+    background-color: rgba(56, 105, 29, 0.723);
+}
+
+
+.title {
+    font-size: x-large;
+    font-weight:450;
+    
+    color: white;
+
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

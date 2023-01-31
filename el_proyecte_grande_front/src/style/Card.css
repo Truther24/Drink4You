@@ -4,7 +4,8 @@
     box-shadow: 0px 0px 15px -5px;
     transition: 0.5s;
     animation: ease-in;
-    background-color: rgba(62, 46, 7, 0.64);
+    background-color:rgba(56, 105, 29, 0.723);
+    
 
 }
 
@@ -34,8 +35,20 @@ p {
 
 .card-title {
     margin-bottom: 0.5rem;
-    color: rgb(165, 111, 10);
+  color: rgb(70, 51, 7);
+    
+    font-weight: 700;
+    font-size: large;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
+}
+
+.card-category-name{
+    margin-bottom: 0.5rem;
+    color: rgb(188, 190, 105) ;
+  
+    
+    font-weight: 400;
 }
 
 .btn {
@@ -57,7 +70,8 @@ p {
 
 .card-button {
     text-transform: uppercase;
-    color: rgba(207, 198, 16, 0.796);
+    color: rgb(217, 224, 12) ;
+    
     text-decoration: none;
     font-weight: bold;
 }
@@ -65,7 +79,8 @@ p {
 
 
 .btn button:hover {
-    background: rgb(165, 111, 10);
+    color: rgb(217, 224, 12) ;
+    
 }
 
 .image-container img {
