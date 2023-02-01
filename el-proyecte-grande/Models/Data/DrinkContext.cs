@@ -28,9 +28,8 @@ namespace El_Proyecte_Grande.Models.Data
 
         public async Task<bool> CreateUser(User user)
         {
-            if (Users.Count != 0)
+            if (Users == null)
             {
-
                 User newUser = new()
                 {
                     Id = Guid.NewGuid(),
@@ -43,9 +42,31 @@ namespace El_Proyecte_Grande.Models.Data
                 await Users.AddAsync(newUser);
                 await SaveChangesAsync();
                 return true;
+
+                
             }
-                return false;
-            
+            else
+            {
+                if (Users.All(dbUser => dbUser.Username != user.Username) && Users.All(dbUser => dbUser.Email != user.Email) && Users.All(dbUser => dbUser.Passowrd != user.Passowrd))
+                {
+                    User newUser = new()
+                    {
+                        Id = Guid.NewGuid(),
+                        Username = user.Username,
+                        Email = user.Email,
+                        Passowrd = user.Passowrd,
+                    };
+
+
+                    await Users.AddAsync(newUser);
+                    await SaveChangesAsync();
+                    return true;
+
+                }
+            }
+
+            return false;
+
         }
 
         public async Task DeleteUserByID(Guid id)

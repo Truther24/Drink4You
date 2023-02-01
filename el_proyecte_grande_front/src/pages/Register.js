@@ -1,6 +1,6 @@
 import React from 'react'
 import "../style/Register.css"
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 function Register() {
@@ -34,9 +34,13 @@ function Register() {
 
     const response = await fetch(`https://localhost:7090/add-user`, requestOption)
     const responseData = await response.json();
-    console.log(responseData)
-    // navigate("/login");
+    if (responseData.status === 400) {
+      alert("not good")
+    }
+    else {
+      navigate("/login")
 
+    }
 
   }
 
