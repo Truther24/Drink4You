@@ -31,7 +31,7 @@ builder.Services.AddScoped<UserService>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("MyPolicy",
-        builder => builder.WithOrigins("http://localhost:3000"));
+        builder => builder.WithOrigins("http://localhost:3000").AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
 });
 

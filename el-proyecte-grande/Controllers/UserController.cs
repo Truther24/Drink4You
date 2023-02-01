@@ -19,15 +19,20 @@ namespace El_Proyecte_Grande.Controllers
         [HttpGet("/users")]
         public async Task<IActionResult> GetAllUsers()
         {
-            return Ok( await _service.GetAllUsers());
-            
+            return Ok(await _service.GetAllUsers());
+
         }
 
 
         [HttpPost("/add-user")]
-        public async Task CreateUser([FromBody] User user)
+        public async Task<IActionResult> CreateUser([FromBody] User user)
         {
-           await _service.AddUser(user);
+            if (await _service.AddUser(user))
+            {
+                return Ok(user);
+            }
+
+            return BadRequest();
 
         }
 
@@ -53,7 +58,7 @@ namespace El_Proyecte_Grande.Controllers
 
 
         [HttpGet("/users/{id}")]
-        public async Task<User> GetUserByID([FromRoute]Guid id)
+        public async Task<User> GetUserByID([FromRoute] Guid id)
         {
             return await _service.GetUserByID(id);
         }
@@ -61,9 +66,9 @@ namespace El_Proyecte_Grande.Controllers
 
 
         [HttpPut("/users/update/{id}")]
-        public async Task UpdateUser([FromRoute] Guid id,[FromBody] User user)
+        public async Task UpdateUser([FromRoute] Guid id, [FromBody] User user)
         {
-             await _service.UpdateUser(user);
+            await _service.UpdateUser(user);
         }
 
 

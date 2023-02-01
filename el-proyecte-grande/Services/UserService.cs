@@ -20,9 +20,10 @@ namespace El_Proyecte_Grande.Services
         }
 
 
-        public async Task AddUser(User user)
+        public async Task<bool> AddUser(User user)
         {
-            await _context.CreateUser(user);
+            
+           return await _context.CreateUser(user);
         }
 
 
