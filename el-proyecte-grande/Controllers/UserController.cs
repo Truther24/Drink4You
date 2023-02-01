@@ -1,5 +1,6 @@
 ﻿using El_Proyecte_Grande.Models.Entities;
 using El_Proyecte_Grande.Services;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
