@@ -1,7 +1,11 @@
 using El_Proyecte_Grande.Models.Data;
 using El_Proyecte_Grande.Repositories;
 using El_Proyecte_Grande.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +19,33 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<DrinkContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+{
+    options.Password.RequireDigit = true;
+    options.Password.RequireLowercase = true;
+    options.Password.RequiredLength = 5;
+}).AddEntityFrameworkStores<DrinkContext>().AddDefaultTokenProviders();
+
+
+builder.Services.AddAuthentication(auth =>
+{
+    auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidAudience = "http://localhost:3000",
+        ValidIssuer = "http://localhost:3000",
+        RequireExpirationTime = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Key for encryption")),
+        ValidateIssuerSigningKey = true
+    };
+}); 
+
 
 builder.Services.AddControllersWithViews()
                 .AddJsonOptions(options =>
