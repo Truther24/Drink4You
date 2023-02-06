@@ -39,7 +39,6 @@ function Register() {
     }
     else {
       navigate("/login")
-
     }
 
   }

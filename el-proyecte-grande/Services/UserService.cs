@@ -51,6 +51,9 @@ namespace El_Proyecte_Grande.Services
             await _context.UpdateUser(user);
         }
 
-
+        public async Task<User> Login(User user)
+        {
+            return await _context.Login(user);
+        }
     }
 }

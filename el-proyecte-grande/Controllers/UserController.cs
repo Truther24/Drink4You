@@ -72,5 +72,19 @@ namespace El_Proyecte_Grande.Controllers
         }
 
 
+        [HttpPost("/login")]
+        public async Task<IActionResult> Login([FromBody] User user)
+        {
+            User checkedUser = await _service.Login(user);
+
+
+            if (checkedUser != null)
+            {
+                return Ok(checkedUser);
+            }
+
+            return BadRequest(checkedUser);
+        }
+
     }
 }

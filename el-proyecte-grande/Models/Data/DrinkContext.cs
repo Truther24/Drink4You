@@ -35,7 +35,7 @@ namespace El_Proyecte_Grande.Models.Data
                     Id = Guid.NewGuid(),
                     Username = user.Username,
                     Email = user.Email,
-                    Passowrd = user.Passowrd,
+                    Passowrd = user.Passowrd
                 };
 
 
@@ -97,6 +97,17 @@ namespace El_Proyecte_Grande.Models.Data
             await SaveChangesAsync();
         }
 
+        public async Task<User> Login(User user)
+        {
+            foreach(User dbUser in Users)
+            {
+                if(dbUser.Username == user.Username && dbUser.Passowrd == user.Passowrd )
+                {
+                    return dbUser;
+                }
+            }
 
+            return null;
+        }
     }
 }
