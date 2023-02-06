@@ -7,6 +7,8 @@ import Category from './pages/Category';
 
 import { Route, Routes } from 'react-router-dom'
 import Drink from './pages/Drink';
+import Register from './pages/Register';
+import Login from './pages/Login';
 
 function App() {
 
@@ -22,7 +24,10 @@ function App() {
           <Route path="/categories/:category" element={<Category />} />
           <Route path="/categories/:category/:drinkName/:drinkId" element={<Drink />} />
           <Route path="/about" element={<About />} />
+          <Route path="/register" element={<Register/>} />
+          <Route path="/login" element={<Login/>} />
 
+ 
         </Routes>
 
       </div>

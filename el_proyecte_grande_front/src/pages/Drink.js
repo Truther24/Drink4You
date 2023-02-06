@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import '../style/Drink.css'
+import LoadingSpinner from './LoadingSpinner';
 
 
 export default function Drink() {
@@ -9,12 +10,19 @@ export default function Drink() {
     //    const {drinkName} = useParams();
     const { drinkId } = useParams();
 
+    const [isLoading, setisLoading] = useState(false);
+
+
     const [data, setData] = useState([]);
     useEffect(() => {
+        setisLoading(true)
+
         const fetcher = async () => {
             const response = await fetch(`https://localhost:7090/drink/${drinkId}`);
             const responseData = await response.json();
             setData(responseData);
+            setisLoading(false)
+
 
         }
         fetcher();
