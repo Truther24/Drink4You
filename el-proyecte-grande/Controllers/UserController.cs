@@ -16,15 +16,14 @@ namespace El_Proyecte_Grande.Controllers
         }
 
 
-        [HttpGet("/users")]
+        [HttpGet("/users")]      // este
         public async Task<IActionResult> GetAllUsers()
         {
             return Ok(await _service.GetAllUsers());
-
         }
 
 
-        [HttpPost("/add-user")]
+        [HttpPost("/add-user")]   // este
         public async Task<IActionResult> CreateUser([FromBody] User user)
         {
             if (await _service.AddUser(user))
@@ -37,8 +36,8 @@ namespace El_Proyecte_Grande.Controllers
         }
 
 
-        [HttpDelete("/delete-user/{id}")]
-        public async Task Delete([FromRoute] Guid id)
+        [HttpDelete("/delete-user/{id}")] // este
+        public async Task Delete([FromRoute] string id)
         {
             await _service.DeleteUser(id);
 

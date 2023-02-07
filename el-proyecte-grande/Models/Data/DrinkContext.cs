@@ -1,12 +1,16 @@
 ﻿using El_Proyecte_Grande.Models.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection.Metadata.Ecma335;
 
 namespace El_Proyecte_Grande.Models.Data
 {
-    public class DrinkContext : DbContext
+    public class DrinkContext : IdentityDbContext
     {
+
+
 
         public DbSet<User> Users { get; set; }
 
@@ -19,55 +23,55 @@ namespace El_Proyecte_Grande.Models.Data
         }
 
 
-        public Task<List<User>> GetAllUsers()
-        {
-            return Users.ToListAsync();
-        }
+        //public Task<List<User>> GetAllUsers()
+        //{
+        //    return Users.ToListAsync();
+        //}
 
 
 
-        public async Task<bool> CreateUser(User user)
-        {
-            if (Users == null)
-            {
-                User newUser = new()
-                {
-                    Id = Guid.NewGuid(),
-                    Username = user.Username,
-                    Email = user.Email,
-                    Passowrd = user.Passowrd
-                };
+        //public async Task<bool> CreateUser(User user)
+        //{
+        //    if (Users == null)
+        //    {
+        //        User newUser = new()
+        //        {
+        //            Id = Guid.NewGuid(),
+        //            Username = user.Username,
+        //            Email = user.Email,
+        //            Passowrd = user.Passowrd
+        //        };
 
 
-                await Users.AddAsync(newUser);
-                await SaveChangesAsync();
-                return true;
+        //        await Users.AddAsync(newUser);
+        //        await SaveChangesAsync();
+        //        return true;
 
                 
-            }
-            else
-            {
-                if (Users.All(dbUser => dbUser.Username != user.Username) && Users.All(dbUser => dbUser.Email != user.Email) && Users.All(dbUser => dbUser.Passowrd != user.Passowrd))
-                {
-                    User newUser = new()
-                    {
-                        Id = Guid.NewGuid(),
-                        Username = user.Username,
-                        Email = user.Email,
-                        Passowrd = user.Passowrd,
-                    };
+        //    }
+        //    else
+        //    {
+        //        if (Users.All(dbUser => dbUser.Username != user.Username) && Users.All(dbUser => dbUser.Email != user.Email) && Users.All(dbUser => dbUser.Passowrd != user.Passowrd))
+        //        {
+        //            User newUser = new()
+        //            {
+        //                Id = Guid.NewGuid(),
+        //                Username = user.Username,
+        //                Email = user.Email,
+        //                Passowrd = user.Passowrd,
+        //            };
 
 
-                    await Users.AddAsync(newUser);
-                    await SaveChangesAsync();
-                    return true;
+        //            await Users.AddAsync(newUser);
+        //            await SaveChangesAsync();
+        //            return true;
 
-                }
-            }
+        //        }
+        //    }
 
-            return false;
+        //    return false;
 
-        }
+        //}
 
         public async Task DeleteUserByID(Guid id)
         {
