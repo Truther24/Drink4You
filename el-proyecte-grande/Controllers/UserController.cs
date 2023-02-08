@@ -28,7 +28,7 @@ namespace El_Proyecte_Grande.Controllers
 
 
         [HttpPost("/add-user")]
-        public async Task<IActionResult> CreateUser([FromBody] User user)
+        public async Task<IActionResult> CreateUser([FromBody] RegisterViewModel user)
         {
             var result = await _service.AddUser(user);
             if (result.IsSuccess)
@@ -88,7 +88,7 @@ namespace El_Proyecte_Grande.Controllers
 
 
         [HttpPut("/users/update/{id}")]
-        public async Task<IActionResult> UpdateUser([FromRoute] string id, [FromBody] User user)
+        public async Task<IActionResult> UpdateUser([FromRoute] string id, [FromBody] RegisterViewModel user)
         {
             var result = await _service.UpdateUser(user, id);
             if (result.IsSuccess)
@@ -101,7 +101,7 @@ namespace El_Proyecte_Grande.Controllers
 
 
         [HttpPost("/login")]
-        public async Task<IActionResult> Login([FromBody] User user)
+        public async Task<IActionResult> Login([FromBody] LoginViewModel user)
         {
             var result =  await _service.Login(user);
             if (result.IsSuccess)

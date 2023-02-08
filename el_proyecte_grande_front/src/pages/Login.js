@@ -16,15 +16,13 @@ function Login() {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        email: ``,
+        
         username: `${data.target.username.value}`,
-        passowrd: `${data.target.password.value}`
+        password: `${data.target.password.value}`
       })
     }
 
     const response = await fetch(`https://localhost:7090/login`, requestOption)
-    // const responseData = await response.json();
-    // console.log(responseData)
     if (response.ok) {
       alert("successful login")
     }

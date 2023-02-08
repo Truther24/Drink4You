@@ -31,7 +31,7 @@ namespace El_Proyecte_Grande.Services
         }
 
 
-        public async Task<Response> AddUser(User user)
+        public async Task<Response> AddUser(RegisterViewModel user)
         {
             IdentityUser identityUserSameEmail = await _userManager?.FindByEmailAsync(user.Email);
             IdentityUser identityUserSameUsername = await _userManager?.FindByNameAsync(user.Username);
@@ -60,7 +60,7 @@ namespace El_Proyecte_Grande.Services
                 Email = user.Email,
                 UserName = user.Username
             };
-            IdentityResult result = await _userManager.CreateAsync(identityUser, user.Passowrd);
+            IdentityResult result = await _userManager.CreateAsync(identityUser, user.Password);
 
             if (result.Succeeded)
             {
@@ -74,7 +74,7 @@ namespace El_Proyecte_Grande.Services
             {
                 IsSuccess = false,
                 Message = "could not add user",
-                Errors = (IEnumerable<string>)result.Errors.ToList()
+                Errors = result.Errors
             };
             
 
@@ -89,7 +89,7 @@ namespace El_Proyecte_Grande.Services
             {
                 return new Response { IsSuccess = true, Message = "you have successfully deleted an user" } ;
             }
-            return new Response { IsSuccess = false, Message = "there is no user with this ID"  , Errors = (IEnumerable<string>)result.Errors.ToList() };
+            return new Response { IsSuccess = false, Message = "there is no user with this ID"  , Errors = result.Errors };
 
         }
 
@@ -124,7 +124,7 @@ namespace El_Proyecte_Grande.Services
 
 
 
-        public async Task<Response> UpdateUser(User user, string id)
+        public async Task<Response> UpdateUser(RegisterViewModel user, string id)
         {
             var result = await GetUserByID(id);
             if (!result.IsSuccess)
@@ -139,7 +139,7 @@ namespace El_Proyecte_Grande.Services
 
             if (!afterUpdateResult.Succeeded)
             {
-                return new Response { IsSuccess = false, Message = "could not update the user" , Errors = (IEnumerable<string>)result.Errors.ToList() };
+                return new Response { IsSuccess = false, Message = "could not update the user" , Errors = result.Errors };
             }
             return new Response { IsSuccess = true, Message = $"The user {identityUser.UserName} is updated ", IdentityUsers = new List<IdentityUser> { identityUser } };
 
@@ -147,7 +147,7 @@ namespace El_Proyecte_Grande.Services
 
 
 
-        public async Task<Response> Login(User user)
+        public async Task<Response> Login(LoginViewModel user)
         {
             IdentityUser identityUser = await _userManager.FindByNameAsync(user.Username);
 
@@ -157,7 +157,7 @@ namespace El_Proyecte_Grande.Services
 
             }
 
-            if (!await _userManager.CheckPasswordAsync(identityUser, user.Passowrd))
+            if (!await _userManager.CheckPasswordAsync(identityUser, user.Password))
             {
                 return new Response { IsSuccess = false, Message = "could not find an user with such a password" };
 
