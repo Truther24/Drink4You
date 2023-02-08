@@ -1,6 +1,7 @@
 ﻿using El_Proyecte_Grande.Models.Entities;
 using El_Proyecte_Grande.Services;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,14 +17,14 @@ namespace El_Proyecte_Grande.Controllers
         }
 
 
-        [HttpGet("/users")]      // este
+        [HttpGet("/users")] 
         public async Task<IActionResult> GetAllUsers()
         {
             return Ok(await _service.GetAllUsers());
         }
 
 
-        [HttpPost("/add-user")]   // este
+        [HttpPost("/add-user")] 
         public async Task<IActionResult> CreateUser([FromBody] User user)
         {
             if (await _service.AddUser(user))
@@ -36,7 +37,7 @@ namespace El_Proyecte_Grande.Controllers
         }
 
 
-        [HttpDelete("/delete-user/{id}")] // este
+        [HttpDelete("/delete-user/{id}")] 
         public async Task Delete([FromRoute] string id)
         {
             await _service.DeleteUser(id);
@@ -44,8 +45,7 @@ namespace El_Proyecte_Grande.Controllers
         }
 
 
-
-        [HttpDelete("/delete-users")]
+        [HttpDelete("/delete-users")] 
         public async Task DeleteUsers()
         {
             await _service.DeleteAllUsers();
@@ -54,27 +54,25 @@ namespace El_Proyecte_Grande.Controllers
 
 
 
-
-
-        [HttpGet("/users/{id}")]
-        public async Task<User> GetUserByID([FromRoute] Guid id)
+        [HttpGet("/users/{id}")]  
+        public async Task<IActionResult> GetUserByID([FromRoute] string id)
         {
-            return await _service.GetUserByID(id);
+            return Ok(await _service.GetUserByID(id));
         }
 
 
 
-        [HttpPut("/users/update/{id}")]
-        public async Task UpdateUser([FromRoute] Guid id, [FromBody] User user)
+        [HttpPut("/users/update/{id}")] 
+        public async Task UpdateUser([FromRoute] string id, [FromBody] User user)
         {
-            await _service.UpdateUser(user);
+            await _service.UpdateUser(user,id);
         }
 
 
         [HttpPost("/login")]
         public async Task<IActionResult> Login([FromBody] User user)
         {
-            User checkedUser = await _service.Login(user);
+            IdentityUser checkedUser = await _service.Login(user);
 
 
             if (checkedUser != null)

@@ -24,11 +24,6 @@ namespace El_Proyecte_Grande.Services
             return await _userManager.Users.ToListAsync();
         }
 
-        //public async Task<List<User>> GetAllUsers()
-        //{
-        //    return await _context.GetAllUsers();
-        //}
-
 
         public async Task<bool> AddUser(User user)
         {
@@ -48,12 +43,6 @@ namespace El_Proyecte_Grande.Services
 
         }
 
-        //public async Task<bool> AddUser(User user)
-        //{
-
-        //    return await _context.CreateUser(user);
-        //}
-
 
 
         public async Task DeleteUser(string id)
@@ -62,40 +51,53 @@ namespace El_Proyecte_Grande.Services
         }
 
 
-        //public async Task DeleteUser(Guid id)
-        //{
-        //    await _context.DeleteUserByID(id);
-        //}
 
 
         public async Task DeleteAllUsers()
         {
-            await _userManager.Users.ForEachAsync(user => _userManager.DeleteAsync(user));
+            await _userManager.Users.ExecuteDeleteAsync();
         }
 
 
 
-        //public async Task DeleteAllUsers()
-        //{
-        //    await _context.DeleteAllUsers();
-        //}
 
-
-
-        public async Task<User> GetUserByID(Guid id)
+        public async Task<IdentityUser> GetUserByID(string id)
         {
-            return await _context.GetUserByID(id);
+            return await _userManager.FindByIdAsync(id);
         }
 
 
-        public async Task UpdateUser(User user)
+
+        
+        public async Task UpdateUser(User user,string id)
         {
-            await _context.UpdateUser(user);
+            IdentityUser identityUser = await GetUserByID(id);
+
+            identityUser.Email = user.Email;
+            identityUser.UserName = user.Username;
+
+            await _userManager.UpdateAsync(identityUser);
         }
 
-        public async Task<User> Login(User user)
+
+
+        public async Task<IdentityUser> Login(User user)
         {
-            return await _context.Login(user);
+           IdentityUser identityUser = await _userManager.FindByNameAsync(user.Username);
+
+            if (identityUser == null) 
+            {
+                return null;
+            }
+
+            if(! await _userManager.CheckPasswordAsync(identityUser, user.Passowrd))
+            {
+                return null;
+            }
+                return identityUser;
         }
+
+
+        
     }
 }
