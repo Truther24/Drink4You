@@ -1,6 +1,7 @@
 ﻿using El_Proyecte_Grande.Models;
 using El_Proyecte_Grande.Models.Entities;
 using El_Proyecte_Grande.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -101,6 +102,7 @@ namespace El_Proyecte_Grande.Controllers
 
 
         [HttpPost("/login")]
+
         public async Task<IActionResult> Login([FromBody] LoginViewModel user)
         {
             var result =  await _service.Login(user);

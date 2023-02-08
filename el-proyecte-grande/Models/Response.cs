@@ -10,5 +10,8 @@ namespace El_Proyecte_Grande.Models
         public bool IsSuccess { get; set; }
         public IEnumerable<IdentityError> Errors { get; set; }
         public List<IdentityUser> IdentityUsers { get; set; }
+
+        public DateTime ExpireDate { get; set; }
+
     }
 }

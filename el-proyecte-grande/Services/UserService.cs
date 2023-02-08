@@ -3,8 +3,12 @@ using El_Proyecte_Grande.Models.Data;
 using El_Proyecte_Grande.Models.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System.Collections;
+using System.IdentityModel.Tokens.Jwt;
 using System.Runtime.CompilerServices;
+using System.Security.Claims;
+using System.Text;
 
 namespace El_Proyecte_Grande.Services
 {
@@ -13,10 +17,13 @@ namespace El_Proyecte_Grande.Services
 
         private UserManager<IdentityUser> _userManager;
 
+        private IConfiguration _configuration;
 
-        public UserService(UserManager<IdentityUser> userManager)
+
+        public UserService(UserManager<IdentityUser> userManager, IConfiguration configuration)
         {
             _userManager = userManager;
+            _configuration = configuration;
         }
 
 
@@ -40,7 +47,7 @@ namespace El_Proyecte_Grande.Services
             {
                 return new Response
                 {
-                    IsSuccess= false,
+                    IsSuccess = false,
                     Message = "there is already an user with the same email"
                 };
             }
@@ -76,7 +83,7 @@ namespace El_Proyecte_Grande.Services
                 Message = "could not add user",
                 Errors = result.Errors
             };
-            
+
 
         }
 
@@ -87,9 +94,9 @@ namespace El_Proyecte_Grande.Services
             var result = await _userManager.DeleteAsync(await _userManager?.FindByIdAsync(id));
             if (result.Succeeded)
             {
-                return new Response { IsSuccess = true, Message = "you have successfully deleted an user" } ;
+                return new Response { IsSuccess = true, Message = "you have successfully deleted an user" };
             }
-            return new Response { IsSuccess = false, Message = "there is no user with this ID"  , Errors = result.Errors };
+            return new Response { IsSuccess = false, Message = "there is no user with this ID", Errors = result.Errors };
 
         }
 
@@ -104,7 +111,7 @@ namespace El_Proyecte_Grande.Services
                 return new Response { IsSuccess = true, Message = $"you have deleted {result} number of users" };
             }
 
-            return new Response { IsSuccess = false, Message = "no users to delete"};
+            return new Response { IsSuccess = false, Message = "no users to delete" };
         }
 
 
@@ -112,12 +119,12 @@ namespace El_Proyecte_Grande.Services
 
         public async Task<Response> GetUserByID(string id)
         {
-            var user= await _userManager.FindByIdAsync(id);
-            if(user is null)
+            var user = await _userManager.FindByIdAsync(id);
+            if (user is null)
             {
                 return new Response { IsSuccess = false, Message = "there is no user with that ID" };
             }
-            return new Response { IsSuccess = true, Message = $"The user is {user.UserName}" , IdentityUsers = new List<IdentityUser>{user} };
+            return new Response { IsSuccess = true, Message = $"The user is {user.UserName}", IdentityUsers = new List<IdentityUser> { user } };
 
         }
 
@@ -139,7 +146,7 @@ namespace El_Proyecte_Grande.Services
 
             if (!afterUpdateResult.Succeeded)
             {
-                return new Response { IsSuccess = false, Message = "could not update the user" , Errors = result.Errors };
+                return new Response { IsSuccess = false, Message = "could not update the user", Errors = result.Errors };
             }
             return new Response { IsSuccess = true, Message = $"The user {identityUser.UserName} is updated ", IdentityUsers = new List<IdentityUser> { identityUser } };
 
@@ -162,7 +169,27 @@ namespace El_Proyecte_Grande.Services
                 return new Response { IsSuccess = false, Message = "could not find an user with such a password" };
 
             }
-            return new Response { IsSuccess = true, Message = $"The user {identityUser.UserName} is logged in", IdentityUsers = new List<IdentityUser> { identityUser } };
+
+            var claims = new[]
+            {
+                new Claim("Email",identityUser.Email),
+                new Claim(ClaimTypes.NameIdentifier,identityUser.Id)
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["AuthSettings:Key"]));
+
+            var token = new JwtSecurityToken(
+                issuer: _configuration["AuthSettings:Issuer"],
+                audience: _configuration["AuthSettings:Audience"],
+                claims: claims,
+                expires: DateTime.Now.AddDays(30),
+                signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256)
+                );
+
+            string tokenAsString  = new JwtSecurityTokenHandler().WriteToken(token);
+
+
+            return new Response { IsSuccess = true, Message = tokenAsString, IdentityUsers = new List<IdentityUser> { identityUser } , ExpireDate =  token.ValidTo };
         }
 
 
