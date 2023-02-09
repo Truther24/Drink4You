@@ -1,6 +1,7 @@
 import React from 'react'
 import "../style/Register.css"
 
+
 function Login() {
 
 
@@ -23,11 +24,13 @@ function Login() {
     }
 
     const response = await fetch(`https://localhost:7090/login`, requestOption)
-    if (response.ok) {
-      alert("successful login")
+    const responseData = await response.json();
+    if (responseData.status===400) {
+      alert("not good")
     }
     else {
-      alert("not good")
+      console.log(responseData.message)
+      alert("successful login")
     }
 
   }
