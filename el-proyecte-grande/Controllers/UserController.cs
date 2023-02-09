@@ -1,6 +1,9 @@
-﻿using El_Proyecte_Grande.Models.Entities;
+﻿using El_Proyecte_Grande.Models;
+using El_Proyecte_Grande.Models.Entities;
 using El_Proyecte_Grande.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,73 +19,99 @@ namespace El_Proyecte_Grande.Controllers
         }
 
 
-        [HttpGet("/users")]      // este
+        [HttpGet("/users")]
         public async Task<IActionResult> GetAllUsers()
         {
-            return Ok(await _service.GetAllUsers());
+            var result = await _service.GetAllUsers();
+            return Ok(result);
+
         }
 
 
-        [HttpPost("/add-user")]   // este
-        public async Task<IActionResult> CreateUser([FromBody] User user)
+        [HttpPost("/add-user")]
+        public async Task<IActionResult> CreateUser([FromBody] RegisterViewModel user)
         {
-            if (await _service.AddUser(user))
+            var result = await _service.AddUser(user);
+            if (result.IsSuccess)
             {
-                return Ok(user);
+                return Ok(result);
             }
 
-            return BadRequest();
+            return BadRequest(result);
 
         }
 
 
-        [HttpDelete("/delete-user/{id}")] // este
-        public async Task Delete([FromRoute] string id)
+        [HttpDelete("/delete-user/{id}")]
+        public async Task<IActionResult> Delete([FromRoute] string id)
         {
-            await _service.DeleteUser(id);
+           var result =  await _service.DeleteUser(id);
+            if (result.IsSuccess)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
 
         }
-
 
 
         [HttpDelete("/delete-users")]
-        public async Task DeleteUsers()
+        public async Task<IActionResult> DeleteUsers()
         {
-            await _service.DeleteAllUsers();
+            var result = await _service.DeleteAllUsers();
+            if (result.IsSuccess)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+
 
         }
-
-
 
 
 
         [HttpGet("/users/{id}")]
-        public async Task<User> GetUserByID([FromRoute] Guid id)
+        public async Task<IActionResult> GetUserByID([FromRoute] string id)
         {
-            return await _service.GetUserByID(id);
+            var result = await _service.GetUserByID(id);
+            if (result.IsSuccess)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+
+
         }
 
 
 
         [HttpPut("/users/update/{id}")]
-        public async Task UpdateUser([FromRoute] Guid id, [FromBody] User user)
+        public async Task<IActionResult> UpdateUser([FromRoute] string id, [FromBody] RegisterViewModel user)
         {
-            await _service.UpdateUser(user);
+            var result = await _service.UpdateUser(user, id);
+            if (result.IsSuccess)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
         }
 
 
         [HttpPost("/login")]
-        public async Task<IActionResult> Login([FromBody] User user)
+
+        public async Task<IActionResult> Login([FromBody] LoginViewModel user)
         {
-            User checkedUser = await _service.Login(user);
-
-
-            if (checkedUser != null)
+            var result =  await _service.Login(user);
+            if (result.IsSuccess)
             {
-                return Ok(checkedUser);
+                return Ok(result);
             }
 
-            return BadRequest(checkedUser);
+            return BadRequest(result);
         }
 
     }

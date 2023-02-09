@@ -27,13 +27,14 @@ function Register() {
       body: JSON.stringify({
         email: `${event.target.email.value}`,
         username: `${event.target.username.value}`,
-        passowrd: `${event.target.password.value}`
+        password: `${event.target.password.value}`
       })
     }
 
 
     const response = await fetch(`https://localhost:7090/add-user`, requestOption)
     const responseData = await response.json();
+    console.log(responseData);
     if (responseData.status === 400) {
       alert("not good")
     }
