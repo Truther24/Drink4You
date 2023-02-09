@@ -1,14 +1,32 @@
 
 import "../style/App.css"
 import { Link, useMatch, useResolvedPath } from "react-router-dom"
+import { useEffect, useState } from "react";
+import { Cookies, useCookies } from "react-cookie";
+
 
 
 export default function Navbar() {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    const cookies = new Cookies();
+
+    
+
+    useEffect(() => {
+
+
+        
+    }, [])
+
+
     return (
         <nav className="nav">
             <Link to="/" className="site-title">
                 Drink4You
             </Link>
+            
+            {!(cookies.get('userToken') == undefined)? <div>Logged in as {cookies.get('userName')}</div> : <></>}
 
             <ul>
                 <CustomLink to="/categories">

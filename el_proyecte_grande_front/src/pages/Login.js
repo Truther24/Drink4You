@@ -1,9 +1,11 @@
 import React from 'react'
 import "../style/Register.css"
-
+import { Cookies } from 'react-cookie';
 
 function Login() {
 
+
+  const cookies = new Cookies();
 
   function checkData(event) {
     event.preventDefault()
@@ -13,7 +15,9 @@ function Login() {
   const checkForUser = async (data)=>{
     const requestOption = {
       method: "POST",
+      credentials: 'same-origin',
       headers: {
+        'Authorization': 'Bearer ' + cookies.get('userToken'),
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
@@ -25,11 +29,15 @@ function Login() {
 
     const response = await fetch(`https://localhost:7090/login`, requestOption)
     const responseData = await response.json();
+    console.log(responseData)
     if (responseData.status===400) {
       alert("not good")
     }
     else {
-      console.log(responseData.message)
+      cookies.set("userToken", responseData.message)
+      console.log(cookies.get('userToken'))
+      cookies.set("userName", responseData.identityUsers[0].userName)
+      console.log(cookies.get('userName'))
       alert("successful login")
     }
 

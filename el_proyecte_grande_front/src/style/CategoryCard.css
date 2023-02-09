@@ -1,9 +1,9 @@
 .categoryContainer{
-    color: rgb(217, 224, 12) ;
+    color: rgb(255, 255, 255) ;
     padding: 70px;
     display: flex;
     position: relative;
-    background-color:rgba(56, 105, 29, 0.723);
+    background-color:rgba(208, 208, 208, 0.175);
 
     
 

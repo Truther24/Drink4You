@@ -1,21 +1,28 @@
 ﻿using El_Proyecte_Grande.Models;
-using El_Proyecte_Grande.Models.Entities;
 using El_Proyecte_Grande.Services;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace El_Proyecte_Grande.Controllers
 {
     [ApiController]
+    
     public class UserController : Controller
     {
         private readonly UserService _service;
-        public UserController(UserService userService)
+
+        private IConfiguration _configuration;
+
+        public UserController(UserService userService, IConfiguration configuration)
         {
             _service = userService;
+            _configuration = configuration;
         }
 
 
@@ -45,7 +52,7 @@ namespace El_Proyecte_Grande.Controllers
         [HttpDelete("/delete-user/{id}")]
         public async Task<IActionResult> Delete([FromRoute] string id)
         {
-           var result =  await _service.DeleteUser(id);
+            var result = await _service.DeleteUser(id);
             if (result.IsSuccess)
             {
                 return Ok(result);
@@ -105,13 +112,14 @@ namespace El_Proyecte_Grande.Controllers
 
         public async Task<IActionResult> Login([FromBody] LoginViewModel user)
         {
-            var result =  await _service.Login(user);
+            var result = await _service.Login(user);
+
             if (result.IsSuccess)
             {
                 return Ok(result);
             }
-
             return BadRequest(result);
+
         }
 
     }

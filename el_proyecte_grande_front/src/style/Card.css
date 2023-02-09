@@ -4,7 +4,7 @@
     box-shadow: 0px 0px 15px -5px;
     transition: 0.5s;
     animation: ease-in;
-    background-color:rgba(56, 105, 29, 0.723);
+    background-color:rgba(0, 0, 0, 0.853);
     
 
 }
@@ -35,7 +35,7 @@ p {
 
 .card-title {
     margin-bottom: 0.5rem;
-  color: rgb(70, 51, 7);
+  color: rgb(123, 90, 13);
     
     font-weight: 700;
     font-size: large;

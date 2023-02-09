@@ -1,12 +1,9 @@
 ﻿using El_Proyecte_Grande.Models;
-using El_Proyecte_Grande.Models.Data;
-using El_Proyecte_Grande.Models.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using System.Collections;
+using Newtonsoft.Json.Linq;
 using System.IdentityModel.Tokens.Jwt;
-using System.Runtime.CompilerServices;
 using System.Security.Claims;
 using System.Text;
 
@@ -167,11 +164,10 @@ namespace El_Proyecte_Grande.Services
             if (!await _userManager.CheckPasswordAsync(identityUser, user.Password))
             {
                 return new Response { IsSuccess = false, Message = "could not find an user with such a password" };
-
             }
 
             var claims = new[]
-            {
+                {
                 new Claim("Email",identityUser.Email),
                 new Claim(ClaimTypes.NameIdentifier,identityUser.Id)
             };
@@ -179,17 +175,18 @@ namespace El_Proyecte_Grande.Services
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["AuthSettings:Key"]));
 
             var token = new JwtSecurityToken(
+
                 issuer: _configuration["AuthSettings:Issuer"],
                 audience: _configuration["AuthSettings:Audience"],
                 claims: claims,
                 expires: DateTime.Now.AddDays(30),
+                
                 signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256)
                 );
 
-            string tokenAsString  = new JwtSecurityTokenHandler().WriteToken(token);
+            string tokenAsString = new JwtSecurityTokenHandler().WriteToken(token);
 
-
-            return new Response { IsSuccess = true, Message = tokenAsString, IdentityUsers = new List<IdentityUser> { identityUser } , ExpireDate =  token.ValidTo };
+            return new Response { IsSuccess = true, Message = tokenAsString, ExpireDate = token.ValidTo, IdentityUsers = new List<IdentityUser> { identityUser } };
         }
 
 
