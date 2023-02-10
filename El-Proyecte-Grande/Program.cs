@@ -1,6 +1,7 @@
 using El_Proyecte_Grande.Models.Data;
 using El_Proyecte_Grande.Repositories;
 using El_Proyecte_Grande.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -40,16 +41,15 @@ builder.Services.AddAuthentication(auth =>
 {
     options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
     {
-        ValidateIssuer = true,
-        ValidateAudience = true,
+        ValidateIssuer = false,
+        ValidateAudience = false,
         ValidAudience = builder.Configuration["AuthSettings:Audience"],
         ValidIssuer = builder.Configuration["AuthSettings:Issuer"],
         RequireExpirationTime = true,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["AuthSettings:Key"])),
         ValidateIssuerSigningKey = true
     };
-}); 
-
+});
 
 builder.Services.AddControllersWithViews()
                 .AddJsonOptions(options =>
