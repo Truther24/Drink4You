@@ -7,6 +7,7 @@ namespace El_Proyecte_Grande.Controllers
 {
     [ApiController]
     [EnableCors("MyPolicy")]
+    [Authorize]
     public class DrinkCategoryController : Controller
     {
         private readonly DrinkCategoryService _drinkCategoryService;

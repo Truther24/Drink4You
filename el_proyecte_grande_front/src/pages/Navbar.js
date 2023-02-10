@@ -1,6 +1,6 @@
 
 import "../style/App.css"
-import { Link, useMatch, useResolvedPath } from "react-router-dom"
+import { Link, useMatch, useResolvedPath, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react";
 import { Cookies, useCookies } from "react-cookie";
 
@@ -11,7 +11,15 @@ export default function Navbar() {
 
     const cookies = new Cookies();
 
-    
+  const navigate = useNavigate();
+
+
+    function Logout(){
+        cookies.remove('userToken')
+        cookies.remove('userName')
+        navigate('/')
+        window.location.reload(true);
+    }
 
     useEffect(() => {
 
@@ -26,7 +34,16 @@ export default function Navbar() {
                 Drink4You
             </Link>
             
-            {!(cookies.get('userToken') == undefined)? <div>Logged in as {cookies.get('userName')}</div> : <></>}
+            {!(cookies.get('userToken') == undefined)? 
+            <>
+            <div style={{dispaly:'inline'}}>
+                <button>Logged in as</button>
+                <br/>
+                <button style={{color:'orange'}}>{cookies.get('userName')}</button>
+            </div>
+            <button onClick={Logout}>Logout</button>
+            </>
+             : <></>}
 
             <ul>
                 <CustomLink to="/categories">

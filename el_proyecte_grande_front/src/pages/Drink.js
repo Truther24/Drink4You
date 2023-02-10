@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Cookies } from 'react-cookie';
 import { useParams } from 'react-router-dom'
 import '../style/Drink.css'
 import LoadingSpinner from './LoadingSpinner';
@@ -10,6 +11,8 @@ export default function Drink() {
     //    const {drinkName} = useParams();
     const { drinkId } = useParams();
 
+    const cookies = new Cookies();
+
     const [isLoading, setisLoading] = useState(false);
 
 
@@ -18,7 +21,14 @@ export default function Drink() {
         setisLoading(true)
 
         const fetcher = async () => {
-            const response = await fetch(`https://localhost:7090/drink/${drinkId}`);
+            const requestOption = {
+                method: "GET",
+                credentials: 'same-origin',
+                headers: {
+                  'Authorization': 'Bearer ' + cookies.get('userToken'),
+                  "Content-Type": "application/json"
+                }}
+            const response = await fetch(`https://localhost:7090/drink/${drinkId}`, requestOption);
             const responseData = await response.json();
             setData(responseData);
             setisLoading(false)

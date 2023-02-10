@@ -1,8 +1,12 @@
 import React from 'react'
 import "../style/Register.css"
 import { Cookies } from 'react-cookie';
+import { useNavigate } from "react-router-dom"
+
 
 function Login() {
+
+  const navigate = useNavigate();
 
 
   const cookies = new Cookies();
@@ -38,7 +42,9 @@ function Login() {
       console.log(cookies.get('userToken'))
       cookies.set("userName", responseData.identityUsers[0].userName)
       console.log(cookies.get('userName'))
-      alert("successful login")
+      navigate('/')
+      window.location.reload(true);
+      
     }
 
   }
@@ -54,16 +60,16 @@ function Login() {
       <br />
       <br />
       <br />
-      <div className="form">
+      <div className="form" style={{color:'white'}}>
         <form onSubmit={checkData}>
 
           <div className="inline"></div>
-          <label htmlFor="username"><b>username</b></label>
-          <input type="text" placeholder="username" name="username" id="user" required></input>
+          <label htmlFor="Username"><b>Username</b></label>
+          <input type="text" placeholder="Username" name="username" id="user" required></input>
           <div />
 
           <div className="inline"></div>
-          <label htmlFor="password"><b>Password</b></label>
+          <label htmlFor="Password"><b>Password</b></label>
           <input type="password" placeholder="Password" name="password" id="pass" required></input>
           <div />
 

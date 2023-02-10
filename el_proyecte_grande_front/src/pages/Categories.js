@@ -45,12 +45,16 @@ const cookies = new Cookies();
             {categories.map((category, index) => {
                 return (
 
-                    <CategoryCard categoryIndex={index} categoryName={category.StrCategory} />
+                    <CategoryCard categoryIndex={index} key={index} categoryName={category.StrCategory} />
 
                 )
             })}
         </div>
     )
+
+    const checkCookies = () => {
+        
+    }
 
     return (
 

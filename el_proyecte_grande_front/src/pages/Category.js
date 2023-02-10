@@ -3,12 +3,14 @@ import { useParams } from 'react-router-dom'
 import Card from './Card.js';
 import LoadingSpinner from './LoadingSpinner.js';
 import '../style/Fullscreen.css'
+import { Cookies } from 'react-cookie';
 
 
 export default function Category() {
 
   const { category } = useParams();
 
+  const cookies = new Cookies();
 
   const [isLoading, setisLoading] = useState(false);
 
@@ -17,7 +19,14 @@ export default function Category() {
     setisLoading(true)
 
     const fetcher = async () => {
-      const response = await fetch(`https://localhost:7090/categories/${category}`);
+      const requestOption = {
+        method: "GET",
+        credentials: 'same-origin',
+        headers: {
+          'Authorization': 'Bearer ' + cookies.get('userToken'),
+          "Content-Type": "application/json"
+        }}
+      const response = await fetch(`https://localhost:7090/categories/${category}`, requestOption);
       const responseData = await response.json();
       setData(responseData);
       setisLoading(false)

@@ -30,7 +30,7 @@ export default function CategoryCard(props) {
 
                 </div>
                 <div key={props.categoryIndex} >
-                    <h4 className='categoryText'>
+                    <h4 className='categoryText' key={props.categoryIndex+1}>
                         {props.categoryIndex + 1}. {props.categoryName}
                     </h4>
                 </div>

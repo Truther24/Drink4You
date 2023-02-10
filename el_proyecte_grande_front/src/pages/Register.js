@@ -53,21 +53,21 @@ function Register() {
 
       <br />
 
-      <div className="form">
+      <div className="form" style={{color:'white'}}>
         <form onSubmit={getData}>
 
           <div className="inline"></div>
-          <label htmlFor="username"><b>username</b></label>
-          <input type="text" placeholder="username" name="username" id="user" required></input>
+          <label htmlFor="Username"><b>Username</b></label>
+          <input type="text" placeholder="Username" name="username" id="user" required></input>
           <div />
 
           <div className="inline"></div>
-          <label htmlFor="email"><b>Email</b></label>
+          <label htmlFor="Email"><b>Email</b></label>
           <input type="email" placeholder="Email" name="email" id="email" required></input>
           <div />
 
           <div className="inline"></div>
-          <label htmlFor="password"><b>Password</b></label>
+          <label htmlFor="Password"><b>Password</b></label>
           <input type="text" placeholder="Password" name="password" id="pass" required></input>
           <div />
 
