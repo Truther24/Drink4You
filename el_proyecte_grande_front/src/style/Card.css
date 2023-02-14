@@ -1,0 +1,139 @@
+.card-container {
+    width: 300px;
+    overflow: hidden;
+    box-shadow: 0px 0px 15px -5px;
+    transition: 0.5s;
+    animation: ease-in;
+    background-color:rgba(0, 0, 0, 0.853);
+    
+
+}
+
+
+.card-container:hover {
+    transform: scale(1, 1);
+    box-shadow: 0px 0px 15px 0px;
+
+
+}
+
+
+.card-content {
+    margin: 1rem;
+    margin-top: 0.5rem;
+
+
+}
+
+
+h3,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+
+.card-title {
+    margin-bottom: 0.5rem;
+  color: rgb(123, 90, 13);
+    
+    font-weight: 700;
+    font-size: large;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+.card-category-name{
+    margin-bottom: 0.5rem;
+    color: rgb(188, 190, 105) ;
+  
+    
+    font-weight: 400;
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+}
+
+
+.btn button {
+    padding: 0.5rem;
+
+    background-color: rgb(70, 51, 7);
+    border: none;
+    transition: 0.2s;
+    margin-bottom: 0.5rem;
+    border-radius: 3px;
+}
+
+
+.card-button {
+    text-transform: uppercase;
+    color: rgb(217, 224, 12) ;
+    
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+
+.btn button:hover {
+    color: rgb(217, 224, 12) ;
+    
+}
+
+.image-container img {
+    overflow: hidden;
+
+}
+
+
+
+
+
+/* Float four columns side by side */
+.column {
+    float: left;
+    width: 25%;
+    padding: 10px 10px;
+
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {
+    margin: 0 -5px;
+    
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 1300px) {
+    .column {
+        width: 30%;
+        display: block;
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .column {
+        width: 50%;
+        display: block;
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .column {
+        width: 70%;
+        display: block;
+        margin-bottom: 20px;
+    }
+}
