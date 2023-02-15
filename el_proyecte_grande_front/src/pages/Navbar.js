@@ -35,24 +35,39 @@ export default function Navbar() {
             </Link>
             
             {!(cookies.get('userToken') == undefined)? 
-            <>
+            <ul className="navBarUser" style={{position:'relative', left:'2%'}}>
+            <Link to="/user">User Profile</Link>
             <div style={{dispaly:'inline'}}>
-                <button>Logged in as</button>
-                <br/>
-                <button style={{color:'orange'}}>{cookies.get('userName')}</button>
+                <Link style={{cursor:'default'}}>
+                <p>
+
+                Logged in as&nbsp;
+                </p>
+
+                <p style={{color:'orange'}}>
+                {cookies.get('userName')}
+                
+                </p>
+                </Link>
+                
             </div>
-            <button onClick={Logout}>Logout</button>
-            </>
+            <Link onClick={Logout}>Logout</Link>
+            </ul>
              : <></>}
 
-            <ul>
+
+            <ul className="rightNav" style={{position:'relative', left:'45%'}}>
+                <CustomLink to="/register">Register</CustomLink>
+
+                {!(cookies.get('userToken') == undefined)? 
+            <></>
+             : <CustomLink to="/login">Login</CustomLink>}
+                
                 <CustomLink to="/categories">
 
                     Categories
                 </CustomLink>
                 <CustomLink to="/about">About</CustomLink>
-                <CustomLink to="/register">Register</CustomLink>
-                <CustomLink to="/login">Login</CustomLink>
 
 
 
