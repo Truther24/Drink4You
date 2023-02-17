@@ -1,3 +1,10 @@
+.userProfileBody{
+    width: 75%;
+    position: relative;
+    left: 10%;
+}
+
+
 .valueText{
     color: #757575!important;
     --mdb-text-opacity: 1;

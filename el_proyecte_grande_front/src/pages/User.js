@@ -4,7 +4,9 @@ import '../style/User.css';
 export class User extends Component {
     render() {
         return (
-            <>
+            <div className='userProfileBody'>
+            <br/>
+            <br/>
             <div className='last'>
                 <div className='baseCard'>
 
@@ -41,7 +43,7 @@ export class User extends Component {
                 </div>
                 </div>
 
-            </>
+            </div>
         )
     }
 }

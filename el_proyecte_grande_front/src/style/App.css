@@ -38,7 +38,6 @@ body {
   background-color: #333;
 color: white;
 display: flex;
-justify-content: space-between;
 align-items: stretch;
 gap: 2rem;
 padding: 0 1rem;
@@ -75,4 +74,10 @@ padding: .25rem;
 
 .nav li:hover {
   background-color: #777;
+}
+
+.navBarUser{
+  display:flex;
+  
+  
 }
