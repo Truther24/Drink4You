@@ -84,6 +84,11 @@ namespace El_Proyecte_Grande.Services
             return await _drinkCategoryRepository.GetDrinkById(id);
         }
 
+        public async Task<List<DrinkDatabase>> GetLikesAndDisLikes()
+        {
+            return await _context.GetLikesAndDisLikes();
+        }
+
 
 
         

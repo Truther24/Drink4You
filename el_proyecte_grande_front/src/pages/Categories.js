@@ -26,7 +26,7 @@ const cookies = new Cookies();
                 }}
             const response = await fetch("https://localhost:7090/categories", requestOption);
             const data = await response.json();
-            console.log(data)
+            // console.log(data)
             setCategories(data?.drinks)
             setisLoading(false)
         }

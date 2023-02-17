@@ -7,7 +7,7 @@ namespace El_Proyecte_Grande.Controllers
 {
     [ApiController]
     [EnableCors("MyPolicy")]
-    [Authorize]
+    //[Authorize]
     public class DrinkCategoryController : Controller
     {
         private readonly DrinkCategoryService _drinkCategoryService;
@@ -107,6 +107,12 @@ namespace El_Proyecte_Grande.Controllers
         {
             var drink = await _drinkCategoryService.GetDrinkById(id);
             return Ok(drink);
+        }
+
+        [HttpGet("drink/likesDislikes")]
+        public async Task<IActionResult> SetLikesAndDislikes()
+        {
+            return Ok(await _drinkCategoryService.GetLikesAndDisLikes());
         }
 
     }

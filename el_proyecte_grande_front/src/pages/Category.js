@@ -15,6 +15,23 @@ export default function Category() {
   const [isLoading, setisLoading] = useState(false);
 
   const [data, setData] = useState([]);
+
+  const [drinkTable, setDrinTable] = useState([]);
+
+
+
+  useEffect(() => {
+    const likesFetcher = async () => {
+      let request = await fetch(`https://localhost:7090/drink/likesDislikes`);
+      let result = await request.json();
+      setDrinTable(result);
+    }
+    likesFetcher();
+  }, []);
+  // console.log(drinkTable)
+
+
+
   useEffect(() => {
     setisLoading(true)
 
@@ -25,10 +42,20 @@ export default function Category() {
         headers: {
           'Authorization': 'Bearer ' + cookies.get('userToken'),
           "Content-Type": "application/json"
-        }}
+        }
+      }
       const response = await fetch(`https://localhost:7090/categories/${category}`, requestOption);
       const responseData = await response.json();
-      setData(responseData);
+
+      setData(responseData.map(fetchedDrink => {
+        if (drinkTable.map(savedDrinks => savedDrinks.fetchID).includes(fetchedDrink.idDrink)) {
+          console.log("went in if")
+          fetchedDrink.likes = drinkTable.find(savedDrinks => savedDrinks.fetchID === fetchedDrink.idDrink)?.likes;
+          fetchedDrink.dislikes = drinkTable.find(savedDrinks => savedDrinks.fetchID === fetchedDrink.idDrink)?.dislikes;
+        }
+
+        return fetchedDrink;
+      }));
       setisLoading(false)
 
 
@@ -36,40 +63,76 @@ export default function Category() {
     fetcher();
   }, [])
 
+  console.log({ data, drinkTable })
 
-  console.log(data)
+
+  //dataa -- api
+  // drinkTable -- baza de date
+
+  // console.log(data[2]);
+  // console.log(data)
+  // console.log(data[2]?.idDrink)
+  // console.log(drinkTable.find(drink=>drink.fetchID=="15300"));
+
+  // var matchedDrinks;
+
+  // for (let i = 0; i < data?.length; i++) {
+  //   if (data[i]?.idDrink === drinkTable?.find(drink => drink?.fetchID === data[i]?.idDrink)) {
+  //     console.log("in if")
+  //     // matchedDrinks.add(drinkTable.find(drink=>drink.fetchID==data[i].idDrink))
+  //     var matchedDrinks = drinkTable.find(drink => drink.fetchID == data[i].idDrink)
+  //     console.log(matchedDrinks)
+
+  //     if (matchedDrinks[i].likes) {
+  //       data[i].likes = matchedDrinks[i].likes
+  //       data[i].dislikes = matchedDrinks[i].dislikes
+  //     }
+  //     else {
+  //       data[i].Likes = 0
+  //       data[i].Dislikes = 0
+  //     }
+  //   }
+  // }
+
+  // console.log(data)
+
 
   const page = (
     <div>
-      <br/>
-      <h1 style={{fontSize:40 , color: 'rgba(210, 205, 105, 0.89)' }} >
-        {category.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()).replace("_", " ").replace("_", " ") }
+      <br />
+      <h1 style={{ fontSize: 40, color: 'rgba(210, 205, 105, 0.89)' }} >
+        {category.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()).replace("_", " ").replace("_", " ")}
       </h1>
 
-         <br />
+      <br />
+
+
+
       {data.map((drink) => {
         return (
-          
 
-          <Card strDrinkThumb=
-          {drink.strDrinkThumb} 
-          strDrink={drink.strDrink}   
-          myKey={drink.idDrink}  
-          key={drink.idDrink} 
-          categoryName={category.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()).replace("_", " ").replace("_", " ")+ " recipe"} />
-          )
-          
-      
-        })} 
-        
-        
+          <Card
+            likes={drink.likes}
+            dislikes={drink.dislikes}
+            strDrinkThumb=
+            {drink.strDrinkThumb}
+            strDrink={drink.strDrink}
+            myKey={drink.idDrink}
+            key={drink.idDrink}
+            categoryName={category.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()).replace("_", " ").replace("_", " ") + " recipe"} />
+        )
+
+
+      })}
+
+
     </div>
   )
 
   return (
-    <div 
-    className='fullscreen'>
-         {isLoading ? <LoadingSpinner/> : page}
-         </div>
-      )
+    <div
+      className='fullscreen'>
+      {isLoading ? <LoadingSpinner /> : page}
+    </div>
+  )
 }
