@@ -20,7 +20,6 @@ export default function Category() {
     const likesFetcher = async () => {
       let request = await fetch(`https://localhost:7090/drink/likesDislikes`);
       let result = await request.json();
-      setDrinTable(result);
     };
     likesFetcher();
   }, []);

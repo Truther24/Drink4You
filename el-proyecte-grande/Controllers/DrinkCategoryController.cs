@@ -1,4 +1,6 @@
-﻿using El_Proyecte_Grande.Services;
+﻿using El_Proyecte_Grande.Models;
+using El_Proyecte_Grande.Models.Entities;
+using El_Proyecte_Grande.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -113,6 +115,16 @@ namespace El_Proyecte_Grande.Controllers
         public async Task<IActionResult> SetLikesAndDislikes()
         {
             return Ok(await _drinkCategoryService.GetLikesAndDisLikes());
+        }
+
+        [HttpPut("drink/likesDislikes/update")]
+        public async Task<IActionResult> UpdateLikesAndDislikes([FromBody] DrinkDatabase drink)
+        {
+            Task<LikeDislikeResponse> result = _drinkCategoryService.UpdateLikesAndDislikes(drink);
+
+
+
+            return Ok(result);
         }
 
     }

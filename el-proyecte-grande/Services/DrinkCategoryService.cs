@@ -1,4 +1,5 @@
 ﻿
+using Azure.Core;
 using El_Proyecte_Grande.Models;
 using El_Proyecte_Grande.Models.Data;
 using El_Proyecte_Grande.Models.Entities;
@@ -89,9 +90,17 @@ namespace El_Proyecte_Grande.Services
             return await _context.GetLikesAndDisLikes();
         }
 
+        public async Task<List<DrinkDatabase>> PutLikesAndDisLikes()
+        {
+            return await _context.GetLikesAndDisLikes();
+        }
 
+        public async Task<LikeDislikeResponse> UpdateLikesAndDislikes(DrinkDatabase drink)
+        {
+            var result = await _context.UpdateLikesAndDisklikes(drink);
 
-        
-
+            return result;
+           
+        }
     }
 }
