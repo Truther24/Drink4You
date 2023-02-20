@@ -7,8 +7,8 @@ import '../style/LikeDislikeButtons.css'
 
 export default function Card(props) {
 
-    // const [like, setLike] = useState('');
-    // const [disLike, setDisLike] = useState('');
+    const [like, setLike] = useState('');
+    const [disLike, setDisLike] = useState('');
 
     const [likeCount, setLikeCount] = useState(props.likes);
     const [dislikeCount, setDislikeCount] = useState(props.dislikes);
@@ -18,43 +18,43 @@ export default function Card(props) {
 
 
     const handleLikeClick = () => {
-        // if (activeBtn === "none") {
-        //     setLikeCount(likeCount + 1);
-        //     setActiveBtn("like");
-        //     return;
-        // }
+        if (activeBtn === "none") {
+            setLikeCount(likeCount + 1);
+            setActiveBtn("like");
+            return;
+        }
 
-        // if (activeBtn === 'like') {
-        //     setLikeCount(likeCount - 1);
-        //     setActiveBtn("none");
-        //     return;
-        // }
+        if (activeBtn === 'like') {
+            setLikeCount(likeCount - 1);
+            setActiveBtn("none");
+            return;
+        }
 
-        // if (activeBtn === "dislike") {
-        //     setLikeCount(likeCount + 1);
-        //     setDislikeCount(dislikeCount - 1);
-        //     setActiveBtn("like");
-        // }
+        if (activeBtn === "dislike") {
+            setLikeCount(likeCount + 1);
+            setDislikeCount(dislikeCount - 1);
+            setActiveBtn("like");
+        }
     };
 
     const handleDisikeClick = () => {
-        // if (activeBtn === "none") {
-        //     setDislikeCount(dislikeCount + 1);
-        //     setActiveBtn("dislike");
-        //     return;
-        // }
+        if (activeBtn === "none") {
+            setDislikeCount(dislikeCount + 1);
+            setActiveBtn("dislike");
+            return;
+        }
 
-        // if (activeBtn === 'dislike') {
-        //     setDislikeCount(dislikeCount - 1);
-        //     setActiveBtn("none");
-        //     return;
-        // }
+        if (activeBtn === 'dislike') {
+            setDislikeCount(dislikeCount - 1);
+            setActiveBtn("none");
+            return;
+        }
 
-        // if (activeBtn === "like") {
-        //     setDislikeCount(dislikeCount + 1);
-        //     setLikeCount(likeCount - 1);
-        //     setActiveBtn("dislike");
-        // }
+        if (activeBtn === "like") {
+            setDislikeCount(dislikeCount + 1);
+            setLikeCount(likeCount - 1);
+            setActiveBtn("dislike");
+        }
     };
 
 
@@ -91,8 +91,8 @@ export default function Card(props) {
                             className={`likedislike ${activeBtn === "like" ? "like-active" : ""}`}
                             onClick={handleLikeClick}
                         >
-                            <span className="material-symbols-outlined">thumb_up</span>
-                             {likeCount}
+                            <span className="material-symbols-outlined"> thumb_up </span>
+                            &nbsp;{likeCount}
                         </button>
                     </div>
                     {/* <div style={{position:'absolute',left:'10px',bottom:'40px'}}><button onClick={() => setLike(1)} style={{position:'absolute',bottom:'-20px'}}>{like}</button></div> */}
@@ -104,8 +104,8 @@ export default function Card(props) {
                             className={`likedislike ${activeBtn === "dislike" ? "dislike-active" : ""}`}
                             onClick={handleDisikeClick}
                         >
-                            <span className="material-symbols-outlined">thumb_down</span>
-                             {dislikeCount}
+                            <span className="material-symbols-outlined"> thumb_down </span>
+                            &nbsp;{dislikeCount}
                         </button>
                         </div>
                     </div>
