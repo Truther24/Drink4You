@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import Card from "./Card.js";
 import LoadingSpinner from "./LoadingSpinner.js";
 import "../style/Fullscreen.css";
 import { Cookies } from "react-cookie";
+import { useBeforeunload } from "react-beforeunload";
 
 export default function Category() {
   const { category } = useParams();
