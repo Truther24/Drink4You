@@ -14,7 +14,6 @@ const cookies = new Cookies();
 
     useEffect(() => {
 
-        console.log(cookies.get('userToken'))
         setisLoading(true)
         const fetchGet = async () => {
             const requestOption = {
@@ -44,7 +43,6 @@ const cookies = new Cookies();
             <br />
             {categories.map((category, index) => {
                 return (
-
                     <CategoryCard categoryIndex={index} key={index} categoryName={category.StrCategory} />
 
                 )
