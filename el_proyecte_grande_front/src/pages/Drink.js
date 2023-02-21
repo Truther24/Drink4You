@@ -13,33 +13,34 @@ export default function Drink() {
     //    const {drinkName} = useParams();
     const { drinkId } = useParams();
 
-  const cookies = new Cookies();
+    const cookies = new Cookies();
 
-  const [isLoading, setisLoading] = useState(false);
+    const [isLoading, setisLoading] = useState(false);
 
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    setisLoading(true);
 
-    const fetcher = async () => {
-      const requestOption = {
-        method: "GET",
-        credentials: "same-origin",
-        headers: {
-          Authorization: "Bearer " + cookies.get("userToken"),
-          "Content-Type": "application/json",
-        },
-      };
-      const response = await fetch(
-        `https://localhost:7090/drink/${drinkId}`,
-        requestOption
-      );
-      const responseData = await response.json();
-      setData(responseData);
-      setisLoading(false);
-    };
-    fetcher();
-  }, []);
+    const [data, setData] = useState([]);
+    useEffect(() => {
+        setisLoading(true)
+
+        const fetcher = async () => {
+            const requestOption = {
+                method: "GET",
+                credentials: 'same-origin',
+                headers: {
+                  'Authorization': 'Bearer ' + cookies.get('userToken'),
+                  "Content-Type": "application/json"
+                }}
+            const response = await fetch(`https://localhost:7090/drink/${drinkId}`, requestOption);
+            const responseData = await response.json();
+            setData(responseData);
+            setisLoading(false)
+
+
+        }
+        fetcher();
+    }, [])
+
+    console.log(data)
 
     return (
       <>

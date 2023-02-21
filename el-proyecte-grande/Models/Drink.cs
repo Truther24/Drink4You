@@ -13,12 +13,10 @@
         public string StrIngredient3 { get; set; }
         public string StrIngredient4 { get; set; }
         public string StrDrinkThumb { get; set; }
-        public int Likes { get; set; }
-        public int Dislikes { get; set; }
+        
 
 
-
-
+         
 
     }
 }

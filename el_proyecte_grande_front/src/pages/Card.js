@@ -35,33 +35,6 @@ export default function Card(props) {
     console.log(data);
   };
 
-  //   const handleLikeClick = () => {
-  //             setLikeCount((l) => l + 1);
-  //           setActiveBtn("like");
-  //             setLikeCount(props.Likes - 1);
-  //           setActiveBtn("none");
-  //             setLikeCount(props.Likes + 1);
-  //             setDislikeCount(props.Dislikes - 1);
-  //           setActiveBtn("like");
-  //       }
-
-  //       updateLikesDislikes();
-  //   };
-
-  // const handleDisikeClick = (e) => {
-  //   if (activeBtn === "none") {
-  //     setActiveBtn("dislike");
-  //     console.log("dislike +1");
-  //   } else if (activeBtn === "dislike") {
-  //     setActiveBtn("none");
-  //     console.log("dislike -1");
-  //   } else if (activeBtn === "like") {
-  //     setActiveBtn("dislike");
-  //     console.log("dislike +1 like -1");
-  //   }
-  //   updateLikesDislikes();
-  // };
-
   useEffect(() => {
   
 },[activeBtn])

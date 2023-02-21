@@ -1,4 +1,4 @@
-﻿using El_Proyecte_Grande.Models;
+using El_Proyecte_Grande.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;

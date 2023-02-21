@@ -1,4 +1,4 @@
-﻿using El_Proyecte_Grande.Models.Entities;
+using El_Proyecte_Grande.Models.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
