@@ -4,7 +4,6 @@ import Card from "./Card.js";
 import LoadingSpinner from "./LoadingSpinner.js";
 import "../style/Fullscreen.css";
 import { Cookies } from "react-cookie";
-import { useBeforeunload } from "react-beforeunload";
 
 export default function Category() {
   const { category } = useParams();
@@ -20,6 +19,8 @@ export default function Category() {
     const likesFetcher = async () => {
       let request = await fetch(`https://localhost:7090/drink/likesDislikes`);
       let result = await request.json();
+      console.log(result)
+      setDrinTable(result);
     };
     likesFetcher();
   }, []);
@@ -65,6 +66,7 @@ export default function Category() {
     fetcher();
   }, [drinkTable]);
 
+  console.log(data[0])
   const page = (
     <div>
       <br />
@@ -76,7 +78,6 @@ export default function Category() {
       </h1>
 
       <br />
-
       {data.map((drink) => {
         return (
           <Card
