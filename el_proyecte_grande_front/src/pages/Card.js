@@ -151,8 +151,7 @@ export default function Card(props) {
               <Link
                 to={`/categories/${props.categoryName}/${props.strDrink}/${props.myKey}`}
                 className="card-button"
-                state = {{likes : likeCount ,dislikes :dislikeCount }}
-
+                state={{ likes: likeCount, dislikes: dislikeCount }}
               >
                 {" "}
                 View more{" "}
