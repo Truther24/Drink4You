@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { Cookies } from 'react-cookie';
-import { useParams } from 'react-router-dom'
+import { useParams , useLocation} from 'react-router-dom'
 import '../style/Drink.css'
 import LoadingSpinner from './LoadingSpinner';
+import Modal from './Modal';
 
 
-export default function Drink() {
+export default function Drink(props) {
 
     //    const {categoty}  = useParams();
     //    const {drinkName} = useParams();
     const { drinkId } = useParams();
+    const location = useLocation(); 
+    
 
     const cookies = new Cookies();
 
@@ -38,9 +41,11 @@ export default function Drink() {
         fetcher();
     }, [])
 
-    console.log(data)
+    
+
 
     return (
+        <>
         <div className='drinkContainer'>
             <br />
             
@@ -58,10 +63,18 @@ export default function Drink() {
                                 <ul> {data.strIngredient2} </ul>
                                 <ul> {data.strIngredient3} </ul>
                                 <ul> {data.strIngredient4} </ul>
+
                             </li>
                         </div>
+                        <h3 className='likesContainer'>Likes : {location.state.likes}</h3>
+                        <h3 className='dislikesContainer'>Dislikes : {location.state.dislikes}</h3>
+
                     </div>
+
                
         </div>
+
+                    <button style={{position:'absolute',bottom:'50%',color:'wheat'}} > <Modal/> </button>
+                    </>
     )
 }

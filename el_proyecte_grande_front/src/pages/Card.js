@@ -32,7 +32,7 @@ export default function Card(props) {
       requestOption
     );
     const data = await response.json();
-    console.log(requestOption);
+    console.log(data);
   };
 
     const handleLikeClick = () => {
@@ -100,6 +100,8 @@ export default function Card(props) {
               <Link
                 to={`/categories/${props.categoryName}/${props.strDrink}/${props.myKey}`}
                 className="card-button"
+                state = {{likes : likeCount ,dislikes :dislikeCount }}
+
               >
                 {" "}
                 View more{" "}
