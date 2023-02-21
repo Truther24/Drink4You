@@ -23,19 +23,11 @@ body.active-modal {
     background: rgba(49,49,49,0.8);
 }
 
- button{
-    color: black;
-} 
 
-h2,button{
-    position: relative;
-    color:black;
-    bottom: -10px;
-}
 
-p{
-    color:blueviolet
-}
+
+
+
 
 .modal-content {
     position: absolute;
