@@ -1,0 +1,16 @@
+.form{
+    align-items: center;
+}
+
+.inline{
+    align-items: center;
+}
+
+.btn{
+  color: white;
+  font-size: 20px;
+  padding: 10px 60px;
+  border-radius: 5px;
+  margin: 10px 0px;
+  cursor: pointer;
+}
