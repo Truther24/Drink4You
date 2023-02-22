@@ -131,13 +131,14 @@ namespace El_Proyecte_Grande.Repositories
             return drink.drinks;
         }
 
-        public async Task<Drink> GetDrinkById(string id)
+        public async Task<Drink> GetDrinkById(string id) 
         {
             HttpClient client = new();
             string response = await client.GetStringAsync($"https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i={id}");
 
-
             ComplexDrink complexDrink = JsonConvert.DeserializeObject<ComplexDrink>(response);
+
+
             return complexDrink.drinks[0];
         }
 

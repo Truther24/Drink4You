@@ -1,9 +1,14 @@
 ﻿using El_Proyecte_Grande.Models;
 using El_Proyecte_Grande.Models.Entities;
+using El_Proyecte_Grande.Models.ResponseModels;
+using El_Proyecte_Grande.Models.ViewModels;
 using El_Proyecte_Grande.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace El_Proyecte_Grande.Controllers
 {
@@ -108,8 +113,12 @@ namespace El_Proyecte_Grande.Controllers
         public async Task<IActionResult> GetDrinkById(string id)
         {
             var drink = await _drinkCategoryService.GetDrinkById(id);
-            return Ok(drink);
+
+            var comments = await _drinkCategoryService.GetCommentsById(id);
+            return Ok(new DrinkPage { Drink = drink, Comments = comments});
         }
+
+
 
         [HttpGet("drink/likesDislikes")]
         public async Task<IActionResult> SetLikesAndDislikes()
@@ -125,6 +134,24 @@ namespace El_Proyecte_Grande.Controllers
 
 
             return Ok(result);
+        }
+
+
+        [Authorize]
+        [HttpPost("postComment")]
+        public async Task<IActionResult> PostComment([FromBody] PostCommentViewModel comment)
+        {
+            var handler = new JwtSecurityTokenHandler();
+            string authHeader = Request.Headers["Authorization"];
+            authHeader = authHeader.Replace("Bearer ", "");
+            var jsonToken = handler.ReadToken(authHeader);
+            var tokenS = handler.ReadToken(authHeader) as JwtSecurityToken;
+            var idenityUserId = tokenS.Claims.First(claim => claim.Type == ClaimTypes.NameIdentifier).Value;
+
+
+            var response = await _drinkCategoryService.PostComment(comment, idenityUserId);
+
+            return Ok(response);
         }
 
     }

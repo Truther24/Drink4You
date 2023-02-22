@@ -24,15 +24,24 @@ body.active-modal {
   background: rgba(49, 49, 49, 0.8);
 }
 
-button {
-  color: black;
-}
-
-#h2,
 #button {
   position: relative;
   color: black;
-  bottom: -10px;
+}
+
+#add-comment-text {
+  position: relative;
+  color: rgba(33, 33, 33, 0.452);
+}
+
+#close-button {
+  bottom: 85%;
+  right: 5%;
+}
+
+#comment {
+  height: 100px;
+  width: 350px;
 }
 
 #p {

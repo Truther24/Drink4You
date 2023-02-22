@@ -1,4 +1,4 @@
-﻿namespace El_Proyecte_Grande.Models
+﻿namespace El_Proyecte_Grande.Models.ViewModels
 {
     public class LoginViewModel
     {

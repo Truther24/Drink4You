@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace El_Proyecte_Grande.Models
+namespace El_Proyecte_Grande.Models.ResponseModels
 {
     public class LikeDislikeResponse
     {

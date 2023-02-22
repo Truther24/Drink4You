@@ -3,21 +3,28 @@ using Azure.Core;
 using El_Proyecte_Grande.Models;
 using El_Proyecte_Grande.Models.Data;
 using El_Proyecte_Grande.Models.Entities;
+using El_Proyecte_Grande.Models.ResponseModels;
+using El_Proyecte_Grande.Models.ViewModels;
 using El_Proyecte_Grande.Repositories;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace El_Proyecte_Grande.Services
 {
-    
+
     public class DrinkCategoryService
     {
+        private UserManager<IdentityUser> _userManager;
+
         private readonly DrinkCategoryRepository _drinkCategoryRepository;
 
         private readonly DrinkContext _context;
-        public DrinkCategoryService(DrinkCategoryRepository drinkCategoryRepository , DrinkContext drinkContext)
+        public DrinkCategoryService(UserManager<IdentityUser> userManager, DrinkCategoryRepository drinkCategoryRepository , DrinkContext drinkContext)
         {
+            _userManager = userManager;
+
             _drinkCategoryRepository = drinkCategoryRepository;
 
             _context = drinkContext;
@@ -101,6 +108,21 @@ namespace El_Proyecte_Grande.Services
 
             return result;
            
+        }
+
+        public async Task<CommentResponse> PostComment(PostCommentViewModel comment, string idenityUserId)
+        {
+
+            IdentityUser identityUser = await _userManager.FindByIdAsync(idenityUserId);
+
+            var result = await _context.AddComment(comment, identityUser.UserName);
+            return result;
+        }
+
+        internal async Task<List<Comment>> GetCommentsById(string id)
+        {
+            var result = await _context.GetCommentsById(id); 
+            return result;
         }
     }
 }

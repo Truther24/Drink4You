@@ -1,8 +1,12 @@
-﻿using El_Proyecte_Grande.Models.Entities;
+﻿using Azure.Core;
+using El_Proyecte_Grande.Models.Entities;
+using El_Proyecte_Grande.Models.ResponseModels;
+using El_Proyecte_Grande.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.IdentityModel.Tokens.Jwt;
 using System.Reflection.Metadata.Ecma335;
 
 namespace El_Proyecte_Grande.Models.Data
@@ -11,6 +15,8 @@ namespace El_Proyecte_Grande.Models.Data
     {
         public DbSet<User> Users { get; set; }
         public DbSet<DrinkDatabase> Drinks { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+
 
         public DrinkContext(DbContextOptions<DrinkContext> options) : base(options)
         {
@@ -94,6 +100,35 @@ namespace El_Proyecte_Grande.Models.Data
                     IsSuccess = true
                 };
             }
+        }
+
+        public async Task<CommentResponse> AddComment(PostCommentViewModel comment, string userName)
+        {
+            
+
+            Comment newComment = new()
+            {
+                IdDrink= comment.IdDrink,
+                Message= comment.Message,
+                AuthorName= userName,
+
+            };
+
+            Comments?.AddAsync(newComment);
+            SaveChangesAsync();
+
+
+            return new CommentResponse
+            {
+                Message= "Comment added succesfully",
+                IsSuccess= true,
+                Comments = new List<Comment> { newComment }
+            };
+        }
+
+        public async Task<List<Comment>> GetCommentsById(string id)
+        {
+            return await Comments.Where(x => x.IdDrink == id).ToListAsync();
         }
     }
 }
