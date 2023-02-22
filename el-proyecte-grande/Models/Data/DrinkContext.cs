@@ -1,4 +1,4 @@
-﻿using Azure.Core;
+using Azure.Core;
 using El_Proyecte_Grande.Models.Entities;
 using El_Proyecte_Grande.Models.ResponseModels;
 using El_Proyecte_Grande.Models.ViewModels;

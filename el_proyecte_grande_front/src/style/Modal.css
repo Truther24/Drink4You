@@ -68,3 +68,11 @@ body.active-modal {
   right: 0px;
   padding: 5px 7px;
 }
+
+.close-modal {
+    cursor: pointer;
+    position: absolute;
+    bottom: 45px;
+    right: 0px;
+    padding: 5px 7px;
+}
