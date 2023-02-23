@@ -23,7 +23,7 @@ export default function Category() {
       setDrinTable(result);
     };
     likesFetcher();
-  }, []);
+  }, []);   
 
   useEffect(() => {
     setisLoading(true);
@@ -66,7 +66,6 @@ export default function Category() {
     fetcher();
   }, [drinkTable]);
 
-  console.log(data[0])
   const page = (
     <div>
       <br />

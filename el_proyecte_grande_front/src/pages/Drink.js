@@ -25,11 +25,11 @@ export default function Drink() {
         credentials: "same-origin",
         headers: {
           Authorization: "Bearer " + cookies.get("userToken"),
-          "Content-Type": "application/json"
-        }
-      }
+          "Content-Type": "application/json",
+        },
+      };
 
-      console.log(drinkId)
+      console.log(drinkId);
 
       const response = await fetch(
         `https://localhost:7090/drink/${drinkId}`,
@@ -37,11 +37,14 @@ export default function Drink() {
       );
       const responseData = await response.json();
       setData(responseData);
+      console.log(response);
 
       setisLoading(false);
     };
     fetcher();
   }, []);
+
+
 
   return (
     <>
@@ -49,23 +52,23 @@ export default function Drink() {
         <br />
 
         <div className="imageContainer">
-          {/* <img className="image" src={data.drink.strDrinkThumb} alt=""></img> */}
+          <img className="image" src={data?.drink?.strDrinkThumb} alt=""></img>
         </div>
 
         <div className="textContainer">
-          <h1 className="nameContainer"> Name : {data.drink.strDrink}</h1>
-          <h3 className="glassContainer">Glass Type : {data.drink.strGlass}</h3>
+          <h1 className="nameContainer"> Name : {data?.drink?.strDrink}</h1>
+          <h3 className="glassContainer">Glass Type : {data?.drink?.strGlass}</h3>
           <h3 className="instructionsContainer">
-            Instructions : {data.drink.strInstructions}
+            Instructions : {data?.drink?.strInstructions}
           </h3>
           <div className="ingredientsContainer">
             {" "}
             Ingredients:
             <li>
-              <ul> {data.drink.strIngredient1} </ul>
-              <ul> {data.drink.strIngredient2} </ul>
-              <ul> {data.drink.strIngredient3} </ul>
-              <ul> {data.drink.strIngredient4} </ul>
+              <ul> {data?.drink?.strIngredient1} </ul>
+              <ul> {data?.drink?.strIngredient2} </ul>
+              <ul> {data?.drink?.strIngredient3} </ul>
+              <ul> {data?.drink?.strIngredient4} </ul>
             </li>
           </div>
           <h3 className="likesContainer">Likes : {location.state.likes}</h3>
