@@ -26,6 +26,13 @@
     top: 300%;
 }
 
-.nameContainer{
-    
+#commentsContainer{
+    color:white;
+    top:500px;
+    position: relative;
+
+}
+
+.commentsContainer{
+    position: absolute;
 }

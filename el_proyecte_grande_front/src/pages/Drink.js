@@ -37,12 +37,12 @@ export default function Drink() {
       );
       const responseData = await response.json();
       setData(responseData);
-      console.log(response);
 
       setisLoading(false);
     };
     fetcher();
   }, []);
+  console.log(data);
 
 
 
@@ -54,6 +54,7 @@ export default function Drink() {
         <div className="imageContainer">
           <img className="image" src={data?.drink?.strDrinkThumb} alt=""></img>
         </div>
+
 
         <div className="textContainer">
           <h1 className="nameContainer"> Name : {data?.drink?.strDrink}</h1>
@@ -75,13 +76,28 @@ export default function Drink() {
           <h3 className="dislikesContainer">
             Dislikes : {location.state.dislikes}
           </h3>
+
+
         </div>
       </div>
+
 
       <button style={{ position: "absolute", bottom: "100px", color: "wheat" }}>
         {" "}
         <Modal drinkId={drinkId} />{" "}
       </button>
+      <div className="commentsContainer" >
+
+        <h3 id="commentsContainer">
+          Comments :
+        </h3>
+          {data?.comments?.map((comment) =>
+
+            <div id="commentsContainer">
+              {comment.message}
+            </div>
+          )}
+      </div>
     </>
   );
 }

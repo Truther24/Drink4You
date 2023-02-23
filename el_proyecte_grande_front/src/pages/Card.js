@@ -24,7 +24,7 @@ export default function Card(props) {
       body: JSON.stringify({
         fetchID: props.myKey,
         "Likes": obj.likes,
-        "Dislikes": obj.dislikes,
+        "Dislikes": obj.dislikes
       }),
     };
     const response = await fetch(
