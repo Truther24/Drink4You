@@ -23,8 +23,8 @@ export default function Card(props) {
       },
       body: JSON.stringify({
         fetchID: `${props.myKey}`,
-        Likes: `${likeCount}`,
-        Dislikes: `${dislikeCount}`,
+        Likes: `${props.likes}`,
+        Dislikes: `${props.dislikes}`,
       }),
     };
     const response = await fetch(
@@ -36,8 +36,8 @@ export default function Card(props) {
   };
 
   useEffect(() => {
-    console.log(likeCount);
-    console.log(dislikeCount);
+    // console.log(likeCount);
+    // console.log(dislikeCount);
     updateLikesDislikes();
   }, [likeCount, dislikeCount]);
 
@@ -118,7 +118,7 @@ export default function Card(props) {
             </div>
             <button style={{ cursor: "pointer" }}>
               <Link
-                to={`/categories/${props.categoryName}/${props.strDrink}/${props.myKey}`}
+                to={`/categories/${props.categoryName}/${props.strDrink.replace('/','+')}/${props.myKey}`}
                 className="card-button"
                 state={{ likes: likeCount, dislikes: dislikeCount }}
               >

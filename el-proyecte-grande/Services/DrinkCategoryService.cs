@@ -41,51 +41,36 @@ namespace El_Proyecte_Grande.Services
             return jsonString;
         }
 
-        public async Task<List<SimpleDrink>> GetAllCocktails()
+
+
+        public async Task<List<SimpleDrink>> GetDrinksForCategory(string categoryName)
         {
-            return await _drinkCategoryRepository.GetAllCocktails();
+            var drinksWithlikesandDislikes = await GetLikesAndDisLikes();
+
+            var apiDrinks =  await _drinkCategoryRepository.GetDrinksForCategory(categoryName);
+
+            foreach(var apiDrink in apiDrinks)
+            {
+                var fouundDrink = drinksWithlikesandDislikes.Find(dbDrink => dbDrink.fetchID == apiDrink.IdDrink);
+                if(fouundDrink != null)
+                {
+                    apiDrink.Likes = fouundDrink.Likes;
+                    apiDrink.Dislikes = fouundDrink.Dislikes;
+                }
+                else
+                {
+                    apiDrink.Likes = 0;
+                    apiDrink.Dislikes = 0;
+                }
+
+            }
+
+
+            return apiDrinks;
         }
 
-        public async Task<List<SimpleDrink>> GetAllOrdinaryDrinks()
-        {
-            return await _drinkCategoryRepository.GetAllOrdinaryDrinks();
-        }
-        public async Task<List<SimpleDrink>> GetAllShakes()
-        {
-            return await _drinkCategoryRepository.GetAllShakes();
-        }
-        public async Task<List<SimpleDrink>> GetAllOtherUknown()
-        {
-            return await _drinkCategoryRepository.GetAllOtherUnknown();
-        }
-        public async Task<List<SimpleDrink>> GetAllCocoas()
-        {
-            return await _drinkCategoryRepository.GetAllCocoas();
-        }
-        public async Task<List<SimpleDrink>> GetAllShots()
-        {
-            return await _drinkCategoryRepository.GetAllShots();
-        }
-        public async Task<List<SimpleDrink>> GetAllCoffeeAndTeas()
-        {
-            return await _drinkCategoryRepository.GetAllCoffeeAndTeas();
-        }
-        public async Task<List<SimpleDrink>> GetAllHomemadeLiqueors()
-        {
-            return await _drinkCategoryRepository.GetAllHomemadeLiqueors();
-        }
-        public async Task<List<SimpleDrink>> GetAllPartyDrinks()
-        {
-            return await _drinkCategoryRepository.GetAllPartyDrinks();
-        }
-        public async Task<List<SimpleDrink>> GetAllBeers()
-        {
-            return await _drinkCategoryRepository.GetAllBeers();
-        }
-        public async Task<List<SimpleDrink>> GetAllSoftDrinks()
-        {
-            return await _drinkCategoryRepository.GetAllSoftDrinks();
-        }
+
+
 
         public async Task<Drink> GetDrinkById(string id)
         {

@@ -23,7 +23,7 @@ export default function CategoryCard(props) {
 
         <Link className='categoryCard'
             key={props.categoryIndex}
-            to={`/categories/${props.categoryName.toLowerCase().replace(" / ", "_").replace(" ", "_") + "s"}`}>
+            to={`/categories/${props.categoryName.replace('/','+')}`}>
 
             <div className='categoryContainer'>
                 <div className='categoryImage' style={{ backgroundImage: `url(${imageUrls[props.categoryIndex]})` }}>

@@ -13,17 +13,8 @@ export default function Category() {
   const [isLoading, setisLoading] = useState(false);
 
   const [data, setData] = useState([]);
-  const [drinkTable, setDrinTable] = useState([]);
 
-  useEffect(() => {
-    const likesFetcher = async () => {
-      let request = await fetch(`https://localhost:7090/drink/likesDislikes`);
-      let result = await request.json();
-      console.log(result)
-      setDrinTable(result);
-    };
-    likesFetcher();
-  }, []);   
+    
 
   useEffect(() => {
     setisLoading(true);
@@ -41,30 +32,13 @@ export default function Category() {
         }
       );
       const responseData = await response.json();
+      setData(responseData);
 
-      if (responseData?.length && drinkTable?.length) {
-        setData(
-          responseData.map((fetchedDrink) => {
-            const finder = (savedDrinks) =>
-              savedDrinks.fetchID === fetchedDrink.idDrink;
-
-            if (
-              drinkTable
-                .map((savedDrinks) => savedDrinks.fetchID)
-                .includes(fetchedDrink.idDrink)
-            ) {
-              fetchedDrink.likes = drinkTable.find(finder)?.likes;
-              fetchedDrink.dislikes = drinkTable.find(finder)?.dislikes;
-            }
-
-            return fetchedDrink;
-          })
-        );
-      }
+      console.log(responseData)
       setisLoading(false);
     };
     fetcher();
-  }, [drinkTable]);
+  },[]);
 
   const page = (
     <div>
