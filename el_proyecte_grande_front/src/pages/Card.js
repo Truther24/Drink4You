@@ -8,12 +8,12 @@ import { Cookies } from "react-cookie";
 export default function Card(props) {
   const cookies = new Cookies();
 
-  const [likeCount, setLikeCount] = useState(props.likes);
-  const [dislikeCount, setDislikeCount] = useState(props.dislikes);
+  // const [likeCount, setLikeCount] = useState(props.likes);
+  // const [dislikeCount, setDislikeCount] = useState(props.dislikes);
 
   const [activeBtn, setActiveBtn] = useState("none");
 
-  const updateLikesDislikes = async () => {
+  const updateLikesDislikes = async (obj) => {
     const requestOption = {
       method: "PUT",
       credentials: "same-origin",
@@ -22,9 +22,9 @@ export default function Card(props) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        fetchID: `${props.myKey}`,
-        Likes: `${props.likes}`,
-        Dislikes: `${props.dislikes}`,
+        fetchID: props.myKey,
+        "Likes": obj.likes,
+        "Dislikes": obj.dislikes,
       }),
     };
     const response = await fetch(
@@ -32,54 +32,66 @@ export default function Card(props) {
       requestOption
     );
     const data = await response.json();
-    console.log(data);
+    props.drinkUpdatingFunction(data);
+    // console.log(data);
   };
 
-  useEffect(() => {
-    // console.log(likeCount);
-    // console.log(dislikeCount);
-    updateLikesDislikes();
-  }, [likeCount, dislikeCount]);
+  // useEffect(() => {
+  //   // console.log(likeCount);
+  //   // console.log(dislikeCount);
+  //   updateLikesDislikes();
+  // }, [likeCount, dislikeCount]);
 
   const handleClick = (e, action, disaction) => {
     e.preventDefault();
     const isLike = action === "like" && disaction === "dislike";
     const isDislike = action === "dislike" && disaction === "like";
 
+    let like = props.likes;
+    let dislike = props.dislikes
     if (isLike) {
       if (activeBtn === "none") {
-        setLikeCount((l) => l + 1);
+        like++;
         setActiveBtn((l) => "like");
       }
 
-      if (activeBtn === "like") {
-        setLikeCount((l) => l - 1);
+      else if (activeBtn === "like") {
+        like--;
         setActiveBtn((l) => "none");
       }
 
-      if (activeBtn === "dislike") {
-        setLikeCount((l) => l + 1);
-        setDislikeCount((d) => d - 1);
+      else if (activeBtn === "dislike") {
+        like++;
+        dislike--;
         setActiveBtn((l) => "like");
       }
     }
-    if (isDislike) {
+    else if (isDislike) {
       if (activeBtn === "none") {
-        setDislikeCount((d) => d + 1);
+        dislike++;
+
         setActiveBtn((l) => "dislike");
       }
 
-      if (activeBtn === "dislike") {
-        setDislikeCount((d) => d - 1);
+      else if (activeBtn === "dislike") {
+        dislike--;
+
         setActiveBtn((l) => "none");
       }
 
-      if (activeBtn === "like") {
-        setDislikeCount((d) => d + 1);
-        setLikeCount((l) => l - 1);
+      else if (activeBtn === "like") {
+        dislike++;
+
+        like--;
+
         setActiveBtn((l) => "dislike");
       }
     }
+    updateLikesDislikes({
+      likes: like,
+      dislikes: dislike,
+    })
+
   };
 
   const handleLike = (e) => handleClick(e, "like", "dislike");
@@ -107,20 +119,19 @@ export default function Card(props) {
           <div className="btn likedislike" style={{ cursor: "default" }}>
             <div className="btn-container like">
               <button
-                className={`likedislike ${
-                  activeBtn === "like" ? "like-active" : ""
-                }`}
+                className={`likedislike ${activeBtn === "like" ? "like-active" : ""
+                  }`}
                 onClick={handleLike}
               >
                 <span className="material-symbols-outlined"> thumb_up </span>
-                &nbsp;{likeCount}
+                &nbsp;{props.likes}
               </button>
             </div>
             <button style={{ cursor: "pointer" }}>
               <Link
-                to={`/categories/${props.categoryName}/${props.strDrink.replace('/','+')}/${props.myKey}`}
+                to={`/categories/${props.categoryName}/${props.strDrink.replace('/', '+')}/${props.myKey}`}
                 className="card-button"
-                state={{ likes: likeCount, dislikes: dislikeCount }}
+                state={{ likes: props.likes, dislikes: props.dislikes }}
               >
                 {" "}
                 View more{" "}
@@ -128,13 +139,12 @@ export default function Card(props) {
             </button>
             <div className="btn-container dislike">
               <button
-                className={`likedislike ${
-                  activeBtn === "dislike" ? "dislike-active" : ""
-                }`}
+                className={`likedislike ${activeBtn === "dislike" ? "dislike-active" : ""
+                  }`}
                 onClick={handleDislike}
               >
                 <span className="material-symbols-outlined"> thumb_down </span>
-                &nbsp;{dislikeCount}
+                &nbsp;{props.dislikes}
               </button>
             </div>
           </div>

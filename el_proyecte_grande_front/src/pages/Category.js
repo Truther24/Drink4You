@@ -40,6 +40,24 @@ export default function Category() {
     fetcher();
   },[]);
 
+  const drinkUpdatingFunction = (serverResponse) => {
+    console.log(serverResponse.result.drinksDatabase[0])
+    setData(
+        data.map((drink) =>
+        {
+          if(parseInt(drink.idDrink, 10) === parseInt(serverResponse.result.drinksDatabase[0].fetchID, 10)){
+            drink.likes=serverResponse.result.drinksDatabase[0].likes
+            drink.dislikes=serverResponse.result.drinksDatabase[0].dislikes
+          }
+          return drink;
+        }
+        )
+    );
+};
+
+
+
+
   const page = (
     <div>
       <br />
@@ -60,6 +78,7 @@ export default function Category() {
             strDrink={drink.strDrink}
             myKey={drink.idDrink}
             key={drink.idDrink}
+            drinkUpdatingFunction = {drinkUpdatingFunction}
             categoryName={
               category
                 .replace(/(^\w{1})|(\s+\w{1})/g, (letter) =>
