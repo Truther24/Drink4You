@@ -36,10 +36,6 @@ export default function Card(props) {
   };
 
   useEffect(() => {
-  
-},[activeBtn])
-
-  useEffect(() => {
     console.log(likeCount);
     console.log(dislikeCount);
     updateLikesDislikes();
