@@ -115,10 +115,10 @@ namespace El_Proyecte_Grande.Models.Data
             };
 
             Comments?.AddAsync(newComment);
-            SaveChangesAsync();
+            await SaveChangesAsync();
 
 
-            return new CommentResponse
+            return  new CommentResponse
             {
                 Message= "Comment added succesfully",
                 IsSuccess= true,

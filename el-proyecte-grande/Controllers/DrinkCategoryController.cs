@@ -83,7 +83,7 @@ namespace El_Proyecte_Grande.Controllers
             var idenityUserId = tokenS.Claims.First(claim => claim.Type == ClaimTypes.NameIdentifier).Value;
 
 
-            var response = await _drinkCategoryService.PostComment(comment, idenityUserId);
+            var response = await _drinkCategoryService?.PostComment(comment, idenityUserId);
 
             return Ok(response);
         }
