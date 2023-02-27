@@ -101,7 +101,7 @@ export default function Card(props) {
     <div className="column">
       <div className="card-container">
         <div className="img-container">
-          <img src={props.strDrinkThumb} alt=""></img>
+          <img id="card-image" src={props.strDrinkThumb} alt=""></img>
         </div>
 
         <div className="card-content">

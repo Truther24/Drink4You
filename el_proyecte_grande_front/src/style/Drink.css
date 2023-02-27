@@ -1,38 +1,42 @@
-.drinkContainer{
-    color: white;
-    position: relative;
+.drink-page-container{
+color: white;
+}
+
+.drink-image-container{
+  position: relative;
 }
 
 
-.imageContainer{
-    margin-right: 60%;
-    margin-top: 3%;
-    height: min-content;
-    position: absolute;
-    
+.drink-image{
+  left: 50px;
+  top: 20px;
 }
 
-#comment{
-    
-}
-
-.image{
-    width: 70%;
-}
-
-.textContainer{
-    position:  absolute;
-    left: 35%;
-    top: 300%;
-}
-
-#commentsContainer{
-    color:white;
-    top:500px;
-    position: relative;
+.drink-details-container{
 
 }
 
-.commentsContainer{
-    position: absolute;
+.ingredient-list{
+}
+
+.ingredient{
+}
+
+.drink-likes-dislikes-container{
+
+}
+
+.drink-comments-container{
+    left: 30px;
+}
+
+.new-comment-container{
+
+}
+
+.new-comment{
+}
+
+span{
+    text-align: center;
 }

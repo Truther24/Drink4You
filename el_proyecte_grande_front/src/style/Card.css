@@ -4,9 +4,13 @@
     box-shadow: 0px 0px 15px -5px;
     transition: 0.5s;
     animation: ease-in;
-    background-color:rgba(0, 0, 0, 0.853);
+    background-color:rgba(0, 0, 0, 0.692);
     
 
+}
+
+#category-cards{
+    margin-left: 100px;
 }
 
 
@@ -83,9 +87,22 @@ p {
     
 }
 
-.image-container img {
-    overflow: hidden;
+.img-container {
+    
+  height: 300px;
+  position: relative;
+}
 
+
+
+
+
+#card-image{
+ width: 90%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 

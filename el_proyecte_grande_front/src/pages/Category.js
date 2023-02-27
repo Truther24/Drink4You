@@ -14,8 +14,6 @@ export default function Category() {
 
   const [data, setData] = useState([]);
 
-    
-
   useEffect(() => {
     setisLoading(true);
 
@@ -34,29 +32,27 @@ export default function Category() {
       const responseData = await response.json();
       setData(responseData);
 
-      console.log(responseData)
+      console.log(responseData);
       setisLoading(false);
     };
     fetcher();
-  },[]);
+  }, []);
 
   const drinkUpdatingFunction = (serverResponse) => {
-    console.log(serverResponse.result.drinksDatabase[0])
+    console.log(serverResponse.result.drinksDatabase[0]);
     setData(
-        data.map((drink) =>
-        {
-          if(parseInt(drink.idDrink, 10) === parseInt(serverResponse.result.drinksDatabase[0].fetchID, 10)){
-            drink.likes=serverResponse.result.drinksDatabase[0].likes
-            drink.dislikes=serverResponse.result.drinksDatabase[0].dislikes
-          }
-          return drink;
+      data.map((drink) => {
+        if (
+          parseInt(drink.idDrink, 10) ===
+          parseInt(serverResponse.result.drinksDatabase[0].fetchID, 10)
+        ) {
+          drink.likes = serverResponse.result.drinksDatabase[0].likes;
+          drink.dislikes = serverResponse.result.drinksDatabase[0].dislikes;
         }
-        )
+        return drink;
+      })
     );
-};
-
-
-
+  };
 
   const page = (
     <div>
@@ -69,27 +65,29 @@ export default function Category() {
       </h1>
 
       <br />
-      {data.map((drink) => {
-        return (
-          <Card
-            likes={drink.likes}
-            dislikes={drink.dislikes}
-            strDrinkThumb={drink.strDrinkThumb}
-            strDrink={drink.strDrink}
-            myKey={drink.idDrink}
-            key={drink.idDrink}
-            drinkUpdatingFunction = {drinkUpdatingFunction}
-            categoryName={
-              category
-                .replace(/(^\w{1})|(\s+\w{1})/g, (letter) =>
-                  letter.toUpperCase()
-                )
-                .replace("_", " ")
-                .replace("_", " ") + " recipe"
-            }
-          />
-        );
-      })}
+      <div id="category-cards">
+        {data.map((drink) => {
+          return (
+            <Card
+              likes={drink.likes}
+              dislikes={drink.dislikes}
+              strDrinkThumb={drink.strDrinkThumb}
+              strDrink={drink.strDrink}
+              myKey={drink.idDrink}
+              key={drink.idDrink}
+              drinkUpdatingFunction={drinkUpdatingFunction}
+              categoryName={
+                category
+                  .replace(/(^\w{1})|(\s+\w{1})/g, (letter) =>
+                    letter.toUpperCase()
+                  )
+                  .replace("_", " ")
+                  .replace("_", " ") + " recipe"
+              }
+            />
+          );
+        })}
+      </div>
     </div>
   );
 
