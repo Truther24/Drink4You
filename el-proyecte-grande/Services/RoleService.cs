@@ -67,6 +67,15 @@ namespace El_Proyecte_Grande.Services
             return await _roleManager.Roles.ToListAsync();
         }
 
+        public async Task<List<string>> GetAllRolesForUser(string userName)
+        {
+            var user = await _userManager.FindByNameAsync(userName);
+
+            var roles = await _userManager.GetRolesAsync(user);
+
+            return roles.ToList();
+        }
+
         public async Task<Response> AssignUserToRole(string userName, string roleName)
         {
             var user = await _userManager.FindByNameAsync(userName);

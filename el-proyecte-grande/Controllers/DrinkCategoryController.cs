@@ -13,6 +13,8 @@ using System.Security.Claims;
 namespace El_Proyecte_Grande.Controllers
 {
     [ApiController]
+    [Authorize(Roles = "User")]
+
     [EnableCors("MyPolicy")]
     //[Authorize]
     public class DrinkCategoryController : Controller
@@ -74,7 +76,7 @@ namespace El_Proyecte_Grande.Controllers
         }
 
 
-        [Authorize(Roles = "User")]
+        [Authorize(Roles = "Admin")]
         [HttpPost("postComment")]
         public async Task<IActionResult> PostComment([FromBody] PostCommentViewModel comment)
         {
