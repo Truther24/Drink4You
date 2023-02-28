@@ -1,7 +1,6 @@
-﻿using El_Proyecte_Grande.Models;
-using El_Proyecte_Grande.Models.Entities;
+﻿using El_Proyecte_Grande.Models.Entities;
 
-namespace El_Proyecte_Grande.Controllers
+namespace El_Proyecte_Grande.Models
 {
     public class DrinkPage
     {

@@ -19,9 +19,12 @@ namespace El_Proyecte_Grande.Controllers
     {
         private readonly DrinkCategoryService _drinkCategoryService;
 
-        public DrinkCategoryController(DrinkCategoryService drinkCategoryService)
+        private readonly RoleService roleService;
+
+        public DrinkCategoryController(DrinkCategoryService drinkCategoryService, RoleService roleService)
         {
             this._drinkCategoryService = drinkCategoryService;
+            this.roleService = roleService;
         }
 
         [HttpGet("categories")]

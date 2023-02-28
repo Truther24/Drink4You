@@ -19,10 +19,14 @@ namespace El_Proyecte_Grande.Controllers
 
         private IConfiguration _configuration;
 
-        public UserController(UserService userService, IConfiguration configuration)
+        private readonly RoleService roleService;
+
+
+        public UserController(UserService userService, IConfiguration configuration, RoleService roleService)
         {
             _service = userService;
             _configuration = configuration;
+            this.roleService = roleService;
         }
 
 

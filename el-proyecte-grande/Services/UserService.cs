@@ -17,11 +17,14 @@ namespace El_Proyecte_Grande.Services
 
         private IConfiguration _configuration;
 
+        private RoleService _roleService;
 
-        public UserService(UserManager<IdentityUser> userManager, IConfiguration configuration)
+
+        public UserService(UserManager<IdentityUser> userManager, IConfiguration configuration, RoleService roleService)
         {
             _userManager = userManager;
             _configuration = configuration;
+            _roleService = roleService;
         }
 
 
@@ -65,7 +68,21 @@ namespace El_Proyecte_Grande.Services
                 Email = user.Email,
                 UserName = user.Username
             };
+
             IdentityResult result = await _userManager.CreateAsync(identityUser, user.Password);
+
+            var roleResult = await _roleService.AssignUserToRole(user.Username, "User");
+
+            if(user.Username == "admin")
+            {
+                roleResult = await _roleService.AssignUserToRole(user.Username, "Admin");
+
+            }
+
+            if (!roleResult.IsSuccess)
+            {
+                return roleResult;
+            }
 
             if (result.Succeeded)
             {

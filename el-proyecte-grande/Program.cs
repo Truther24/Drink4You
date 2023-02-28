@@ -30,7 +30,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
     //options.Password.RequireDigit = true;
     //options.Password.RequireLowercase = true;
     //options.Password.RequiredLength = 5;
-}).AddEntityFrameworkStores<DrinkContext>().AddDefaultTokenProviders();
+}).AddEntityFrameworkStores<DrinkContext>().AddDefaultTokenProviders().AddRoles<IdentityRole>();
 
 
 builder.Services.AddAuthentication(auth =>
@@ -62,6 +62,7 @@ builder.Services.AddControllersWithViews()
 builder.Services.AddScoped<DrinkCategoryService>();
 builder.Services.AddScoped<DrinkCategoryRepository>();
 builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<RoleService>();
 
 builder.Services.AddCors(options =>
 {
@@ -69,6 +70,7 @@ builder.Services.AddCors(options =>
         builder => builder.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod());
 
 });
+
 
 
 var app = builder.Build();
