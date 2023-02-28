@@ -167,11 +167,23 @@ namespace El_Proyecte_Grande.Services
                 return new Response { IsSuccess = false, Message = "could not find an user with such a password" };
             }
 
+            string role;
+            if (user.Username == "admin")
+            {
+                role = "Admin";
+            }
+            else
+            {
+                role = "User";
+            }
+
             var claims = new[]
                 {
                 new Claim("Email",identityUser.Email),
-                new Claim(ClaimTypes.NameIdentifier,identityUser.Id)
+                new Claim(ClaimTypes.NameIdentifier,identityUser.Id),
+                new Claim(ClaimTypes.Role,role)
             };
+
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["AuthSettings:Key"]));
 
@@ -181,7 +193,7 @@ namespace El_Proyecte_Grande.Services
                 audience: _configuration["AuthSettings:Audience"],
                 claims: claims,
                 expires: DateTime.Now.AddDays(30),
-                
+
                 signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256)
                 );
 

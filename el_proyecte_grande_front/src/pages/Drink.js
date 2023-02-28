@@ -15,11 +15,9 @@ import {
   Grid,
   CircularProgress,
   Divider,
-  Paper
+  Paper,
 } from "@material-ui/core";
 import Comments from "./Comments";
-
-
 
 export default function Drink() {
   const location = useLocation();
@@ -82,81 +80,92 @@ export default function Drink() {
   }, []);
 
   return (
-    <Box className="drink-page-container">
-      {isLoading ? (
-        <>
-          <br />
-          <br />
-          <br />
-          <CircularProgress />
-        </>
-      ) : (
-        <>
-          <br />
-          <br />
-
-          <Box className="drink-image-container">
-            <img
-              className="drink-image"
-              src={data?.drink?.strDrinkThumb}
-              alt={data?.drink?.strDrink}
-            />
-          </Box>
-          <br />
-
-          <Box className="drink-details-container">
-            <Typography variant="h2">{data?.drink?.strDrink}</Typography>
-            <Typography variant="subtitle1">
-              Type of Glass: {data?.drink?.strGlass}
-            </Typography>
-            {data?.drink?.strInstructions !== "" ? (
-              <>
-                <Typography variant="h3">Instructions:</Typography>
-                <Typography variant="body1">
-                  {data?.drink?.strInstructions}
-                </Typography>
-              </>
-            ) : (
-              <></>
-            )}
+    <Box
+      className="drink-page-container-image"
+      style={{
+        display: "block",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundImage: `url(${data?.drink?.strDrinkThumb})`,
+        filter: "brightness(100%) ",
+      }}
+    >
+      <Box className="drink-page-container" style={{}}>
+        {isLoading ? (
+          <>
             <br />
             <br />
-            <Typography variant="h3">Ingredients:</Typography>
-            <List className="ingredient-list">
-              {data?.drink?.ingredients?.map((ingredient, index) =>
-                ingredient !== null ? (
-                  <>
-                    {console.log(ingredient)}
-                    <ListItem key={index} className="ingredient">
-                      <ListItemText primary={ingredient} />
-                    </ListItem>
-                  </>
-                ) : (
-                  <></>
-                )
+            <br />
+            <CircularProgress />
+          </>
+        ) : (
+          <>
+            <br />
+            <br />
+
+            <br />
+
+            <Box className="drink-details-container">
+              <Typography variant="h2">{data?.drink?.strDrink}</Typography>
+              <Typography variant="subtitle1">
+                Type of Glass: {data?.drink?.strGlass}
+              </Typography>
+              <br />
+              {data?.drink?.strInstructions !== "" ? (
+                <>
+                  <Typography variant="h3">Instructions:</Typography>
+                  <Typography variant="body1">
+                    {data?.drink?.strInstructions}
+                  </Typography>
+                </>
+              ) : (
+                <></>
               )}
-            </List>
-            <Box className="drink-likes-dislikes-container">
-              <Typography variant="body1">
-                Likes: {location?.state?.likes}
-              </Typography>
-              <Typography variant="body1">
-                Dislikes: {location?.state?.dislikes}
-              </Typography>
-            </Box>
-
-            <Box className="drink-comments-container">
-              <Box className="new-comment-container">
-                <Modal className="new-comment" drinkId={drinkId} addComment={addComment} />
+              <br />
+              <br />
+              <Typography variant="h3">Ingredients:</Typography>
+              <List className="ingredient-list">
+                {data?.drink?.ingredients?.map((ingredient, index) =>
+                  ingredient !== null ? (
+                    <>
+                      {console.log(ingredient)}
+                      <ListItem key={index} className="ingredient">
+                        <ListItemText primary={ingredient} />
+                      </ListItem>
+                    </>
+                  ) : (
+                    <></>
+                  )
+                )}
+              </List>
+              <Box className="drink-likes-dislikes-container">
+                <Typography variant="body1">
+                  Likes: {location?.state?.likes}
+                </Typography>
+                <Typography variant="body1">
+                  Dislikes: {location?.state?.dislikes}
+                </Typography>
               </Box>
+
+              <Box className="drink-comments-container">
+                <Box className="new-comment-container">
+                  <Modal
+                    className="new-comment"
+                    drinkId={drinkId}
+                    addComment={addComment}
+                  />
+                </Box>
+              </Box>
+              <Typography variant="h3" style={{ top: "100px" }}>
+                Comments:{" "}
+              </Typography>
+              <br />
+              <br />
+              <Comments comments={data?.comments} />
             </Box>
-            <Typography variant="h3" style={{top: '100px'}}>Comments: </Typography>
-            <br />
-            <br />
-            <Comments comments={data?.comments} />
-          </Box>
-        </>
-      )}
+          </>
+        )}
+      </Box>
     </Box>
   );
 }

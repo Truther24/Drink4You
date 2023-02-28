@@ -71,7 +71,7 @@ namespace El_Proyecte_Grande.Controllers
         }
 
 
-        [Authorize]
+        [Authorize(Roles = "User")]
         [HttpPost("postComment")]
         public async Task<IActionResult> PostComment([FromBody] PostCommentViewModel comment)
         {
