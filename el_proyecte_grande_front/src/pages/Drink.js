@@ -83,14 +83,29 @@ export default function Drink() {
     <Box
       className="drink-page-container-image"
       style={{
-        display: "block",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundImage: `url(${data?.drink?.strDrinkThumb})`,
-        filter: "brightness(100%) ",
+        position: "relative",
       }}
     >
-      <Box className="drink-page-container" style={{}}>
+      <Box
+        style={{
+          position: "fixed",
+          inset: "0",
+          display: "block",
+          backgroundRepeat: "no-repeat",
+          width: "100vw",
+          overflow: "hidden",
+          height: "100vh",
+          backgroundSize: "cover",
+          backgroundImage: `url(${data?.drink?.strDrinkThumb})`,
+          filter: "brightness(40%) ",
+        }}
+      ></Box>
+      <Box
+        className="drink-page-container"
+        style={{
+          filter: "brightness(80%) ",
+        }}
+      >
         {isLoading ? (
           <>
             <br />
@@ -103,6 +118,13 @@ export default function Drink() {
             <br />
             <br />
 
+            <Box className="drink-image-container">
+              <img
+                className="drink-image"
+                src={data?.drink?.strDrinkThumb}
+                alt={data?.drink?.strDrink}
+              />
+            </Box>
             <br />
 
             <Box className="drink-details-container">

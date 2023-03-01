@@ -1,36 +1,9 @@
 import React, { useState } from "react";
 import "../style/Modal.css";
-import { Cookies } from "react-cookie";
 
 export default function Modal(props) {
     const [modal, setModal] = useState(false);
 
-    const cookies = new Cookies();
-
-    // async function addComment(event) {
-    //     event.preventDefault();
-    //     alert(event.target.comment.value);
-
-    //     const requestOption = {
-    //         method: "POST",
-    //         credentials: "same-origin",
-    //         headers: {
-    //             Authorization: "Bearer " + cookies.get("userToken"),
-    //             "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify({
-    //             idDrink: `${props.drinkId}`,
-    //             message: `${event.target.comment.value}`,
-    //         }),
-    //     };
-
-    //     const response = await fetch(
-    //         `https://localhost:7090/postComment`,
-    //         requestOption
-    //     );
-    //     const responseData = await response.json();
-    //     console.log(responseData);
-    // }
 
     const toggleModal = () => {
         setModal(!modal);
