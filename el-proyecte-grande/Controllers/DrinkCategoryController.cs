@@ -13,7 +13,7 @@ using System.Security.Claims;
 namespace El_Proyecte_Grande.Controllers
 {
     [ApiController]
-    [Authorize(Roles = "User")]
+    //[Authorize(Roles = "User")]
 
     [EnableCors("MyPolicy")]
     //[Authorize]
@@ -76,7 +76,7 @@ namespace El_Proyecte_Grande.Controllers
         }
 
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpPost("postComment")]
         public async Task<IActionResult> PostComment([FromBody] PostCommentViewModel comment)
         {
@@ -96,11 +96,12 @@ namespace El_Proyecte_Grande.Controllers
 
 
         //[Authorize(Roles = "Admin")]
-        //[HttpPost("addDrink")]
-        //public async Task<IActionResult> AddDrinkAsAdmin([FromBody] AddedDrink drinkToAdd)
-        //{
-
-        //}
+        [HttpPost("addDrink")]
+        public async Task<IActionResult> AddDrinkAsAdmin([FromBody] AddedDrinkViewModel addedDrinkViewModel)
+        {
+            var result = await _drinkCategoryService.AddDrinkAsAdmin(addedDrinkViewModel.AddedDrink , addedDrinkViewModel.Ingredients);
+            return Ok(result);
+        }
 
     }
 }

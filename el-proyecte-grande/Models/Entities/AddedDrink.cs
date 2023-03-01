@@ -13,17 +13,8 @@ namespace El_Proyecte_Grande.Models.Entities
         public string StrAlcoholic { get; set; }
         public string StrGlass { get; set; }
         public string StrInstructions { get; set; }
-
-
-
-        public List<Ingredient> StrIngredients { get; set; }
         public string StrDrinkThumb { get; set; }
 
 
-
-        public AddedDrink()
-        {
-            StrIngredients = new();
-        }
     }
 }

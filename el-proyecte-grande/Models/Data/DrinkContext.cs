@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.IdentityModel.Tokens.Jwt;
 using System.Reflection.Metadata.Ecma335;
+using System.Runtime.InteropServices;
 
 namespace El_Proyecte_Grande.Models.Data
 {
@@ -17,6 +18,7 @@ namespace El_Proyecte_Grande.Models.Data
         public DbSet<DrinkDatabase> Drinks { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<AddedDrink> AddedDrinks { get; set; }
+        public DbSet<Ingredient>Ingredients { get; set; }
 
 
         public DrinkContext(DbContextOptions<DrinkContext> options) : base(options)
@@ -24,9 +26,9 @@ namespace El_Proyecte_Grande.Models.Data
 
         }
 
-        public Task<List<DrinkDatabase>> GetLikesAndDisLikes()
+        public async Task<List<DrinkDatabase>> GetLikesAndDisLikes()
         {
-            return Drinks.ToListAsync();
+            return await Drinks.ToListAsync();
         }
 
         public async Task<LikeDislikeResponse> UpdateLikesAndDisklikes(DrinkDatabase drink)
@@ -105,13 +107,13 @@ namespace El_Proyecte_Grande.Models.Data
 
         public async Task<CommentResponse> AddComment(PostCommentViewModel comment, string userName)
         {
-            
+
 
             Comment newComment = new()
             {
-                IdDrink= comment.IdDrink,
-                Message= comment.Message,
-                AuthorName= userName,
+                IdDrink = comment.IdDrink,
+                Message = comment.Message,
+                AuthorName = userName,
 
             };
 
@@ -119,10 +121,10 @@ namespace El_Proyecte_Grande.Models.Data
             await SaveChangesAsync();
 
 
-            return  new CommentResponse
+            return new CommentResponse
             {
-                Message= "Comment added succesfully",
-                IsSuccess= true,
+                Message = "Comment added succesfully",
+                IsSuccess = true,
                 Comments = new List<Comment> { newComment }
             };
         }
@@ -130,6 +132,35 @@ namespace El_Proyecte_Grande.Models.Data
         public async Task<List<Comment>> GetCommentsById(string id)
         {
             return await Comments.Where(x => x.IdDrink == id).ToListAsync();
+        }
+
+        public async Task<Response> AddDrinkAsAdmin(AddedDrink drinkToAdd,List<Ingredient>ingredients)
+        {
+            var newIdDrink = Guid.NewGuid().ToString();
+
+            ingredients.ForEach(ingredient => ingredient.IdDrink = newIdDrink );
+            ingredients.ForEach(ingredient=>Ingredients.AddAsync(ingredient));
+
+
+            AddedDrink addedDrink = new()
+            {
+                CategoryName = drinkToAdd.CategoryName,
+                IdDrink = newIdDrink,
+                StrDrink = drinkToAdd.StrDrink,
+                StrCategory = drinkToAdd.StrCategory,
+                StrAlcoholic = drinkToAdd.StrAlcoholic,
+                StrGlass = drinkToAdd.StrGlass,
+                StrInstructions = drinkToAdd.StrInstructions,
+                StrDrinkThumb = drinkToAdd.StrDrinkThumb
+            };
+
+
+            await AddedDrinks.AddAsync(addedDrink);
+            await SaveChangesAsync();
+
+
+            return new Response { Message = "hope that drink was added successfully", IsSuccess = true };
+
         }
     }
 }

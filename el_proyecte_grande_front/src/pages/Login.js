@@ -18,19 +18,18 @@ function Login() {
 
   const checkForUser = async (data)=>{
     const requestOption = {
-      method: "POST",
-      credentials: 'same-origin',
-      headers: {
-        'Authorization': 'Bearer ' + cookies.get('userToken'),
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        
-        
-        username: `${data.target.username.value}`,
-        password: `${data.target.password.value}`
-      })
-    }
+        method: "POST",
+        credentials: "same-origin",
+        headers: {
+            Authorization: "Bearer " + cookies.get("userToken"),
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            username: `${data.target.username.value}`,
+            password: `${data.target.password.value}`,
+            StrIngredients: []
+        }),
+    };
 
     const response = await fetch(`https://localhost:7090/login`, requestOption)
     const responseData = await response.json(); 

@@ -104,9 +104,15 @@ namespace El_Proyecte_Grande.Services
             return result;
         }
 
-        internal async Task<List<Comment>> GetCommentsById(string id)
+        public async Task<List<Comment>> GetCommentsById(string id)
         {
             var result = await _context.GetCommentsById(id); 
+            return result;
+        }
+
+        public async Task<Response> AddDrinkAsAdmin(AddedDrink drinkToAdd,List<Ingredient> ingredients)
+        {
+            var result = await _context.AddDrinkAsAdmin(drinkToAdd,ingredients);
             return result;
         }
     }

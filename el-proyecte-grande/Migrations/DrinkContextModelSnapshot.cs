@@ -117,24 +117,23 @@ namespace ElProyecteGrande.Migrations
 
             modelBuilder.Entity("El_Proyecte_Grande.Models.Entities.Ingredient", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("IngredientId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IngredientId"));
 
-                    b.Property<int?>("AddedDrinkID")
-                        .HasColumnType("int");
+                    b.Property<string>("IdDrink")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("IngredientId");
 
-                    b.HasIndex("AddedDrinkID");
-
-                    b.ToTable("Ingredient");
+                    b.ToTable("Ingredients");
                 });
 
             modelBuilder.Entity("El_Proyecte_Grande.Models.Entities.User", b =>
@@ -358,13 +357,6 @@ namespace ElProyecteGrande.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("El_Proyecte_Grande.Models.Entities.Ingredient", b =>
-                {
-                    b.HasOne("El_Proyecte_Grande.Models.Entities.AddedDrink", null)
-                        .WithMany("StrIngredients")
-                        .HasForeignKey("AddedDrinkID");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -414,11 +406,6 @@ namespace ElProyecteGrande.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("El_Proyecte_Grande.Models.Entities.AddedDrink", b =>
-                {
-                    b.Navigation("StrIngredients");
                 });
 #pragma warning restore 612, 618
         }
