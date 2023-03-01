@@ -33,7 +33,7 @@ namespace El_Proyecte_Grande.Controllers
         public async Task<IActionResult> Categories()
         {
             var drinks = await _drinkCategoryService.GetAllCategories();
-            return Ok(drinks); 
+            return Ok(drinks);
         }
 
         [HttpGet("categories/{categoryName}")]
@@ -46,7 +46,7 @@ namespace El_Proyecte_Grande.Controllers
         }
 
 
-        
+
 
         [HttpGet("drink/{id}")]
         public async Task<IActionResult> GetDrinkById(string id)
@@ -54,7 +54,7 @@ namespace El_Proyecte_Grande.Controllers
             var drink = await _drinkCategoryService.GetDrinkById(id);
 
             var comments = await _drinkCategoryService.GetCommentsById(id);
-            return Ok(new DrinkPage { Drink = drink, Comments = comments});
+            return Ok(new DrinkPage { Drink = drink, Comments = comments });
         }
 
 
@@ -92,6 +92,15 @@ namespace El_Proyecte_Grande.Controllers
 
             return Ok(response);
         }
+
+
+
+        //[Authorize(Roles = "Admin")]
+        //[HttpPost("addDrink")]
+        //public async Task<IActionResult> AddDrinkAsAdmin([FromBody] AddedDrink drinkToAdd)
+        //{
+
+        //}
 
     }
 }

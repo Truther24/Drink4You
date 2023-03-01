@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElProyecteGrande.Migrations
 {
     [DbContext(typeof(DrinkContext))]
-    [Migration("20230222130113_trying to add comments table")]
-    partial class tryingtoaddcommentstable
+    [Migration("20230301094126_Updated database")]
+    partial class Updateddatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,51 @@ namespace ElProyecteGrande.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("El_Proyecte_Grande.Models.Entities.AddedDrink", b =>
+                {
+                    b.Property<int>("AddedDrinkID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AddedDrinkID"));
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IdDrink")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StrAlcoholic")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StrCategory")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StrDrink")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StrDrinkThumb")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StrGlass")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StrInstructions")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("AddedDrinkID");
+
+                    b.ToTable("AddedDrinks");
+                });
 
             modelBuilder.Entity("El_Proyecte_Grande.Models.Entities.Comment", b =>
                 {
@@ -71,6 +116,28 @@ namespace ElProyecteGrande.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Drinks");
+                });
+
+            modelBuilder.Entity("El_Proyecte_Grande.Models.Entities.Ingredient", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("AddedDrinkID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddedDrinkID");
+
+                    b.ToTable("Ingredient");
                 });
 
             modelBuilder.Entity("El_Proyecte_Grande.Models.Entities.User", b =>
@@ -294,6 +361,13 @@ namespace ElProyecteGrande.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("El_Proyecte_Grande.Models.Entities.Ingredient", b =>
+                {
+                    b.HasOne("El_Proyecte_Grande.Models.Entities.AddedDrink", null)
+                        .WithMany("StrIngredients")
+                        .HasForeignKey("AddedDrinkID");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -343,6 +417,11 @@ namespace ElProyecteGrande.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("El_Proyecte_Grande.Models.Entities.AddedDrink", b =>
+                {
+                    b.Navigation("StrIngredients");
                 });
 #pragma warning restore 612, 618
         }

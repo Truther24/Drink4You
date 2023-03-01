@@ -6,11 +6,31 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ElProyecteGrande.Migrations
 {
     /// <inheritdoc />
-    public partial class tryingtoaddcommentstable : Migration
+    public partial class Updateddatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "AddedDrinks",
+                columns: table => new
+                {
+                    AddedDrinkID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IdDrink = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StrDrink = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StrCategory = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StrAlcoholic = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StrGlass = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StrInstructions = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StrDrinkThumb = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AddedDrinks", x => x.AddedDrinkID);
+                });
+
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -92,6 +112,25 @@ namespace ElProyecteGrande.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Ingredient",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AddedDrinkID = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Ingredient", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Ingredient_AddedDrinks_AddedDrinkID",
+                        column: x => x.AddedDrinkID,
+                        principalTable: "AddedDrinks",
+                        principalColumn: "AddedDrinkID");
                 });
 
             migrationBuilder.CreateTable(
@@ -238,6 +277,11 @@ namespace ElProyecteGrande.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Ingredient_AddedDrinkID",
+                table: "Ingredient",
+                column: "AddedDrinkID");
         }
 
         /// <inheritdoc />
@@ -265,6 +309,9 @@ namespace ElProyecteGrande.Migrations
                 name: "Drinks");
 
             migrationBuilder.DropTable(
+                name: "Ingredient");
+
+            migrationBuilder.DropTable(
                 name: "Users");
 
             migrationBuilder.DropTable(
@@ -272,6 +319,9 @@ namespace ElProyecteGrande.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "AddedDrinks");
         }
     }
 }

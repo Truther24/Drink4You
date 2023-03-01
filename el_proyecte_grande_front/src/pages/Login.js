@@ -26,13 +26,14 @@ function Login() {
       },
       body: JSON.stringify({
         
+        
         username: `${data.target.username.value}`,
         password: `${data.target.password.value}`
       })
     }
 
     const response = await fetch(`https://localhost:7090/login`, requestOption)
-    const responseData = await response.json();
+    const responseData = await response.json(); 
     console.log(responseData)
     if (responseData.status===400) {
       alert("not good")

@@ -16,6 +16,7 @@ namespace El_Proyecte_Grande.Models.Data
         public DbSet<User> Users { get; set; }
         public DbSet<DrinkDatabase> Drinks { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<AddedDrink> AddedDrinks { get; set; }
 
 
         public DrinkContext(DbContextOptions<DrinkContext> options) : base(options)
