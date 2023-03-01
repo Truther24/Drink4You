@@ -12,11 +12,19 @@
         public string StrIngredient2 { get; set; }
         public string StrIngredient3 { get; set; }
         public string StrIngredient4 { get; set; }
+        public string StrIngredient5 { get; set; }
+        public string StrIngredient6 { get; set; }
+        public string StrIngredient7 { get; set; }
+        public string StrIngredient8 { get; set; }
+        public List<string> StrIngredients { get; set; }
         public string StrDrinkThumb { get; set; }
-        
 
 
-         
+
+        public Drink()
+        {
+            StrIngredients = new();
+        }
 
     }
 }

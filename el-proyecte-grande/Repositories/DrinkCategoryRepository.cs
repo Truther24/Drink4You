@@ -43,6 +43,15 @@ namespace El_Proyecte_Grande.Repositories
             ComplexDrink complexDrink = JsonConvert.DeserializeObject<ComplexDrink>(response);
 
 
+            complexDrink.drinks[0].StrIngredients.Add(complexDrink.drinks[0].StrIngredient1);
+            complexDrink.drinks[0].StrIngredients.Add(complexDrink.drinks[0].StrIngredient2);
+            complexDrink.drinks[0].StrIngredients.Add(complexDrink.drinks[0].StrIngredient3);
+            complexDrink.drinks[0].StrIngredients.Add(complexDrink.drinks[0].StrIngredient4);
+            complexDrink.drinks[0].StrIngredients.Add(complexDrink.drinks[0].StrIngredient5);
+            complexDrink.drinks[0].StrIngredients.Add(complexDrink.drinks[0].StrIngredient6);
+            complexDrink.drinks[0].StrIngredients.Add(complexDrink.drinks[0].StrIngredient7);
+            complexDrink.drinks[0].StrIngredients.Add(complexDrink.drinks[0].StrIngredient8);
+
             return complexDrink.drinks[0];
         }
 

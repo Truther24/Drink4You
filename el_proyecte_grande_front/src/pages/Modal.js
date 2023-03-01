@@ -61,8 +61,8 @@ export default function Modal(props) {
                             <textarea
                                 id="comment"
                                 name="comment"
-                                rows="30"
-                                cols="5"
+                                rows="5"
+                                cols="60"
                                 required
                             ></textarea>
                             <br />

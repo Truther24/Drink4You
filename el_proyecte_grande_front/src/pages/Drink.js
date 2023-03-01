@@ -74,7 +74,7 @@ export default function Drink() {
       const responseData = await response.json();
       setData(responseData);
       setIsLoading(false);
-      console.log(data?.drink?.strInstructions);
+      console.log(data?.drink?.ingredients);
     };
     fetcher();
   }, []);
@@ -115,7 +115,7 @@ export default function Drink() {
                 <>
                   <Typography variant="h3">Instructions:</Typography>
                   <Typography variant="body1">
-                    {data?.drink?.strInstructions}
+                    {data?.drink?.ingredients}
                   </Typography>
                 </>
               ) : (
@@ -125,10 +125,10 @@ export default function Drink() {
               <br />
               <Typography variant="h3">Ingredients:</Typography>
               <List className="ingredient-list">
-                {data?.drink?.ingredients?.map((ingredient, index) =>
+                  {data?.drink?.strIngredients?.map((ingredient, index) =>
                   ingredient !== null ? (
                     <>
-                      {console.log(ingredient)}
+                    {console.log(ingredient)}
                       <ListItem key={index} className="ingredient">
                         <ListItemText primary={ingredient} />
                       </ListItem>
