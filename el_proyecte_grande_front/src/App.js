@@ -10,6 +10,7 @@ import Drink from './pages/Drink';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import User from './pages/User';
+import AddDrink from './pages/AddDrink';
 
 
 function App() {
@@ -28,7 +29,9 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/register" element={<Register/>} />
           <Route path="/login" element={<Login/>} />
+          <Route path="/user" element={<User />} />
           <Route path="/user" element={<User/>} />
+          <Route path="/addDrink" element={<AddDrink/>}></Route>
  
         </Routes>
 

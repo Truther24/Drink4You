@@ -68,9 +68,7 @@ namespace El_Proyecte_Grande.Controllers
         [HttpPut("drink/likesDislikes/update")]
         public async Task<IActionResult> UpdateLikesAndDislikes([FromBody] DrinkDatabase drink)
         {
-            Task<LikeDislikeResponse> result = _drinkCategoryService.UpdateLikesAndDislikes(drink);
-
-
+           Task< LikeDislikeResponse >result = _drinkCategoryService.UpdateLikesAndDislikes(drink);
 
             return Ok(result);
         }

@@ -18,7 +18,7 @@ namespace El_Proyecte_Grande.Models.Data
         public DbSet<DrinkDatabase> Drinks { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<AddedDrink> AddedDrinks { get; set; }
-        public DbSet<Ingredient>Ingredients { get; set; }
+        public DbSet<Ingredient> Ingredients { get; set; }
 
 
         public DrinkContext(DbContextOptions<DrinkContext> options) : base(options)
@@ -28,6 +28,7 @@ namespace El_Proyecte_Grande.Models.Data
 
         public async Task<List<DrinkDatabase>> GetLikesAndDisLikes()
         {
+            
             return await Drinks.ToListAsync();
         }
 
@@ -47,7 +48,7 @@ namespace El_Proyecte_Grande.Models.Data
                 try
                 {
 
-                    var r = SaveChangesAsync();
+                    var r = await SaveChangesAsync();
                 }
                 catch (Exception ex)
                 {
@@ -76,7 +77,7 @@ namespace El_Proyecte_Grande.Models.Data
                     fetchID = drink.fetchID
 
                 };
-                Drinks.AddAsync(newDrink);
+               await Drinks.AddAsync(newDrink);
 
                 List<DrinkDatabase> listToReturn = new();
                 listToReturn?.Add(newDrink);
@@ -84,7 +85,7 @@ namespace El_Proyecte_Grande.Models.Data
                 try
                 {
 
-                    var r = SaveChangesAsync();
+                    var r = await SaveChangesAsync();
                 }
                 catch (Exception ex)
                 {
@@ -134,17 +135,16 @@ namespace El_Proyecte_Grande.Models.Data
             return await Comments.Where(x => x.IdDrink == id).ToListAsync();
         }
 
-        public async Task<Response> AddDrinkAsAdmin(AddedDrink drinkToAdd,List<Ingredient>ingredients)
+        public async Task<Response> AddDrinkAsAdmin(AddedDrink drinkToAdd, List<Ingredient> ingredients)
         {
             var newIdDrink = Guid.NewGuid().ToString();
 
-            ingredients.ForEach(ingredient => ingredient.IdDrink = newIdDrink );
-            ingredients.ForEach(ingredient=>Ingredients.AddAsync(ingredient));
+            ingredients.ForEach(ingredient => ingredient.IdDrink = newIdDrink);
+            ingredients.ForEach(ingredient => Ingredients.AddAsync(ingredient));
 
 
             AddedDrink addedDrink = new()
             {
-                CategoryName = drinkToAdd.CategoryName,
                 IdDrink = newIdDrink,
                 StrDrink = drinkToAdd.StrDrink,
                 StrCategory = drinkToAdd.StrCategory,
@@ -161,6 +161,27 @@ namespace El_Proyecte_Grande.Models.Data
 
             return new Response { Message = "hope that drink was added successfully", IsSuccess = true };
 
+        }
+
+        public async Task<List<SimpleDrink>> GetAddedDrinksFromDb(string categoryName)
+        {
+            var dbAddedDrinks = await AddedDrinks.ToListAsync();
+
+            var drinksToReturn = new List<SimpleDrink>();
+
+            foreach (var drink in dbAddedDrinks)
+            {
+                if (drink.StrCategory == categoryName)
+                {
+                    drinksToReturn.Add(new SimpleDrink
+                    {
+                        StrDrink = drink.StrDrink,
+                        StrDrinkThumb = drink.StrDrinkThumb,
+                        IdDrink = drink.IdDrink
+                    });
+                }
+            }
+            return drinksToReturn;
         }
     }
 }

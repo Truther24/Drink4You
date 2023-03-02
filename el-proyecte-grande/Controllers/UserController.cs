@@ -65,7 +65,7 @@ namespace El_Proyecte_Grande.Controllers
 
         }
 
-
+            
         [HttpDelete("/delete-users")]
         public async Task<IActionResult> DeleteUsers()
         {

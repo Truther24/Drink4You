@@ -33,7 +33,7 @@ export default function Card(props) {
     );
     const data = await response.json();
     props.drinkUpdatingFunction(data);
-    // console.log(data);
+    console.log(data);
   };
 
   // useEffect(() => {

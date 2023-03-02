@@ -6,7 +6,6 @@ namespace El_Proyecte_Grande.Models.Entities
     public class AddedDrink
     {
         public int AddedDrinkID { get; set; }
-        public string CategoryName { get; set; }
         public string IdDrink { get; set; }
         public string StrDrink { get; set; }
         public string StrCategory { get; set; }

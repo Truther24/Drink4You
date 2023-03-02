@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElProyecteGrande.Migrations
 {
     [DbContext(typeof(DrinkContext))]
-    [Migration("20230301134255_Updated Database")]
-    partial class UpdatedDatabase
+    [Migration("20230302144905_first")]
+    partial class first
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,10 +32,6 @@ namespace ElProyecteGrande.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AddedDrinkID"));
-
-                    b.Property<string>("CategoryName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("IdDrink")
                         .IsRequired()

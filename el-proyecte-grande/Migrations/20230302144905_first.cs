@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ElProyecteGrande.Migrations
 {
     /// <inheritdoc />
-    public partial class UpdatedDatabase : Migration
+    public partial class first : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,7 +17,6 @@ namespace ElProyecteGrande.Migrations
                 {
                     AddedDrinkID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IdDrink = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StrDrink = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StrCategory = table.Column<string>(type: "nvarchar(max)", nullable: false),

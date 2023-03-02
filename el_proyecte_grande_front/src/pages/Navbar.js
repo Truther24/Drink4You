@@ -3,6 +3,7 @@ import jwtDecode from "jwt-decode";
 import { Link, useMatch, useResolvedPath, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Cookies, useCookies } from "react-cookie";
+import AddDrink from "./AddDrink";
 
 const IsAdmin = ({logout}) => {
     const cookies = new Cookies();
@@ -54,7 +55,7 @@ const IsAdmin = ({logout}) => {
                     </Link>
                 </div>
                 <Link onClick={logout}>Logout</Link>
-                <div>Logged in as admin</div>
+                <Link to="/addDrink">Add Drink</Link>
             </ul>
         </>
     );

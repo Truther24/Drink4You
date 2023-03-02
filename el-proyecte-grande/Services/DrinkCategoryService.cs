@@ -47,7 +47,11 @@ namespace El_Proyecte_Grande.Services
         {
             var drinksWithlikesandDislikes = await GetLikesAndDisLikes();
 
+            //var dbDrinks = await _context.GetAddedDrinksFromDb(categoryName);
+            
             var apiDrinks =  await _drinkCategoryRepository.GetDrinksForCategory(categoryName);
+
+            //apiDrinks.AddRange(dbDrinks);
 
             foreach(var apiDrink in apiDrinks)
             {

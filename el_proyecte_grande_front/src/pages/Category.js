@@ -4,6 +4,7 @@ import Card from "./Card.js";
 import LoadingSpinner from "./LoadingSpinner.js";
 import "../style/Fullscreen.css";
 import { Cookies } from "react-cookie";
+import { async } from "q";
 
 export default function Category() {
   const { category } = useParams();
@@ -38,10 +39,10 @@ export default function Category() {
     fetcher();
   }, []);
 
-  const drinkUpdatingFunction = (serverResponse) => {
+  const  drinkUpdatingFunction = async (serverResponse) => {
     console.log(serverResponse.result.drinksDatabase[0]);
     setData(
-      data.map((drink) => {
+      data?.map((drink) => {
         if (
           parseInt(drink.idDrink, 10) ===
           parseInt(serverResponse.result.drinksDatabase[0].fetchID, 10)

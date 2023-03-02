@@ -30,10 +30,6 @@ namespace ElProyecteGrande.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AddedDrinkID"));
 
-                    b.Property<string>("CategoryName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("IdDrink")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
