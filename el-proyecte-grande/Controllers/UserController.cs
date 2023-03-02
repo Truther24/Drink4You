@@ -12,7 +12,6 @@ using El_Proyecte_Grande.Models.ViewModels;
 namespace El_Proyecte_Grande.Controllers
 {
     [ApiController]
-    
     public class UserController : Controller
     {
         private readonly UserService _service;

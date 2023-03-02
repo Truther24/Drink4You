@@ -1,10 +1,13 @@
 import React from 'react'
 import "../style/Register.css"
+
 import { Cookies } from 'react-cookie';
 import { useNavigate } from "react-router-dom"
 
 
 function Login() {
+
+
 
   const navigate = useNavigate();
 
@@ -34,6 +37,7 @@ function Login() {
     const response = await fetch(`https://localhost:7090/login`, requestOption)
     const responseData = await response.json(); 
     console.log(responseData)
+    
     if (responseData.status===400) {
       alert("not good")
     }
@@ -44,6 +48,7 @@ function Login() {
       console.log(cookies.get('userName'))
       navigate('/')
       window.location.reload(true);
+
       
     }
 

@@ -67,7 +67,7 @@ builder.Services.AddScoped<RoleService>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("MyPolicy",
-        builder => builder.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyOrigin());
+        builder => builder.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader());
 
 });
 
