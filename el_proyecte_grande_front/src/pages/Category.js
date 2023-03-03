@@ -40,15 +40,15 @@ export default function Category() {
   }, []);
 
   const  drinkUpdatingFunction = async (serverResponse) => {
-    console.log(serverResponse.result.drinksDatabase[0]);
+    console.log(serverResponse.drinksDatabase[0]);
     setData(
       data?.map((drink) => {
         if (
           parseInt(drink.idDrink, 10) ===
-          parseInt(serverResponse.result.drinksDatabase[0].fetchID, 10)
+          parseInt(serverResponse.drinksDatabase[0].fetchID, 10)
         ) {
-          drink.likes = serverResponse.result.drinksDatabase[0].likes;
-          drink.dislikes = serverResponse.result.drinksDatabase[0].dislikes;
+          drink.likes = serverResponse.drinksDatabase[0].likes;
+          drink.dislikes = serverResponse.drinksDatabase[0].dislikes;
         }
         return drink;
       })

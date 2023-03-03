@@ -41,7 +41,7 @@ namespace El_Proyecte_Grande.Controllers
         {
             categoryName = categoryName.Replace('+', '/');
             var drinks = await _drinkCategoryService.GetDrinksForCategory(categoryName);
-            //var drinksWithLikes = await _drinkCategoryService.GetLikesAndDisLikes()
+            //var drinksWithLikes = await _drinkCategoryService.GetLikesAndDisLikes();
             return Ok(drinks);
         }
 
@@ -68,13 +68,13 @@ namespace El_Proyecte_Grande.Controllers
         [HttpPut("drink/likesDislikes/update")]
         public async Task<IActionResult> UpdateLikesAndDislikes([FromBody] DrinkDatabase drink)
         {
-           Task< LikeDislikeResponse >result = _drinkCategoryService.UpdateLikesAndDislikes(drink);
+           LikeDislikeResponse result = await _drinkCategoryService.UpdateLikesAndDislikes(drink);
 
             return Ok(result);
         }
 
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost("postComment")]
         public async Task<IActionResult> PostComment([FromBody] PostCommentViewModel comment)
         {
@@ -93,7 +93,7 @@ namespace El_Proyecte_Grande.Controllers
 
 
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost("addDrink")]
         public async Task<IActionResult> AddDrinkAsAdmin([FromBody] AddedDrinkViewModel addedDrinkViewModel)
         {

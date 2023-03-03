@@ -40,8 +40,13 @@ namespace El_Proyecte_Grande.Repositories
             HttpClient client = new();
             string response = await client.GetStringAsync($"https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i={id}");
 
+
             ComplexDrink complexDrink = JsonConvert.DeserializeObject<ComplexDrink>(response);
 
+            if (response == "")
+            {
+                return complexDrink?.drinks[0];
+            }
 
             complexDrink.drinks[0].StrIngredients.Add(complexDrink.drinks[0].StrIngredient1);
             complexDrink.drinks[0].StrIngredients.Add(complexDrink.drinks[0].StrIngredient2);

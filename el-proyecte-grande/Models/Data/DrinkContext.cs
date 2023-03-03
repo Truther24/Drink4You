@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using System.IdentityModel.Tokens.Jwt;
 using System.Reflection.Metadata.Ecma335;
 using System.Runtime.InteropServices;
@@ -182,6 +183,41 @@ namespace El_Proyecte_Grande.Models.Data
                 }
             }
             return drinksToReturn;
+        }
+
+
+        public async Task<Drink> GetAddedDrinkById(string id)
+        {
+            var addedDrinks = await AddedDrinks.ToListAsync();
+
+            foreach(var addedDrink in addedDrinks)
+            {
+                if(addedDrink.IdDrink== id)
+                {
+                    var ingredientsFromDb = await Ingredients.ToListAsync();
+                    var ingredients = new List<string>();
+                    foreach (var ingredientFromDb in ingredientsFromDb)
+                    {
+                        if(ingredientFromDb.IdDrink == id)
+                        {
+                            ingredients.Add(ingredientFromDb.Name);
+                        }
+                    }
+
+                    return new Drink()
+                    {
+                        IdDrink = addedDrink.IdDrink,
+                        StrAlcoholic = addedDrink.StrAlcoholic,
+                        StrCategory = addedDrink.StrCategory,
+                        StrGlass = addedDrink.StrGlass,
+                        StrInstructions = addedDrink.StrGlass,
+                        StrIngredients = ingredients,
+                        StrDrinkThumb = addedDrink.StrDrinkThumb
+
+                    };
+                }
+            };
+            return null;
         }
     }
 }

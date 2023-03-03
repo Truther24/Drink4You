@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Textarea from "@mui/joy/Textarea";
 import { Cookies } from "react-cookie";
+import {  useNavigate } from "react-router-dom";
+
 
 import {
     Box,
@@ -21,6 +23,7 @@ import { object } from "prop-types";
 
 export default function AddDrink() {
 
+        const navigate = useNavigate();
 
   const cookies = new Cookies();
 
@@ -84,7 +87,9 @@ export default function AddDrink() {
     };
 console.log("before fetch")
     const response = await fetch(`https://localhost:7090/addDrink`, requestOption);
-    const responseData = await response.json();
+      const responseData = await response.json();
+        navigate("/");
+      
     console.log(responseData);
 
 };

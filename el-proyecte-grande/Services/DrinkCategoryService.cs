@@ -47,13 +47,13 @@ namespace El_Proyecte_Grande.Services
         {
             var drinksWithlikesandDislikes = await GetLikesAndDisLikes();
 
-            //var dbDrinks = await _context.GetAddedDrinksFromDb(categoryName);
-            
+            var dbDrinks = await _context.GetAddedDrinksFromDb(categoryName);
+
             var apiDrinks =  await _drinkCategoryRepository.GetDrinksForCategory(categoryName);
 
-            //apiDrinks.AddRange(dbDrinks);
+            apiDrinks.AddRange(dbDrinks);
 
-            foreach(var apiDrink in apiDrinks)
+            foreach (var apiDrink in apiDrinks)
             {
                 var fouundDrink = drinksWithlikesandDislikes.Find(dbDrink => dbDrink.fetchID == apiDrink.IdDrink);
                 if(fouundDrink != null)
@@ -78,7 +78,14 @@ namespace El_Proyecte_Grande.Services
 
         public async Task<Drink> GetDrinkById(string id)
         {
-            return await _drinkCategoryRepository.GetDrinkById(id);
+            var response = await _drinkCategoryRepository.GetDrinkById(id);
+            if (response == null)
+            {
+                response = await _context.GetAddedDrinkById(id);
+            }
+            return response;
+
+
         }
 
         public async Task<List<DrinkDatabase>> GetLikesAndDisLikes()
