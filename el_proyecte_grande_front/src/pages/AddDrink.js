@@ -90,7 +90,6 @@ console.log("before fetch")
       const responseData = await response.json();
         navigate("/");
       
-    console.log(responseData);
 
 };
 

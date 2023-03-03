@@ -133,24 +133,19 @@ export default function Drink() {
                 Type of Glass: {data?.drink?.strGlass}
               </Typography>
               <br />
-              {data?.drink?.strInstructions !== "" ? (
-                <>
-                  <Typography variant="h3">Instructions:</Typography>
-                  <Typography variant="body1">
-                    {data?.drink?.ingredients}
-                  </Typography>
-                </>
-              ) : (
-                <></>
-              )}
+              <Typography variant="h3">Instructions:</Typography>
+              <Typography variant="body1">
+                {data?.drink?.strInstructions}
+              </Typography>
+              
               <br />
               <br />
               <Typography variant="h3">Ingredients:</Typography>
               <List className="ingredient-list">
-                  {data?.drink?.strIngredients?.map((ingredient, index) =>
+                {data?.drink?.strIngredients?.map((ingredient, index) =>
                   ingredient !== null ? (
                     <>
-                    {console.log(ingredient)}
+                      {console.log(ingredient)}
                       <ListItem key={index} className="ingredient">
                         <ListItemText primary={ingredient} />
                       </ListItem>
@@ -168,7 +163,6 @@ export default function Drink() {
                   Dislikes: {location?.state?.dislikes}
                 </Typography>
               </Box>
-
               <Box className="drink-comments-container">
                 <Box className="new-comment-container">
                   <Modal

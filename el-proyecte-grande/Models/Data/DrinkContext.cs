@@ -210,7 +210,7 @@ namespace El_Proyecte_Grande.Models.Data
                         StrAlcoholic = addedDrink.StrAlcoholic,
                         StrCategory = addedDrink.StrCategory,
                         StrGlass = addedDrink.StrGlass,
-                        StrInstructions = addedDrink.StrGlass,
+                        StrInstructions = addedDrink.StrInstructions,
                         StrIngredients = ingredients,
                         StrDrinkThumb = addedDrink.StrDrinkThumb
 
