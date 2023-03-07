@@ -76,7 +76,6 @@ export default function AddDrink() {
         ingredients: reformatedIngridients,
       }),
     };
-    console.log(event.target[7].files[0]);
     const response = await fetch(
       `https://localhost:7090/addDrink`,
       requestOption
@@ -85,17 +84,16 @@ export default function AddDrink() {
 
     const formData = new FormData();
 
-    console.log(event.target[7].files[0]);
 
     formData.append("imageFile", event.target[7].files[0]);
-    // formData.append('idDrink', responseData.message);
+    formData.append('idDrink', responseData.message);
 
     const requestOption2 = {
       method: "POST",
       credentials: "same-origin",
       headers: {
+        Accept: "multipart/form-data",
         Authorization: "Bearer " + cookies.get("userToken"),
-        "Content-Type": "multipart/form-data",
       },
       body: formData,
     };
@@ -105,6 +103,8 @@ export default function AddDrink() {
       requestOption2
     );
     const responseData2 = await response2.json();
+
+    console.log(responseData2)
 
     //     navigate("/");
   };

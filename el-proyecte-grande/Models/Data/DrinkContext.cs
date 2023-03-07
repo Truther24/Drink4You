@@ -228,7 +228,8 @@ namespace El_Proyecte_Grande.Models.Data
 
             addedDrink.StrDrinkThumb = imageName;
 
-            AddedDrinks.Update(addedDrink);
+            var result = AddedDrinks.Update(addedDrink);
+            Console.WriteLine(result);
             await SaveChangesAsync();
 
             return addedDrink;

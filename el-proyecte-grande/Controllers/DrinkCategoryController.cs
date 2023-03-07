@@ -102,13 +102,13 @@ namespace El_Proyecte_Grande.Controllers
         }
 
         [HttpPost("addDrinkImage")]
-        public async Task<IActionResult> AddDrinkImageAsAdmin([FromBody] IFormFile imageFile)
+        public async Task<IActionResult> AddDrinkImageAsAdmin([FromForm] ImageViewModel imageViewModel)
         {
-            //var imageName = await SaveImage(imageViewModel.imageFile);
+            var imageName = await SaveImage(imageViewModel.imageFile);
 
-            //var addedDrink = _drinkCategoryService.UpdateAddedDrinkImageById(imageViewModel.idDrink, imageName);
+            var addedDrink = _drinkCategoryService.UpdateAddedDrinkImageById(imageViewModel.idDrink, imageName);
 
-            return Ok(imageFile);
+            return Ok();
         }
 
         [NonAction]
