@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import "../style/Card.css";
 import "../style/LikeDislikeButtons.css";
 import { Cookies } from "react-cookie";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 export default function Card(props) {
   const cookies = new Cookies();
@@ -12,6 +14,11 @@ export default function Card(props) {
   // const [dislikeCount, setDislikeCount] = useState(props.dislikes);
 
   const [activeBtn, setActiveBtn] = useState("none");
+
+   const favorite = <FavoriteIcon />;
+   const favoriteBorder = <FavoriteBorderIcon />;
+
+   const [fav, setFav] = useState(favoriteBorder);
 
   const updateLikesDislikes = async (obj) => {
     const requestOption = {
@@ -95,7 +102,7 @@ export default function Card(props) {
   };
 
   const handleLike = (e) => handleClick(e, "like", "dislike");
-  const handleDislike = (e) => handleClick(e, "dislike", "like");
+  const handleDislike = (e) => {};
 
   return (
     <div className="column">
@@ -143,8 +150,7 @@ export default function Card(props) {
                   }`}
                 onClick={handleDislike}
               >
-                <span className="material-symbols-outlined"> thumb_down </span>
-                &nbsp;{props.dislikes}
+                <span> {fav} </span>
               </button>
             </div>
           </div>
