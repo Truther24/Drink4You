@@ -9,6 +9,7 @@ using El_Proyecte_Grande.Repositories;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
 using Newtonsoft.Json;
 
 namespace El_Proyecte_Grande.Services
@@ -81,11 +82,16 @@ namespace El_Proyecte_Grande.Services
             var response = await _drinkCategoryRepository.GetDrinkById(id);
             if (response == null)
             {
-                response = await _context.GetAddedDrinkById(id);
+                response = await _context.GetDrinkByAddedDrinkId(id);
             }
             return response;
 
 
+        }
+
+        public async Task<AddedDrink?> UpdateAddedDrinkImageById(string idDrink, string imageName)
+        {
+            return await _context.UpdateAddedDrinkImageById(idDrink, imageName);
         }
 
         public async Task<List<DrinkDatabase>> GetLikesAndDisLikes()

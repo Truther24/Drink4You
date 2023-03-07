@@ -20,11 +20,13 @@ namespace El_Proyecte_Grande.Controllers
         private readonly DrinkCategoryService _drinkCategoryService;
 
         private readonly RoleService roleService;
+        private readonly IHostEnvironment _hostEnvironment;
 
-        public DrinkCategoryController(DrinkCategoryService drinkCategoryService, RoleService roleService)
+        public DrinkCategoryController(DrinkCategoryService drinkCategoryService, RoleService roleService, IHostEnvironment hostEnvironment)
         {
             this._drinkCategoryService = drinkCategoryService;
             this.roleService = roleService;
+            this._hostEnvironment = hostEnvironment;
         }
 
         [HttpGet("categories")]
@@ -97,6 +99,32 @@ namespace El_Proyecte_Grande.Controllers
         {
             var result = await _drinkCategoryService.AddDrinkAsAdmin(addedDrinkViewModel.AddedDrink , addedDrinkViewModel.Ingredients);
             return Ok(result);
+        }
+
+        [HttpPost("addDrinkImage")]
+        public async Task<IActionResult> AddDrinkImageAsAdmin([FromBody] IFormFile imageFile)
+        {
+            //var imageName = await SaveImage(imageViewModel.imageFile);
+
+            //var addedDrink = _drinkCategoryService.UpdateAddedDrinkImageById(imageViewModel.idDrink, imageName);
+
+            return Ok(imageFile);
+        }
+
+        [NonAction]
+        public async Task<string> SaveImage(IFormFile imageFile)
+        {
+            string imageName = new String(Path.GetFileNameWithoutExtension(imageFile.Name).Take(10).ToArray()).Replace(' ', '-');
+            imageName= imageName+DateTime.Now.ToString("yymmssfff") + Path.GetExtension(imageFile.Name);
+            var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "Images", imageName);
+            using(var fileStream = new FileStream(imagePath, FileMode.Create))
+            {
+                await imageFile.CopyToAsync(fileStream);
+            }
+            return imageName;
+
+
+
         }
 
     }

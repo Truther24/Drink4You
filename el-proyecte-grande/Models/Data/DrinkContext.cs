@@ -160,7 +160,7 @@ namespace El_Proyecte_Grande.Models.Data
             await SaveChangesAsync();
 
 
-            return new Response { Message = "hope that drink was added successfully", IsSuccess = true };
+            return new Response { Message = newIdDrink, IsSuccess = true };
 
         }
 
@@ -186,7 +186,7 @@ namespace El_Proyecte_Grande.Models.Data
         }
 
 
-        public async Task<Drink> GetAddedDrinkById(string id)
+        public async Task<Drink> GetDrinkByAddedDrinkId(string id)
         {
             var addedDrinks = await AddedDrinks.ToListAsync();
 
@@ -218,6 +218,20 @@ namespace El_Proyecte_Grande.Models.Data
                 }
             };
             return null;
+        }
+
+        public async Task<AddedDrink?> UpdateAddedDrinkImageById(string idDrink, string imageName)
+        {
+            List<AddedDrink> addedDrinks = await AddedDrinks.ToListAsync();
+
+            var addedDrink = addedDrinks?.Find(addedDrink => addedDrink.IdDrink == idDrink);
+
+            addedDrink.StrDrinkThumb = imageName;
+
+            AddedDrinks.Update(addedDrink);
+            await SaveChangesAsync();
+
+            return addedDrink;
         }
     }
 }
