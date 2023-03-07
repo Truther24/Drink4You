@@ -220,11 +220,11 @@ namespace El_Proyecte_Grande.Models.Data
             return null;
         }
 
-        public async Task<AddedDrink?> UpdateAddedDrinkImageById(string idDrink, string imageName)
+        public async Task<AddedDrink> UpdateAddedDrinkImageById(string idDrink, string imageName)
         {
             List<AddedDrink> addedDrinks = await AddedDrinks.ToListAsync();
 
-            var addedDrink = addedDrinks?.Find(addedDrink => addedDrink.IdDrink == idDrink);
+            var addedDrink = addedDrinks.Find(addedDrink => addedDrink.IdDrink == idDrink);
 
             addedDrink.StrDrinkThumb = imageName;
 

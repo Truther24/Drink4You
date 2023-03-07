@@ -106,22 +106,22 @@ namespace El_Proyecte_Grande.Controllers
         {
             var imageName = await SaveImage(imageViewModel.imageFile);
 
-            var addedDrink = _drinkCategoryService.UpdateAddedDrinkImageById(imageViewModel.idDrink, imageName);
+            var addedDrink = await _drinkCategoryService.UpdateAddedDrinkImageById(imageViewModel.idDrink, imageName);
 
-            return Ok();
+            return Ok(addedDrink);
         }
 
         [NonAction]
         public async Task<string> SaveImage(IFormFile imageFile)
         {
-            string imageName = new String(Path.GetFileNameWithoutExtension(imageFile.Name).Take(10).ToArray()).Replace(' ', '-');
-            imageName= imageName+DateTime.Now.ToString("yymmssfff") + Path.GetExtension(imageFile.Name);
+            string imageName = new String(Path.GetFileNameWithoutExtension(imageFile.FileName).Take(10).ToArray()).Replace(' ', '-');
+            imageName= imageName+DateTime.Now.ToString("yymmssfff") + Path.GetExtension(imageFile.FileName);
             var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "Images", imageName);
             using(var fileStream = new FileStream(imagePath, FileMode.Create))
             {
                 await imageFile.CopyToAsync(fileStream);
             }
-            return imageName;
+            return "https://localhost:7090/Images/"+imageName;
 
 
 

@@ -18,7 +18,6 @@ import {
   Button,
   Typography,
 } from "@material-ui/core";
-import { object } from "prop-types";
 
 export default function AddDrink() {
   const navigate = useNavigate();
@@ -102,9 +101,10 @@ export default function AddDrink() {
       `https://localhost:7090/addDrinkImage`,
       requestOption2
     );
-    const responseData2 = await response2.json();
 
+    const responseData2 = await response2.json();
     console.log(responseData2)
+
 
     //     navigate("/");
   };
@@ -113,7 +113,7 @@ export default function AddDrink() {
 
   const handleKeyUp = (e) => {
     console.log(e.keyCode);
-    if (e.keyCode == 18 && !(e.target.value.replace(/\s/g, "") === "")) {
+    if (e.keyCode === 18 && !(e.target.value.replace(/\s/g, "") === "")) {
       setValues((oldState) => [...oldState, e.target.value]);
       setCurrValue("");
     }
