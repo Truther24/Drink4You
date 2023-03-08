@@ -99,7 +99,7 @@ namespace El_Proyecte_Grande.Controllers
 
 
         [HttpPut("/users/update/{id}")]
-        public async Task<IActionResult> UpdateUser([FromRoute] string id, [FromBody] RegisterViewModel user)
+        public async Task<IActionResult> UpdateUser([FromRoute] string id, [FromBody] UpdateViewModel user)
         {
             var result = await _service.UpdateUser(user, id);
             if (result.IsSuccess)

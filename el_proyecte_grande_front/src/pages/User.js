@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 import { Cookies } from "react-cookie";
 import { makeStyles } from "@material-ui/core/styles";
@@ -61,12 +62,14 @@ const UserProfile = () => {
     const [open, setOpen] = useState(false);
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
+    const [userId, setUserId] = useState("");
+
     const [oldPassword, setOldPassword] = useState("oldPassword");
     const [newPassword, setNewPassword] = useState("newPassword");
     const [cocktails, setCocktails] = useState([]);
     const cookies = new Cookies();
 
-  useEffect(() => {
+    useEffect(() => {
         const fetchGet = async () => {
             const requestOption = {
                 method: "GET",
@@ -75,32 +78,32 @@ const UserProfile = () => {
                     Authorization: "Bearer " + cookies.get("userToken"),
                     "Content-Type": "application/json",
                 },
-          };
+            };
             const response = await fetch(
                 "https://localhost:7090/GetFavoriteDrinks",
                 requestOption
             );
             const data = await response.json();
-            console.log(data);
+            // console.log(data);
             setCocktails(data);
-    };
-    fetchGet();
-    getUserDataFromToken();
+        };
+        fetchGet();
+        getUserDataFromToken();
     }, []);
 
-  
-  const getUserDataFromToken = () => {
-    const token = cookies.get("userToken");
-    const decoded = jwtDecode(token);
-    console.log(decoded)
-    setEmail(decoded.Email)
-    setUsername(decoded.Username);
+    const getUserDataFromToken = () => {
+        const token = cookies.get("userToken");
+        const decoded = jwtDecode(token);
+        // console.log(decoded["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"]);
+        setEmail(decoded.Email);
+        setUsername(decoded.Username);
+        setUserId(
+            decoded[
+                "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
+            ]
+        );
+    };
 
-  }
-  
-  
-  
-  
     const handleOpen = () => {
         setOpen(true);
     };
@@ -124,9 +127,46 @@ const UserProfile = () => {
         setNewPassword(event.target.value);
     };
 
-    const handleSubmit = (event) => {
+  
+  const navigate = useNavigate();
+  function Logout() {
+      cookies.remove("userToken");
+      cookies.remove("userName");
+      navigate("/");
+      window.location.reload(true);
+  }
+  
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        // Update user information here
+        // console.log(event)
+
+        
+
+        const requestOption = {
+            method: "PUT",
+            credentials: "same-origin",
+            headers: {
+                Authorization: "Bearer " + cookies.get("userToken"),
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                username: event.target[0].value,
+                email: event.target[1].value,
+                oldPassword: event.target[2].value,
+                newPassword: event.target[4].value,
+            }),
+        };
+        const response = await fetch(
+            `https://localhost:7090/users/update/${userId}`,
+            requestOption
+        );
+        const data = await response.json();
+        // cookies.set("userName", );
+        console.log(data);
+        // setEmail(data.identityUsers[0].email)
+        // setUsername(data.identityUsers[0].userName);
+        Logout();
+
         handleClose();
     };
 
@@ -157,9 +197,8 @@ const UserProfile = () => {
             <Carousel className={classes.carousel}>
                 {cocktails.map((cocktail) => (
                     <Card key={cocktail.strDrink} className={classes.card}>
-                        <CardHeader title={cocktail.name}  />
+                        <CardHeader title={cocktail.name} />
                         <CardMedia
-                            
                             image={cocktail.strDrinkThumb}
                             style={{ height: "200px" }}
                         />

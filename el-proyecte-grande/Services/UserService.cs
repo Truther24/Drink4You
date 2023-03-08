@@ -146,15 +146,25 @@ namespace El_Proyecte_Grande.Services
 
 
 
-        public async Task<Response> UpdateUser(RegisterViewModel user, string id)
+        public async Task<Response> UpdateUser(UpdateViewModel user, string id)
         {
             var result = await GetUserByID(id);
             if (!result.IsSuccess)
             {
                 return new Response { IsSuccess = false, Message = "there is no such user" };
             }
-
+            
             IdentityUser identityUser = result.IdentityUsers.First();
+
+           var resultAfterChangingPass =  await _userManager.ChangePasswordAsync(identityUser, user.OldPassword, user.NewPassword);
+
+            if (!(resultAfterChangingPass.Succeeded))
+            {
+                return new Response { IsSuccess = false, Message = "Old pass is not correct"};
+            }
+
+
+            //identityUser.PasswordHash = _userManager.PasswordHasher.HashPassword(identityUser,user.NewPassword);
             identityUser.Email = user.Email;
             identityUser.UserName = user.Username;
             var afterUpdateResult = await _userManager.UpdateAsync(identityUser);
