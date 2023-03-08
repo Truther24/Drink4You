@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ElProyecteGrande.Migrations
 {
     /// <inheritdoc />
-    public partial class first : Migration
+    public partial class modifiedDrinkDatabasemodel : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -92,7 +92,7 @@ namespace ElProyecteGrande.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     fetchID = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Likes = table.Column<int>(type: "int", nullable: false),
-                    Dislikes = table.Column<int>(type: "int", nullable: false)
+                    Favorite = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {

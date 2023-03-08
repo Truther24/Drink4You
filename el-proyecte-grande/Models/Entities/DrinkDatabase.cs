@@ -8,6 +8,6 @@ namespace El_Proyecte_Grande.Models.Entities
         public int ID { get; set; }
         public string fetchID { get; set; }
         public int Likes { get; set; }
-        public int Dislikes { get; set; }
+        public bool Favorite { get; set; }
     }
 }

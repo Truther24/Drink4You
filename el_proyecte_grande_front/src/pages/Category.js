@@ -33,14 +33,14 @@ export default function Category() {
       const responseData = await response.json();
       setData(responseData);
 
-      console.log(responseData);
+      // console.log(responseData);
       setisLoading(false);
     };
     fetcher();
   }, []);
 
   const  drinkUpdatingFunction = async (serverResponse) => {
-    console.log(serverResponse.drinksDatabase[0]);
+    console.log(serverResponse.drinksDatabase[0].favorite);
     setData(
       data?.map((drink) => {
         if (
@@ -48,7 +48,7 @@ export default function Category() {
           parseInt(serverResponse.drinksDatabase[0].fetchID, 10)
         ) {
           drink.likes = serverResponse.drinksDatabase[0].likes;
-          drink.dislikes = serverResponse.drinksDatabase[0].dislikes;
+          drink.favorite = serverResponse.drinksDatabase[0].favorite;
         }
         return drink;
       })
@@ -71,7 +71,7 @@ export default function Category() {
           return (
             <Card
               likes={drink.likes}
-              dislikes={drink.dislikes}
+              favorite={drink.favorite}
               strDrinkThumb={drink.strDrinkThumb}
               strDrink={drink.strDrink}
               myKey={drink.idDrink}

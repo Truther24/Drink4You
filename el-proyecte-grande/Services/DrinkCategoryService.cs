@@ -9,6 +9,7 @@ using El_Proyecte_Grande.Repositories;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
 using Newtonsoft.Json;
 
@@ -22,7 +23,7 @@ namespace El_Proyecte_Grande.Services
         private readonly DrinkCategoryRepository _drinkCategoryRepository;
 
         private readonly DrinkContext _context;
-        public DrinkCategoryService(UserManager<IdentityUser> userManager, DrinkCategoryRepository drinkCategoryRepository , DrinkContext drinkContext)
+        public DrinkCategoryService(UserManager<IdentityUser> userManager, DrinkCategoryRepository drinkCategoryRepository, DrinkContext drinkContext)
         {
             _userManager = userManager;
 
@@ -34,7 +35,7 @@ namespace El_Proyecte_Grande.Services
 
         public async Task<string> GetAllCategories()
         {
-            string response= await _drinkCategoryRepository.GetAllCategories();
+            string response = await _drinkCategoryRepository.GetAllCategories();
             DrinkCategoryList drinkCategoryList = JsonConvert.DeserializeObject<DrinkCategoryList>(response);
 
             string jsonString = JsonConvert.SerializeObject(drinkCategoryList);
@@ -46,26 +47,27 @@ namespace El_Proyecte_Grande.Services
 
         public async Task<List<SimpleDrink>> GetDrinksForCategory(string categoryName)
         {
-            var drinksWithlikesandDislikes = await GetLikesAndDisLikes();
+            var drinksWithlikesandDislikes = await GetLikesAndDisLikes(); // drinks with likes and favourites
 
-            var dbDrinks = await _context.GetAddedDrinksFromDb(categoryName);
+            var dbDrinks = await _context.GetAddedDrinksFromDb(categoryName); // added drinks by admin 
 
-            var apiDrinks =  await _drinkCategoryRepository.GetDrinksForCategory(categoryName);
+            var apiDrinks = await _drinkCategoryRepository.GetDrinksForCategory(categoryName); // api drinks 
 
             apiDrinks.AddRange(dbDrinks);
 
             foreach (var apiDrink in apiDrinks)
             {
                 var fouundDrink = drinksWithlikesandDislikes.Find(dbDrink => dbDrink.fetchID == apiDrink.IdDrink);
-                if(fouundDrink != null)
+                if (fouundDrink != null)
                 {
                     apiDrink.Likes = fouundDrink.Likes;
-                    apiDrink.Dislikes = fouundDrink.Dislikes;
+                    apiDrink.Favorite = fouundDrink.Favorite;
+                    //favorites to add here
                 }
                 else
                 {
                     apiDrink.Likes = 0;
-                    apiDrink.Dislikes = 0;
+                    apiDrink.Favorite = false;
                 }
 
             }
@@ -109,7 +111,7 @@ namespace El_Proyecte_Grande.Services
             var result = await _context.UpdateLikesAndDisklikes(drink);
 
             return result;
-           
+
         }
 
         public async Task<CommentResponse> PostComment(PostCommentViewModel comment, string idenityUserId)
@@ -123,14 +125,21 @@ namespace El_Proyecte_Grande.Services
 
         public async Task<List<Comment>> GetCommentsById(string id)
         {
-            var result = await _context.GetCommentsById(id); 
+            var result = await _context.GetCommentsById(id);
             return result;
         }
 
-        public async Task<Response> AddDrinkAsAdmin(AddedDrink drinkToAdd,List<Ingredient> ingredients)
+        public async Task<Response> AddDrinkAsAdmin(AddedDrink drinkToAdd, List<Ingredient> ingredients)
         {
-            var result = await _context.AddDrinkAsAdmin(drinkToAdd,ingredients);
+            var result = await _context.AddDrinkAsAdmin(drinkToAdd, ingredients);
             return result;
+        }
+
+        public  async Task<List<DrinkDatabase>> GetFavoriteDrinks()
+        {
+            var favoriteDrinks =  await _context.Drinks.Where(drink => drink.Favorite == true).ToListAsync();
+            return favoriteDrinks;
+
         }
     }
 }

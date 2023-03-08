@@ -122,10 +122,29 @@ namespace El_Proyecte_Grande.Controllers
                 await imageFile.CopyToAsync(fileStream);
             }
             return "https://localhost:7090/Images/"+imageName;
+        }
+
+        [HttpGet("/GetFavoriteDrinks")]
+        public async Task<IActionResult> GetFavoriteDrinks()
+        {
+            var favoriteDrinks =await _drinkCategoryService.GetFavoriteDrinks();
+            var drinksToReturn = new List<Drink>();
+
+            for (int i = 0; i < favoriteDrinks.Count; i++)
+            {
+
+                drinksToReturn.Add(await _drinkCategoryService.GetDrinkById(favoriteDrinks[i].fetchID));
+            }
+
+            return Ok(drinksToReturn);
+
 
 
 
         }
+
+
+
 
     }
 }

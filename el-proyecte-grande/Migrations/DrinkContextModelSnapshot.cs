@@ -96,8 +96,8 @@ namespace ElProyecteGrande.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<int>("Dislikes")
-                        .HasColumnType("int");
+                    b.Property<bool>("Favorite")
+                        .HasColumnType("bit");
 
                     b.Property<int>("Likes")
                         .HasColumnType("int");

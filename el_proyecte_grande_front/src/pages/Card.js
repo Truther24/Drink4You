@@ -6,6 +6,7 @@ import "../style/LikeDislikeButtons.css";
 import { Cookies } from "react-cookie";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { Favorite } from "@material-ui/icons";
 
 export default function Card(props) {
   const cookies = new Cookies();
@@ -31,7 +32,7 @@ export default function Card(props) {
       body: JSON.stringify({
         fetchID: props.myKey,
         "Likes": obj.likes,
-        "Dislikes": obj.dislikes
+        "Favorite": obj.favorite
       }),
     };
     const response = await fetch(
@@ -40,23 +41,24 @@ export default function Card(props) {
     );
     const data = await response.json();
     props.drinkUpdatingFunction(data);
-    console.log(data);
+    // console.log(data);
   };
 
-  // useEffect(() => {
-  //   // console.log(likeCount);
-  //   // console.log(dislikeCount);
-  //   updateLikesDislikes();
-  // }, [likeCount, dislikeCount]);
+  useEffect(() => {
+    if (props.favorite === true) {
+      setFav(favorite)
+    }
+    else {
+      setFav(favoriteBorder);
+    }
+  }, []);
 
-  const handleClick = (e, action, disaction) => {
+  const handleClick = (e, action) => {
     e.preventDefault();
-    const isLike = action === "like" && disaction === "dislike";
-    const isDislike = action === "dislike" && disaction === "like";
 
     let like = props.likes;
-    let dislike = props.dislikes
-    if (isLike) {
+    let favoriteBool = props.favorite
+    if (action=="like") {
       if (activeBtn === "none") {
         like++;
         setActiveBtn((l) => "like");
@@ -67,42 +69,27 @@ export default function Card(props) {
         setActiveBtn((l) => "none");
       }
 
-      else if (activeBtn === "dislike") {
-        like++;
-        dislike--;
-        setActiveBtn((l) => "like");
-      }
+      
     }
-    else if (isDislike) {
-      if (activeBtn === "none") {
-        dislike++;
-
-        setActiveBtn((l) => "dislike");
-      }
-
-      else if (activeBtn === "dislike") {
-        dislike--;
-
-        setActiveBtn((l) => "none");
-      }
-
-      else if (activeBtn === "like") {
-        dislike++;
-
-        like--;
-
-        setActiveBtn((l) => "dislike");
+    else if (action == "favorite") {
+      // console.log(favoriteBool)
+      if ((favoriteBool == false)) {
+          favoriteBool = true;
+          setFav(favorite);
+      } else {
+          favoriteBool = false;
+          setFav(favoriteBorder);
       }
     }
     updateLikesDislikes({
       likes: like,
-      dislikes: dislike,
+      favorite: favoriteBool,
     })
 
   };
 
-  const handleLike = (e) => handleClick(e, "like", "dislike");
-  const handleDislike = (e) => {};
+  const handleLike = (e) => handleClick(e, "like");
+  const handleFavorite = (e) => handleClick(e,"favorite");
 
   return (
     <div className="column">
@@ -148,7 +135,7 @@ export default function Card(props) {
               <button
                 className={`likedislike ${activeBtn === "dislike" ? "dislike-active" : ""
                   }`}
-                onClick={handleDislike}
+                onClick={handleFavorite}
               >
                 <span> {fav} </span>
               </button>

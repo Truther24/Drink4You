@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElProyecteGrande.Migrations
 {
     [DbContext(typeof(DrinkContext))]
-    [Migration("20230302144905_first")]
-    partial class first
+    [Migration("20230308091846_modified Drink Database model")]
+    partial class modifiedDrinkDatabasemodel
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -99,8 +99,8 @@ namespace ElProyecteGrande.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<int>("Dislikes")
-                        .HasColumnType("int");
+                    b.Property<bool>("Favorite")
+                        .HasColumnType("bit");
 
                     b.Property<int>("Likes")
                         .HasColumnType("int");

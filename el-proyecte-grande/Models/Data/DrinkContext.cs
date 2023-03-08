@@ -40,7 +40,8 @@ namespace El_Proyecte_Grande.Models.Data
 
             if (result != null)
             {
-                result.Dislikes = drink.Dislikes;
+                //favorites to add here
+                result.Favorite = drink.Favorite;
                 result.Likes = drink.Likes;
 
                 List<DrinkDatabase> listToReturn = new();
@@ -73,7 +74,7 @@ namespace El_Proyecte_Grande.Models.Data
             {
                 DrinkDatabase newDrink = new DrinkDatabase()
                 {
-                    Dislikes = drink.Dislikes,
+                    Favorite= drink.Favorite,
                     Likes = drink.Likes,
                     fetchID = drink.fetchID
 
@@ -179,6 +180,7 @@ namespace El_Proyecte_Grande.Models.Data
                         StrDrink = drink.StrDrink,
                         StrDrinkThumb = drink.StrDrinkThumb,
                         IdDrink = drink.IdDrink
+                        
                     });
                 }
             }

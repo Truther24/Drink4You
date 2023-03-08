@@ -188,6 +188,7 @@ namespace El_Proyecte_Grande.Services
 
             var claims = new[]
                 {
+                new Claim("Username",identityUser.UserName),
                 new Claim("Email",identityUser.Email),
                 new Claim(ClaimTypes.NameIdentifier,identityUser.Id),
             };
