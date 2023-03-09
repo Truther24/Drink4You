@@ -4,7 +4,6 @@ import Card from "./Card.js";
 import LoadingSpinner from "./LoadingSpinner.js";
 import "../style/Fullscreen.css";
 import { Cookies } from "react-cookie";
-import { async } from "q";
 
 export default function Category() {
   const { category } = useParams();
@@ -69,7 +68,7 @@ export default function Category() {
       <div id="category-cards">
         {data.map((drink) => {
           return (
-            <Card
+            <Card id="one-card"
               likes={drink.likes}
               favorite={drink.favorite}
               strDrinkThumb={drink.strDrinkThumb}

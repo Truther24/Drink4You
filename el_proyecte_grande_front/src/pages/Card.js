@@ -16,10 +16,23 @@ export default function Card(props) {
 
   const [activeBtn, setActiveBtn] = useState("none");
 
-   const favorite = <FavoriteIcon />;
-   const favoriteBorder = <FavoriteBorderIcon />;
+  const favorite = <FavoriteIcon />;
+  const favoriteBorder = <FavoriteBorderIcon />;
 
-   const [fav, setFav] = useState(favoriteBorder);
+  const [fav, setFav] = useState(favoriteBorder);
+
+  const DrinkName = ({ drinkName }) => {
+    if (drinkName.length > 24) {
+      console.log(`This drink name is too long! : ${drinkName}`);
+      return <h3 id={props.myKey}>{drinkName}</h3>;
+    }
+    return (
+      <>
+        <h3 id={props.myKey}>{drinkName}</h3>
+        <h3>&nbsp;</h3>
+      </>
+    );
+  };
 
   const updateLikesDislikes = async (obj) => {
     const requestOption = {
@@ -31,8 +44,8 @@ export default function Card(props) {
       },
       body: JSON.stringify({
         fetchID: props.myKey,
-        "Likes": obj.likes,
-        "Favorite": obj.favorite
+        Likes: obj.likes,
+        Favorite: obj.favorite,
       }),
     };
     const response = await fetch(
@@ -46,9 +59,8 @@ export default function Card(props) {
 
   useEffect(() => {
     if (props.favorite === true) {
-      setFav(favorite)
-    }
-    else {
+      setFav(favorite);
+    } else {
       setFav(favoriteBorder);
     }
   }, []);
@@ -57,39 +69,33 @@ export default function Card(props) {
     e.preventDefault();
 
     let like = props.likes;
-    let favoriteBool = props.favorite
-    if (action=="like") {
+    let favoriteBool = props.favorite;
+    if (action == "like") {
       if (activeBtn === "none") {
         like++;
         setActiveBtn((l) => "like");
-      }
-
-      else if (activeBtn === "like") {
+      } else if (activeBtn === "like") {
         like--;
         setActiveBtn((l) => "none");
       }
-
-      
-    }
-    else if (action == "favorite") {
+    } else if (action == "favorite") {
       // console.log(favoriteBool)
-      if ((favoriteBool == false)) {
-          favoriteBool = true;
-          setFav(favorite);
+      if (favoriteBool == false) {
+        favoriteBool = true;
+        setFav(favorite);
       } else {
-          favoriteBool = false;
-          setFav(favoriteBorder);
+        favoriteBool = false;
+        setFav(favoriteBorder);
       }
     }
     updateLikesDislikes({
       likes: like,
       favorite: favoriteBool,
-    })
-
+    });
   };
 
   const handleLike = (e) => handleClick(e, "like");
-  const handleFavorite = (e) => handleClick(e,"favorite");
+  const handleFavorite = (e) => handleClick(e, "favorite");
 
   return (
     <div className="column">
@@ -106,15 +112,16 @@ export default function Card(props) {
 
         <div className="card-content">
           <div className="card-title">
-            <h3 id={props.myKey}>{props.strDrink}</h3>
+            <DrinkName drinkName={props.strDrink} />
           </div>
         </div>
         <div style={{ position: "relative", right: "30px" }}>
           <div className="btn likedislike" style={{ cursor: "default" }}>
             <div className="btn-container like">
               <button
-                className={`likedislike ${activeBtn === "like" ? "like-active" : ""
-                  }`}
+                className={`likedislike ${
+                  activeBtn === "like" ? "like-active" : ""
+                }`}
                 onClick={handleLike}
               >
                 <span className="material-symbols-outlined"> thumb_up </span>
@@ -123,7 +130,10 @@ export default function Card(props) {
             </div>
             <button style={{ cursor: "pointer" }}>
               <Link
-                to={`/categories/${props.categoryName}/${props.strDrink.replace('/', '+')}/${props.myKey}`}
+                to={`/categories/${props.categoryName}/${props.strDrink.replace(
+                  "/",
+                  "+"
+                )}/${props.myKey}`}
                 className="card-button"
                 state={{ likes: props.likes, dislikes: props.dislikes }}
               >
@@ -133,8 +143,9 @@ export default function Card(props) {
             </button>
             <div className="btn-container dislike">
               <button
-                className={`likedislike ${activeBtn === "dislike" ? "dislike-active" : ""
-                  }`}
+                className={`likedislike ${
+                  activeBtn === "dislike" ? "dislike-active" : ""
+                }`}
                 onClick={handleFavorite}
               >
                 <span> {fav} </span>

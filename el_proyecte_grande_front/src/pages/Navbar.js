@@ -3,7 +3,6 @@ import jwtDecode from "jwt-decode";
 import { Link, useMatch, useResolvedPath, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Cookies, useCookies } from "react-cookie";
-import AddDrink from "./AddDrink";
 
 const IsAdmin = ({logout}) => {
     const cookies = new Cookies();
