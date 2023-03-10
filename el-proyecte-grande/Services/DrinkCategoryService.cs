@@ -141,5 +141,23 @@ namespace El_Proyecte_Grande.Services
             return favoriteDrinks;
 
         }
+
+
+        public async Task<CommentResponse> DeleteComment(int commentId)
+        {
+            var allComments = await _context.Comments.ToListAsync();
+            var comment = allComments.Find(comment=>comment.CommentID == commentId);
+            _context.Comments.Remove(comment);
+            await _context.SaveChangesAsync();
+            return new CommentResponse {IsSuccess=true,Message="you successfully deleted a comment" };
+        }
+
+        public async Task<List<Comment>> GetAllCommentsBasedOnDrink(string id)
+        {
+            var listOfCommentsBasedOnOneDrink = await _context.Comments.Where(comment => comment.IdDrink == id).ToListAsync();
+            return listOfCommentsBasedOnOneDrink;
+
+        }
+        
     }
 }
