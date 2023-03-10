@@ -8,7 +8,7 @@ export default function Home() {
     style={{ 
     backgroundImage: `url(${cocktail})`,
     width: '100%',
-    padding : '40px',
+    padding : '0px',
     height: '100%',
     display: 'block',
     backgroundRepeat : 'no-repeat',

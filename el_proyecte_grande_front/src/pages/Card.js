@@ -22,7 +22,7 @@ export default function Card(props) {
   const [fav, setFav] = useState(favoriteBorder);
 
   const DrinkName = ({ drinkName }) => {
-    if (drinkName.length > 24) {
+    if (drinkName.length >= 24) {
       console.log(`This drink name is too long! : ${drinkName}`);
       return <h3 id={props.myKey}>{drinkName}</h3>;
     }
