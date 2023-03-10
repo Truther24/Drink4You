@@ -90,7 +90,7 @@ namespace El_Proyecte_Grande.Controllers
 
             return Ok(response);
         }
-
+        
 
 
         [Authorize(Roles = "Admin")]
@@ -138,10 +138,29 @@ namespace El_Proyecte_Grande.Controllers
 
             return Ok(drinksToReturn);
 
-
-
-
         }
+
+
+
+        [Authorize(Roles = "Admin")]
+        [HttpDelete("deleteComment/{id}")]
+        public async Task<IActionResult> Deletecomment([FromRoute] int id)
+        {
+            var result = await _drinkCategoryService.DeleteComment(id);
+            return Ok(result);
+        }
+
+
+        //[Authorize(Roles = "Admin")]
+        [HttpGet("getAllCommentsBasedOnDrink/{id}")]
+        public async Task<IActionResult> GetAllComments([FromRoute] string id)
+        {
+            var result = await _drinkCategoryService.GetAllCommentsBasedOnDrink(id);
+            return Ok(result);
+        }
+
+
+
 
 
 

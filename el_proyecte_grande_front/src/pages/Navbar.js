@@ -10,9 +10,9 @@ const IsAdmin = ({logout}) => {
     const token = cookies.get("userToken");
     const decoded = jwtDecode(token);
     // setDecodedToken(decoded);
-    console.log(
-        Array.isArray(decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"])
-    );
+    // console.log(
+    //     Array.isArray(decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"])
+    // );
 
     
 
