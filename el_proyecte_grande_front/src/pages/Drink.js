@@ -27,7 +27,6 @@ export default function Drink() {
     const [isLoading, setIsLoading] = useState(false);
     const [data, setData] = useState({});
     const [comments, setComments] = useState([]);
-    const [countFetch, setCountFetch] = useState(0);
     const [afterPost, setAfterPost] = useState(0);
 
 
@@ -53,24 +52,10 @@ export default function Drink() {
         );
         const responseData = await response.json();
         console.log("went in fetch postComment");
-        
-        // console.log("responsedata" , responseData)
-
         setAfterPost(afterPost+1);
-        // setData(() => ({
-        //     ...data
-        // }));
         setComments(responseData.comments);
         event.target.reset();
     };
-
-
-    // const commentUpdatingFunct = async (updatedComments) => {
-    //     console.log(updatedComments)
-    //     setComments(updatedComments);
-
-    // };
-
 
     useEffect(() => {
         const fetcher = async () => {
@@ -90,7 +75,6 @@ export default function Drink() {
             const responseData = await response.json();
             console.log(responseData);
             setComments(responseData);
-            // setCountFetch(countFetch + 1);
         };
         fetcher();
     }, [afterPost]);
@@ -113,19 +97,13 @@ export default function Drink() {
             );
             const responseData = await response.json();
             console.log("went in fetch getDrinkById")
-            // console.log("responseData", responseData)
             console.log(responseData)
             setData(responseData);
-            
-            // setComments(responseData?.comments);
             setIsLoading(false);
         };
         fetcher();
-    }, [countFetch]);
+    }, []);
   
-        // console.log(data);
-  
-
     return (
         <Box
             className="drink-page-container-image"
@@ -195,7 +173,6 @@ export default function Drink() {
                                     (ingredient, index) =>
                                         ingredient !== null ? (
                                             <>
-                                                {/* {console.log(ingredient)} */}
                                                 <ListItem
                                                     key={index}
                                                     className="ingredient"
@@ -235,8 +212,7 @@ export default function Drink() {
                             <br />
                             <Comments
                                     comments={comments}
-                                    id={drinkId}
-                                    // setComments={ setComments}
+                    id={drinkId}
                             />
                         </Box>
                     </>

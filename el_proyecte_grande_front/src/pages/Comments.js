@@ -13,6 +13,11 @@ export default function Comments(props) {
     const [comments, setComments] = useState(props?.comments);
     const [fetchCount, setFetchCount] = useState(0);
 
+  
+  useEffect(() => {
+    setComments(props?.comments)
+  },[props?.comments])
+  
     useEffect(() => {
         const fetcher = async () => {
             const requestOption = {
@@ -28,7 +33,6 @@ export default function Comments(props) {
                 requestOption
             );
           const responseData = await response.json();
-        //   console.log(responseData)
             console.log("went in comments component")
            setComments(responseData);
         };
