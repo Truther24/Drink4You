@@ -5,6 +5,9 @@ import { green, purple } from "@mui/material/colors";
 import { createTheme, ThemeProvider, styled } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import InputLabel from "@material-ui/core/InputLabel";
+import AlertWithProgressBar from "./AlertWithProgressBar.js"
+import { Alert, AlertTitle } from "@material-ui/lab";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 
 
@@ -93,6 +96,7 @@ export default function AddDrink() {
   const classes = useStyles();
   const [values, setValues] = useState([]);
   const [currValue, setCurrValue] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
 
   // function addDrink(e) {
   //       e.preventDefault();
@@ -149,9 +153,9 @@ export default function AddDrink() {
 
     const formData = new FormData();
 
-    console.log(event)
+    console.log(event);
     formData.append("imageFile", event?.target[11]?.files[0]);
-    formData.append('idDrink', responseData.message);
+    formData.append("idDrink", responseData.message);
 
     const requestOption2 = {
       method: "POST",
@@ -169,7 +173,12 @@ export default function AddDrink() {
     );
 
     const responseData2 = await response2.json();
-    console.log(responseData2)
+    console.log(responseData2);
+
+    setShowAlert(true);
+    setTimeout(() => {
+      setShowAlert(()=>false)
+    },3000)
 
 
   };
@@ -212,9 +221,21 @@ export default function AddDrink() {
     <ThemeProvider theme={theme}>
       <br />
       <br />
+      {showAlert && (
+        <AlertWithProgressBar
+          timeout={2000}
+          title="Succes"
+          severity="success"
+          children="The drink was added"
+        />
+      )}
       <form onSubmit={addDrink}>
         <Box
-          style={{ fontFamily: "sans-serif", textAlign: "center", color:'white' }}
+          style={{
+            fontFamily: "sans-serif",
+            textAlign: "center",
+            color: "white",
+          }}
           sx={{
             py: 2,
             display: "flex",
@@ -227,19 +248,15 @@ export default function AddDrink() {
           <FormControl
             fullWidth
             style={{ width: 400, margin: "10px", color: "white" }}
-            
           >
-            <CustomInputLabel
-              
-              id="demo-simple-select-label"
-            >
+            <CustomInputLabel id="demo-simple-select-label">
               Category
             </CustomInputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={category}
-              style={{color:"white"}}
+              style={{ color: "white" }}
               label="Category"
               onChange={handleChangeForm}
             >
@@ -317,7 +334,6 @@ export default function AddDrink() {
           </div>
           <Textarea
             placeholder="Type your instructions here..."
-            
             minRows={2}
             style={{ width: 400 }}
           />

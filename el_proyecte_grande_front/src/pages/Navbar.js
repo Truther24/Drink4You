@@ -157,6 +157,7 @@ const settingsLoggedOut = [
 ];
 
 function Navbar() {
+  const [username, setUserName] = useState("User")
   const [leftOptions, setLeftOptions] = useState(pages);
   const [loggedInAs, setLoggedInAs] = useState("");
   const [rightOptions, setRightOptions] = useState(settingsLoggedOut);
@@ -184,6 +185,7 @@ function Navbar() {
       }
 
       setLoggedInAs(`Logged in as ${decoded.Username}`);
+      setUserName(decoded.Username.toUpperCase());
     } else {
       setRightOptions(settingsLoggedOut);
     }
@@ -317,7 +319,7 @@ function Navbar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="User" src="/static/images/avatar/3.jpg" />
+                <Avatar alt={`${username}`} src="/static/images/avatar/3.jpg" />
               </IconButton>
             </Tooltip>
 
