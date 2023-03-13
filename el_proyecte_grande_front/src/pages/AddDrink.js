@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Textarea from "@mui/joy/Textarea";
 import { Cookies } from "react-cookie";
-import { useNavigate } from "react-router-dom";
+import { green, purple } from "@mui/material/colors";
+import { createTheme, ThemeProvider, styled } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import InputLabel from "@material-ui/core/InputLabel";
+
+
 
 import {
   Box,
-  TextField,
   FormControl,
-  InputLabel,
   Select,
   MenuItem,
   Chip,
@@ -19,8 +22,71 @@ import {
   Typography,
 } from "@material-ui/core";
 
+
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#ffffff",
+    },
+  },
+});
+const CustomTextField = styled(TextField)({
+  '& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
+    borderColor: 'white',
+  },
+  '& .MuiInputBase-inputMultiline': {
+    color: 'white',
+  },
+  '& .MuiInputLabel-root': {
+    color: 'white',
+  },
+});
+
+const CustomInputLabel = styled(InputLabel)({
+  "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+    borderColor: "white",
+  },
+  "& .MuiInputBase-inputMultiline": {
+    color: "white",
+  },
+  "& .MuiInputLabel-root": {
+    color: "white",
+  },
+});
+
+InputLabel.defaultProps = {
+  style: {
+    color: "white",
+  },
+};
+
+
+const useStyles = makeStyles((theme) => ({
+  formControlRoot: {
+    display: "flex",
+    alignItems: "center",
+    gap: "8px",
+    width: "300px",
+    flexWrap: "wrap",
+    flexDirection: "row",
+    border: "2px solid lightgray",
+    margin: "20px",
+    padding: 4,
+    borderRadius: "4px",
+    "&> div.containerr": {
+      gap: "6px",
+      display: "flex",
+      flexWrap: "wrap",
+    },
+    "&> div.containerr > span": {
+      padding: "1px 3px",
+      borderRadius: "4px",
+    },
+  },
+}));
+
 export default function AddDrink() {
-  const navigate = useNavigate();
 
   const cookies = new Cookies();
 
@@ -38,7 +104,7 @@ export default function AddDrink() {
     // console.log(event.target[3]);
     // console.log(values)
     var alcoholic;
-    if (event.target[3].checked === true) {
+    if (event.target[7]?.checked === true) {
       alcoholic = "Alcoholic";
     } else {
       alcoholic = "Non-Alcoholic";
@@ -67,8 +133,8 @@ export default function AddDrink() {
           strDrink: event.target[1].value,
           strCategory: event.target[0].value,
           strAlcoholic: alcoholic,
-          strGlass: event.target[2].value,
-          strInstructions: event.target[5].value,
+          strGlass: event.target[4].value,
+          strInstructions: event.target[9].value,
           strDrinkThumb:
             "https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg",
         },
@@ -83,8 +149,8 @@ export default function AddDrink() {
 
     const formData = new FormData();
 
-
-    formData.append("imageFile", event.target[7].files[0]);
+    console.log(event)
+    formData.append("imageFile", event?.target[11]?.files[0]);
     formData.append('idDrink', responseData.message);
 
     const requestOption2 = {
@@ -106,17 +172,20 @@ export default function AddDrink() {
     console.log(responseData2)
 
 
-    //     navigate("/");
   };
 
-  ////
 
   const handleKeyUp = (e) => {
-    console.log(e.keyCode);
-    if (e.keyCode === 18 && !(e.target.value.replace(/\s/g, "") === "")) {
+    
+    if (e.keyCode === 13 && !(e.target.value.replace(/\s/g, "") === "")) {
+      e.preventDefault()
       setValues((oldState) => [...oldState, e.target.value]);
       setCurrValue("");
     }
+    if (e.keyCode == 13) {
+      e.preventDefault()
+    }
+
   };
 
   useEffect(() => {
@@ -140,14 +209,13 @@ export default function AddDrink() {
     setCategory(event.target.value);
   };
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <br />
       <br />
       <form onSubmit={addDrink}>
         <Box
-          style={{ fontFamily: "sans-serif", textAlign: "center" }}
+          style={{ fontFamily: "sans-serif", textAlign: "center", color:'white' }}
           sx={{
-            color: "white",
             py: 2,
             display: "flex",
             flexDirection: "column",
@@ -159,12 +227,19 @@ export default function AddDrink() {
           <FormControl
             fullWidth
             style={{ width: 400, margin: "10px", color: "white" }}
+            
           >
-            <InputLabel id="demo-simple-select-label">Category</InputLabel>
+            <CustomInputLabel
+              
+              id="demo-simple-select-label"
+            >
+              Category
+            </CustomInputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={category}
+              style={{color:"white"}}
               label="Category"
               onChange={handleChangeForm}
             >
@@ -184,19 +259,32 @@ export default function AddDrink() {
             </Select>
           </FormControl>
           <br />
-          <TextField
-            inputProps={{ style: { color: "white" } }}
+          <CustomTextField
             fullWidth
+            variant="outlined"
             label="Name"
             id="Name"
             style={{ width: 400, margin: "10px" }}
+            multiline
+            InputLabelProps={{
+              style: {
+                color: "white",
+              },
+            }}
           />
 
           <br />
-          <TextField
+          <CustomTextField
             fullWidth
+            variant="outlined"
+            multiline
             label="Glass Type"
             id="Glass Type"
+            InputLabelProps={{
+              style: {
+                color: "white",
+              },
+            }}
             style={{ width: 400, margin: "10px" }}
           />
           <FormControlLabel
@@ -229,7 +317,7 @@ export default function AddDrink() {
           </div>
           <Textarea
             placeholder="Type your instructions here..."
-            color="warning"
+            
             minRows={2}
             style={{ width: 400 }}
           />
@@ -244,30 +332,7 @@ export default function AddDrink() {
           Add Drink
         </Button>
       </form>
-    </>
+    </ThemeProvider>
   );
 }
-const useStyles = makeStyles((theme) => ({
-  formControlRoot: {
-    display: "flex",
-    alignItems: "center",
-    gap: "8px",
-    width: "300px",
-    flexWrap: "wrap",
-    flexDirection: "row",
-    border: "2px solid lightgray",
-    margin: "20px",
-    padding: 4,
-    borderRadius: "4px",
-    "&> div.containerr": {
-      gap: "6px",
-      display: "flex",
-      flexWrap: "wrap",
-    },
-    "&> div.containerr > span": {
-      backgroundColor: "gray",
-      padding: "1px 3px",
-      borderRadius: "4px",
-    },
-  },
-}));
+

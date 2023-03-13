@@ -258,13 +258,16 @@ function Navbar() {
               }}
             >
               {leftOptions.map((page) => (
-                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                <MenuItem
+                  key={page.name}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate(page.route);
+                  }}
+                >
                   <Typography
                     textAlign="center"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      navigate(page.route);
-                    }}
+                    
                   >
                     {page.name}
                   </Typography>
@@ -335,16 +338,15 @@ function Navbar() {
               onClose={handleCloseUserMenu}
             >
               {rightOptions.map((setting) => (
-                <MenuItem key={setting.name} onClick={handleCloseUserMenu}>
-                  <Typography
-                    textAlign="center"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      navigate(setting.route);
-                    }}
-                  >
-                    {setting.name}{" "}
-                  </Typography>
+                <MenuItem
+                  key={setting.name}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate(setting.route);
+                  }}
+                >
+                  <Typography textAlign="center">{setting.name} </Typography>
+                  <br />
                 </MenuItem>
               ))}
             </Menu>

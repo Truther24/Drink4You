@@ -13,11 +13,26 @@ import User from "./pages/User";
 import AddDrink from "./pages/AddDrink";
 import Logout from "./pages/Logout";
 
+import { green, brown } from "@mui/material/colors";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: brown[500],
+    },
+    secondary: {
+      main: green[500],
+    },
+  },
+});
 
 function App() {
   return (
     <>
-      <Navbar />
+      <ThemeProvider theme={theme}>
+        <Navbar />
+      </ThemeProvider>
       <div className="container">
         <Routes>
           <Route path="/" element={<Home />} />
