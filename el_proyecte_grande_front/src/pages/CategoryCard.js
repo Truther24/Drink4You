@@ -34,12 +34,28 @@ export default function CategoryCard(props) {
       key={props.categoryIndex}
       to={`/categories/${props.categoryName.replace("/", "+")}`}
     >
-      <div className="categoryContainer">
+      <div
+        className="categoryContainer"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${
+            imageUrls[props.categoryIndex]
+          })`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        
+  
         <div
           className="categoryImage"
-          style={{ backgroundImage: `url(${imageUrls[props.categoryIndex]})` }}
+          style={{
+            backgroundImage: `url(${imageUrls[props.categoryIndex]})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
         ></div>
-        <div key={props.categoryIndex}>
+        <div key={props.categoryIndex} className="categoryTextContainer">
           <h4 className="categoryText" key={props.categoryIndex + 1}>
             {props.categoryIndex + 1}. {props.categoryName}
           </h4>

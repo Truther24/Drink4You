@@ -20,23 +20,30 @@ import Carousel from "react-material-ui-carousel";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { createTheme, ThemeProvider, styled } from "@material-ui/core/styles";
+import { brown } from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    "& .MuiTextField-root": {
-      margin: theme.spacing(1),
-      width: "25ch",
-    }
+    "& .MuiTextField-root": {},
   },
-  
+
   modal: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
   },
+  brown: {
+    color: brown,
+    backgroundColor: "transparent",
+    width: "100%",
+    marginBottom: "200px",
+    padding: "40px",
+    borderRadius: "10px",
+    boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.5)",
+    backgroundColor:
+      "rgba(121,85,72,0.4)" /* sets the background color with 50% opacity */,
+  },
   paper: {
-    backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
@@ -67,8 +74,6 @@ const UserProfile = () => {
   const [newPassword, setNewPassword] = useState("newPassword");
   const [cocktails, setCocktails] = useState([]);
   const cookies = new Cookies();
-
-  
 
   useEffect(() => {
     const fetchGet = async () => {
@@ -165,165 +170,166 @@ const UserProfile = () => {
 
   return (
     <div className={classes.root} style={{ color: "white" }}>
-      <br />
-      <br />
-      <Typography variant="h4" gutterBottom>
-        User Profile
-      </Typography>
-      <br />
+      <div className={classes.brown}>
+        <br />
+        <Typography variant="h4" gutterBottom>
+          User Profile
+        </Typography>
+        <br />
 
-      <TextField
-        label="Name"
-        classes={{ root: classes.root }}
-        InputProps={{
-          style: { color: "white" },
-        }}
-        value={username}
-      />
-      <TextField
-        label="Email"
-        classes={{ root: classes.root }}
-        InputProps={{
-          style: { color: "white" },
-        }}
-        value={email}
-      />
-      <br />
-      <br />
+        <TextField
+          label="Name"
+          classes={{ root: classes.root }}
+          InputProps={{
+            style: { color: "white" },
+          }}
+          value={username}
+        />
+        <TextField
+          label="Email"
+          classes={{ root: classes.root }}
+          InputProps={{
+            style: { color: "white" },
+          }}
+          value={email}
+        />
+        <br />
+        <br />
 
-      <Typography variant="h5" gutterBottom>
-        Favorite Cocktails
-      </Typography>
-      <br />
-      <br />
+        <Typography variant="h5" gutterBottom>
+          Favorite Cocktails
+        </Typography>
+        <br />
+        <br />
 
-      <Carousel className={classes.carousel}>
-        {cocktails.map((cocktail) => (
-          <Link
-            to={`/categories/${
-              cocktail.strCategory
-            }/${cocktail?.strDrink?.replace("/", "+")}/${cocktail.idDrink}`}
-            style={{ cursor: "default" }}
-          >
-            <Card
-              key={cocktail.strDrink}
-              className={classes.card}
-              style={{
-                height: "300px",
-                position: "relative",
-              }}
+        <Carousel className={classes.carousel}>
+          {cocktails.map((cocktail) => (
+            <Link
+              to={`/categories/${
+                cocktail.strCategory
+              }/${cocktail?.strDrink?.replace("/", "+")}/${cocktail.idDrink}`}
+              style={{ cursor: "default" }}
             >
-              <CardHeader title={cocktail.name} />
-              <CardMedia
-                image={cocktail.strDrinkThumb}
+              <Card
+                key={cocktail.strDrink}
+                className={classes.card}
                 style={{
-                  position: "absolute",
-                  display: "block",
-                  backgroundRepeat: "no-repeat",
-                  width: "100%",
-                  height: "100%",
-                  backgroundSize: "contain",
+                  height: "300px",
+                  position: "relative",
+                }}
+              >
+                <CardHeader title={cocktail.name} />
+                <CardMedia
+                  image={cocktail.strDrinkThumb}
+                  style={{
+                    position: "absolute",
+                    display: "block",
+                    backgroundRepeat: "no-repeat",
+                    width: "100%",
+                    height: "100%",
+                    backgroundSize: "contain",
+                  }}
+                />
+              </Card>
+            </Link>
+          ))}
+        </Carousel>
+        <br />
+        <br />
+        <Button variant="contained" color="primary" onClick={handleOpen}>
+          Edit Profile
+        </Button>
+        <Modal
+          className={classes.modal}
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="edit-profile"
+          aria-describedby="edit-user-information"
+        >
+          <div className={classes.paper}>
+            <Typography variant="h4" gutterBottom>
+              Edit Profile
+            </Typography>
+            <form onSubmit={handleSubmit}>
+              <br />
+
+              <TextField
+                InputLabelProps={{ style: { color: "black" } }}
+                id="name"
+                label="Name"
+                value={username}
+                onChange={handleUsernameChange}
+              />
+              <br />
+              <br />
+              <TextField
+                InputLabelProps={{ style: { color: "black" } }}
+                id="email"
+                label="Email"
+                value={email}
+                onChange={handleEmailChange}
+              />
+              <br />
+              <br />
+
+              <TextField
+                InputLabelProps={{ style: { color: "black" } }}
+                id="oldPass"
+                label="Old Password"
+                type={showOldPassword ? "oldPassword" : "password"}
+                onChange={handleOldPasswordChange}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        onClick={() => setShowOldPassword(!showOldPassword)}
+                      >
+                        {showOldPassword ? (
+                          <VisibilityIcon />
+                        ) : (
+                          <VisibilityOffIcon />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
                 }}
               />
-            </Card>
-          </Link>
-        ))}
-      </Carousel>
-      <br />
-      <br />
-      <Button variant="contained" color="primary" onClick={handleOpen}>
-        Edit Profile
-      </Button>
-      <Modal
-        className={classes.modal}
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="edit-profile"
-        aria-describedby="edit-user-information"
-      >
-        <div className={classes.paper}>
-          <Typography variant="h4" gutterBottom>
-            Edit Profile
-          </Typography>
-          <form onSubmit={handleSubmit}>
-            <br />
+              <br />
+              <br />
 
-            <TextField
-              InputLabelProps={{ style: { color: "black" } }}
-              id="name"
-              label="Name"
-              value={username}
-              onChange={handleUsernameChange}
-            />
-            <br />
-            <br />
-            <TextField
-              InputLabelProps={{ style: { color: "black" } }}
-              id="email"
-              label="Email"
-              value={email}
-              onChange={handleEmailChange}
-            />
-            <br />
-            <br />
+              <TextField
+                InputLabelProps={{ style: { color: "black" } }}
+                id="newPass"
+                label="New Password"
+                type={showNewPassword ? "newPassword" : "password"}
+                onChange={handleNewPasswordChange}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        onClick={() => setShowNewPassword(!showNewPassword)}
+                      >
+                        {showNewPassword ? (
+                          <VisibilityIcon />
+                        ) : (
+                          <VisibilityOffIcon />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              <br />
+              <br />
+              <br />
 
-            <TextField
-              InputLabelProps={{ style: { color: "black" } }}
-              id="oldPass"
-              label="Old Password"
-              type={showOldPassword ? "oldPassword" : "password"}
-              onChange={handleOldPasswordChange}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton
-                      onClick={() => setShowOldPassword(!showOldPassword)}
-                    >
-                      {showOldPassword ? (
-                        <VisibilityIcon />
-                      ) : (
-                        <VisibilityOffIcon />
-                      )}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-            />
-            <br />
-            <br />
-
-            <TextField
-              InputLabelProps={{ style: { color: "black" } }}
-              id="newPass"
-              label="New Password"
-              type={showNewPassword ? "newPassword" : "password"}
-              onChange={handleNewPasswordChange}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton
-                      onClick={() => setShowNewPassword(!showNewPassword)}
-                    >
-                      {showNewPassword ? (
-                        <VisibilityIcon />
-                      ) : (
-                        <VisibilityOffIcon />
-                      )}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-            />
-            <br />
-            <br />
-            <br />
-
-            <Button type="submit" variant="contained" color="primary">
-              Submit
-            </Button>
-          </form>
-        </div>
-      </Modal>
+              <Button type="submit" variant="contained" color="primary">
+                Submit
+              </Button>
+            </form>
+          </div>
+        </Modal>
+      </div>
     </div>
   );
 };

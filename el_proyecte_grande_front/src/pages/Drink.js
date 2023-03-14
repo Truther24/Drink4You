@@ -141,11 +141,15 @@ export default function Drink() {
             <br />
             <br />
 
-            <Box className="drink-image-container">
+            <Box
+              className="drink-image-container"
+              style={{ maxWidth: "100%", height: "auto" }}
+            >
               <img
                 className="drink-image"
                 src={data?.drink?.strDrinkThumb}
                 alt={data?.drink?.strDrink}
+                style={{ maxWidth: "100%", height: "auto" }}
               />
             </Box>
             <br />
@@ -186,10 +190,7 @@ export default function Drink() {
                   />
                 </Box>
               </Box>
-              <Typography
-                variant="h3"
-                style={{ top: "100px" }}
-              >
+              <Typography variant="h3" style={{ top: "100px" }}>
                 Comments:{" "}
               </Typography>
               <br />
