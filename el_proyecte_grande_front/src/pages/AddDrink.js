@@ -5,6 +5,7 @@ import { green, purple } from "@mui/material/colors";
 import { createTheme, ThemeProvider, styled } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import InputLabel from "@material-ui/core/InputLabel";
+import { useNavigate } from "react-router-dom";
 import AlertWithProgressBar from "./AlertWithProgressBar.js"
 import { Alert, AlertTitle } from "@material-ui/lab";
 import LinearProgress from "@material-ui/core/LinearProgress";
@@ -87,26 +88,26 @@ const useStyles = makeStyles((theme) => ({
       borderRadius: "4px",
     },
   },
+  input: {
+    color: "white",
+  },
 }));
 
 export default function AddDrink() {
+
+  const navigate = useNavigate();
+
 
   const cookies = new Cookies();
 
   const classes = useStyles();
   const [values, setValues] = useState([]);
   const [currValue, setCurrValue] = useState("");
-  const [showAlert, setShowAlert] = useState(false);
-
-  // function addDrink(e) {
-  //       e.preventDefault();
-  //       console.log(e);
-  // }
+  const [showGoodAlert, setShowGoodAlert] = useState(false);
+  const [showBadAlert, setShowBadAlert] = useState(false);
 
   const addDrink = async (event) => {
     event.preventDefault();
-    // console.log(event.target[3]);
-    // console.log(values)
     var alcoholic;
     if (event.target[7]?.checked === true) {
       alcoholic = "Alcoholic";
@@ -174,11 +175,26 @@ export default function AddDrink() {
 
     const responseData2 = await response2.json();
     console.log(responseData2);
+    if (responseData2.status != undefined) {
+      setShowBadAlert(true);
+      setTimeout(() => {
+        setShowBadAlert(() => false);
+      }, 3000);
+    }
+    else {
+      
+      setShowGoodAlert(true);
+      setTimeout(() => {
+        setShowGoodAlert(()=>false)
+        navigate(
+          `/categories/${
+            responseData2?.strCategory
+          }/${responseData2?.strDrink?.replace("/", "+")}/${responseData2?.idDrink}`
+        );
+      },3000)
+    }
 
-    setShowAlert(true);
-    setTimeout(() => {
-      setShowAlert(()=>false)
-    },3000)
+
 
 
   };
@@ -218,137 +234,165 @@ export default function AddDrink() {
     setCategory(event.target.value);
   };
   return (
-    <ThemeProvider theme={theme}>
-      <br />
-      <br />
-      {showAlert && (
-        <AlertWithProgressBar
-          timeout={2000}
-          title="Succes"
-          severity="success"
-          children="The drink was added"
-        />
-      )}
-      <form onSubmit={addDrink}>
-        <Box
-          style={{
-            fontFamily: "sans-serif",
-            textAlign: "center",
-            color: "white",
-          }}
-          sx={{
-            py: 2,
-            display: "flex",
-            flexDirection: "column",
-            gap: 2,
-            alignItems: "center",
-            flexWrap: "wrap",
-          }}
-        >
-          <FormControl
-            fullWidth
-            style={{ width: 400, margin: "10px", color: "white" }}
+    <Box
+      sx={{
+        width: "75%",
+        margin: "0 auto",
+        p: 3,
+        borderRadius: "20px",
+        backgroundColor: "rgba(121, 85, 72, 0.5)",
+        textAlign: "center",
+        py: 2,
+        display: "flex",
+        flexDirection: "column",
+        gap: 2,
+        alignItems: "center",
+        flexWrap: "wrap",
+      }}
+    >
+      <ThemeProvider theme={theme}>
+        <br />
+        <br />
+        {showGoodAlert && (
+          <AlertWithProgressBar
+            title="Succes"
+            severity="success"
+            children="The drink was added"
+          />
+        )}
+        {showBadAlert && (
+          <AlertWithProgressBar
+            title="Error"
+            severity="error"
+            children="Something went wrong"
+          />
+        )}
+        <form onSubmit={addDrink}>
+          <Box
+            style={{
+              fontFamily: "sans-serif",
+              textAlign: "center",
+              color: "white",
+            }}
+            sx={{
+              py: 2,
+              display: "flex",
+              flexDirection: "column",
+              gap: 2,
+              alignItems: "center",
+              flexWrap: "wrap",
+            }}
           >
-            <CustomInputLabel id="demo-simple-select-label">
-              Category
-            </CustomInputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={category}
-              style={{ color: "white" }}
-              label="Category"
-              onChange={handleChangeForm}
+            <FormControl
+              fullWidth
+              required
+              style={{ width: 400, margin: "10px", color: "white" }}
             >
-              <MenuItem value={"Ordinary Drink"}>Ordinary Drink</MenuItem>
-              <MenuItem value={"Cocktail"}>Cocktail</MenuItem>
-              <MenuItem value={"Shake"}>Shake</MenuItem>
-              <MenuItem value={"Other / Unknown"}>Other / Unknown</MenuItem>
-              <MenuItem value={"Cocoa"}>Cocoa</MenuItem>
-              <MenuItem value={"Shot"}>Shot</MenuItem>
-              <MenuItem value={"Coffee / Tea"}>Coffee / Tea</MenuItem>
-              <MenuItem value={"Homemade Liqueur"}>Homemade Liqueur</MenuItem>
-              <MenuItem value={"Punch / Party Drink"}>
-                Punch / Party Drink
-              </MenuItem>
-              <MenuItem value={"Beer"}>Beer</MenuItem>
-              <MenuItem value={"Soft Drink"}>Soft Drink</MenuItem>
-            </Select>
-          </FormControl>
-          <br />
-          <CustomTextField
-            fullWidth
-            variant="outlined"
-            label="Name"
-            id="Name"
-            style={{ width: 400, margin: "10px" }}
-            multiline
-            InputLabelProps={{
-              style: {
-                color: "white",
-              },
-            }}
-          />
-
-          <br />
-          <CustomTextField
-            fullWidth
-            variant="outlined"
-            multiline
-            label="Glass Type"
-            id="Glass Type"
-            InputLabelProps={{
-              style: {
-                color: "white",
-              },
-            }}
-            style={{ width: 400, margin: "10px" }}
-          />
-          <FormControlLabel
-            style={{ margin: "10px" }}
-            control={<Checkbox defaultChecked />}
-            label="Alcoholic"
-          />
-          <br />
-
-          <div className="App" style={{ fontFamily: "sans-serif" }}>
-            <FormControl classes={{ root: classes.formControlRoot }}>
-              <Typography variant="h6" gutterBottom>
-                Ingredients:
-              </Typography>
-              <div className={"containerr"}>
-                {values.map((item, index) => (
-                  <Chip
-                    size="small"
-                    onDelete={() => handleDelete(item, index)}
-                    label={item}
-                  />
-                ))}
-              </div>
-              <Input
-                value={currValue}
-                onChange={handleChange}
-                onKeyDown={handleKeyUp}
-              />
+              <CustomInputLabel id="demo-simple-select-label">
+                Category
+              </CustomInputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={category}
+                style={{ color: "white" }}
+                label="Category"
+                onChange={handleChangeForm}
+              >
+                <MenuItem value={"Ordinary Drink"}>Ordinary Drink</MenuItem>
+                <MenuItem value={"Cocktail"}>Cocktail</MenuItem>
+                <MenuItem value={"Shake"}>Shake</MenuItem>
+                <MenuItem value={"Other / Unknown"}>Other / Unknown</MenuItem>
+                <MenuItem value={"Cocoa"}>Cocoa</MenuItem>
+                <MenuItem value={"Shot"}>Shot</MenuItem>
+                <MenuItem value={"Coffee / Tea"}>Coffee / Tea</MenuItem>
+                <MenuItem value={"Homemade Liqueur"}>Homemade Liqueur</MenuItem>
+                <MenuItem value={"Punch / Party Drink"}>
+                  Punch / Party Drink
+                </MenuItem>
+                <MenuItem value={"Beer"}>Beer</MenuItem>
+                <MenuItem value={"Soft Drink"}>Soft Drink</MenuItem>
+              </Select>
             </FormControl>
-          </div>
-          <Textarea
-            placeholder="Type your instructions here..."
-            minRows={2}
-            style={{ width: 400 }}
-          />
-        </Box>
-        <Button variant="contained" component="label">
-          Upload Drink Photo
-          <input hidden accept="image/*" multiple type="file" />
-        </Button>
-        <br />
-        <br />
-        <Button variant="contained" type="submit">
-          Add Drink
-        </Button>
-      </form>
-    </ThemeProvider>
+            <br />
+            <CustomTextField
+              required
+              fullWidth
+              variant="outlined"
+              label="Name"
+              id="Name"
+              style={{ width: 400, margin: "10px" }}
+              multiline
+              InputLabelProps={{
+                style: {
+                  color: "white",
+                },
+              }}
+            />
+
+            <br />
+            <CustomTextField
+              required
+              fullWidth
+              variant="outlined"
+              multiline
+              label="Glass Type"
+              id="Glass Type"
+              InputLabelProps={{
+                style: {
+                  color: "white",
+                },
+              }}
+              style={{ width: 400, margin: "10px" }}
+            />
+            <FormControlLabel
+              style={{ margin: "10px" }}
+              control={<Checkbox defaultChecked />}
+              label="Alcoholic"
+            />
+            <br />
+
+            <div className="App" style={{ fontFamily: "sans-serif" }}>
+              <FormControl classes={{ root: classes.formControlRoot }}>
+                <Typography variant="h6" gutterBottom>
+                  Ingredients:
+                </Typography>
+                <div className={"containerr"}>
+                  {values.map((item, index) => (
+                    <Chip
+                      size="small"
+                      onDelete={() => handleDelete(item, index)}
+                      label={item}
+                    />
+                  ))}
+                </div>
+                <Input
+                  classes={{ input: classes.input }}
+                  value={currValue}
+                  onChange={handleChange}
+                  onKeyDown={handleKeyUp}
+                />
+              </FormControl>
+            </div>
+            <Textarea
+              required
+              placeholder="Type your instructions here..."
+              minRows={2}
+              style={{ width: 400 }}
+            />
+          </Box>
+          <Button variant="contained" component="label" required>
+            Upload Drink Photo
+            <input hidden accept="image/*"  type="file" />
+          </Button>
+          <br />
+          <br />
+          <Button variant="contained" type="submit">
+            Add Drink
+          </Button>
+        </form>
+      </ThemeProvider>
+    </Box>
   );
 }
 

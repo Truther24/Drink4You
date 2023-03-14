@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import jwtDecode from "jwt-decode";
 import { Cookies } from "react-cookie";
+import "../style/User.css";
 
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -11,27 +12,23 @@ import {
   Modal,
   Card,
   CardHeader,
-  CardContent,
   CardMedia,
-  List,
-  ListItem,
-  ListItemText,
   InputAdornment,
   IconButton,
 } from "@material-ui/core";
 import Carousel from "react-material-ui-carousel";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { textAlign } from "@mui/system";
+import { createTheme, ThemeProvider, styled } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     "& .MuiTextField-root": {
       margin: theme.spacing(1),
       width: "25ch",
-      color: "white",
-    },
+    }
   },
+  
   modal: {
     display: "flex",
     alignItems: "center",
@@ -59,8 +56,8 @@ const useStyles = makeStyles((theme) => ({
 
 const UserProfile = () => {
   const classes = useStyles();
-  const [showNewPassword, setShowNewPassword] = useState("newPassword");
-  const [showOldPassword, setShowOldPassword] = useState("oldPassword");
+  const [showNewPassword, setShowNewPassword] = useState("");
+  const [showOldPassword, setShowOldPassword] = useState("");
   const [open, setOpen] = useState(false);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -70,6 +67,8 @@ const UserProfile = () => {
   const [newPassword, setNewPassword] = useState("newPassword");
   const [cocktails, setCocktails] = useState([]);
   const cookies = new Cookies();
+
+  
 
   useEffect(() => {
     const fetchGet = async () => {
@@ -96,7 +95,6 @@ const UserProfile = () => {
   const getUserDataFromToken = () => {
     const token = cookies.get("userToken");
     const decoded = jwtDecode(token);
-    // console.log(decoded["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"]);
     setEmail(decoded.Email);
     setUsername(decoded.Username);
     setUserId(
@@ -139,7 +137,6 @@ const UserProfile = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // console.log(event)
 
     const requestOption = {
       method: "PUT",
@@ -160,10 +157,7 @@ const UserProfile = () => {
       requestOption
     );
     const data = await response.json();
-    // cookies.set("userName", );
     console.log(data);
-    // setEmail(data.identityUsers[0].email)
-    // setUsername(data.identityUsers[0].userName);
     Logout();
 
     handleClose();
@@ -178,8 +172,22 @@ const UserProfile = () => {
       </Typography>
       <br />
 
-      <TextField label="Name" className={classes.username} value={username} />
-      <TextField label="Email" className={classes.email} value={email} />
+      <TextField
+        label="Name"
+        classes={{ root: classes.root }}
+        InputProps={{
+          style: { color: "white" },
+        }}
+        value={username}
+      />
+      <TextField
+        label="Email"
+        classes={{ root: classes.root }}
+        InputProps={{
+          style: { color: "white" },
+        }}
+        value={email}
+      />
       <br />
       <br />
 
@@ -241,6 +249,8 @@ const UserProfile = () => {
             <br />
 
             <TextField
+              InputLabelProps={{ style: { color: "black" } }}
+              id="name"
               label="Name"
               value={username}
               onChange={handleUsernameChange}
@@ -248,6 +258,8 @@ const UserProfile = () => {
             <br />
             <br />
             <TextField
+              InputLabelProps={{ style: { color: "black" } }}
+              id="email"
               label="Email"
               value={email}
               onChange={handleEmailChange}
@@ -256,6 +268,8 @@ const UserProfile = () => {
             <br />
 
             <TextField
+              InputLabelProps={{ style: { color: "black" } }}
+              id="oldPass"
               label="Old Password"
               type={showOldPassword ? "oldPassword" : "password"}
               onChange={handleOldPasswordChange}
@@ -279,6 +293,8 @@ const UserProfile = () => {
             <br />
 
             <TextField
+              InputLabelProps={{ style: { color: "black" } }}
+              id="newPass"
               label="New Password"
               type={showNewPassword ? "newPassword" : "password"}
               onChange={handleNewPasswordChange}

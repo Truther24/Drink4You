@@ -1,5 +1,64 @@
-.form{
-    align-items: center;
+
+#registerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  animation: fadeIn 1s ease;
+  transition: opacity 1s ease-in-out;
+  opacity: 0;
+  background-color: rgba(139, 80, 19, 0.5);
+}
+
+#registerContainer.show {
+  opacity: 1;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form {
+  background-color: transparent;
+  width: 100%;
+  margin-bottom: 200px;
+  max-width: 200px;
+  padding: 40px;
+  border-radius: 10px;
+   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  animation: fade-in 1s ease-in-out;
+  animation-fill-mode: forwards;
+  opacity: 0;
+  background-color: rgba(121,85,72,0.6); /* sets the background color with 50% opacity */
+
+}
+
+.brown-div {
+  position: fixed; /* positions the div relative to the viewport */
+  top: 0;
+  left: 0;
+  height: 100%;
+  opacity: 0;
+  width: 100%;
+  background-color: rgba(121,85,72,0.4); /* sets the background color with 50% opacity */
+  z-index: -1; /* places the div behind the form */
 }
 
 .inline{
@@ -7,10 +66,15 @@
 }
 
 .btn{
-  color: white;
+  color: white !important;
   font-size: 20px;
   padding: 10px 60px;
   border-radius: 5px;
   margin: 10px 0px;
   cursor: pointer;
+}
+
+#registerButton{
+  color: white;
+  
 }

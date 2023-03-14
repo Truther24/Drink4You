@@ -1,55 +1,19 @@
-#user-page {
-  color: white;
-  position: relative;
-  top: 70px;
-  text-align: justify;
+#name{
+color: black !important
 }
 
-#left-text {
-    width: 50%;
+#email{
+color: black !important
+
 }
 
-#right-text {
-    width: 50%;
+#oldPass{
+color: black !important
+
 }
 
-.card {
-  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.2);
-  max-width: 70%;
-  margin: auto;
-  text-align: center;
-  letter-spacing: 1px;
-  line-height: 180%;
-  display: flex;
-  
-}
+#newPass{
+color: black !important
 
-.title {
-  color: grey;
-  font-size: 18px;
-}
-
-.user-button {
-  border: none;
-  outline: 0;
-  display: inline-block;
-  padding: 8px;
-  color: white;
-  background-color: #000;
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
-  font-size: 18px;
-}
-
-a {
-  text-decoration: none;
-  font-size: 22px;
-  color: black;
-}
-
-button:hover,
-a:hover {
-  opacity: 0.7;
 }
 
