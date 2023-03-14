@@ -5,7 +5,6 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 export default function AlertWithProgressBar(props) {
     return (
       <>
-        {console.log("went in ")}
         <Alert
           severity={props.severity}
           style={{

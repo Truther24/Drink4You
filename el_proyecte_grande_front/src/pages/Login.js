@@ -2,7 +2,9 @@ import "../style/Register.css"
 import cocktail from "../images/ash-edmonds-fsI-_MRsic0-unsplash.jpg";
 import { Cookies } from 'react-cookie';
 import { useNavigate } from "react-router-dom"
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
+import AlertWithProgressBar from "./AlertWithProgressBar.js";
+
 
 
 
@@ -10,6 +12,8 @@ function Login() {
 
 
 
+const [showGoodAlert, setShowGoodAlert] = useState(false);
+const [showBadAlert, setShowBadAlert] = useState(false);
   const navigate = useNavigate();
 
 
@@ -39,16 +43,26 @@ function Login() {
     const responseData = await response.json(); 
     console.log(responseData)
     
-    if (responseData.status===400) {
-      alert("not good")
+    if (responseData.isSuccess === false) {
+      setShowBadAlert(true);
+      setTimeout(() => {
+        debugger
+        setShowBadAlert(() => false);
+
+      }, 3000);
     }
     else {
-      cookies.set("userToken", responseData.message)
-      console.log(cookies.get('userToken'))
-      cookies.set("userName", responseData.identityUsers[0].userName)
-      console.log(cookies.get('userName'))
-      navigate('/')
-      window.location.reload(true);
+
+      setShowGoodAlert(true);
+      setTimeout(() => {
+        setShowGoodAlert(() => false);
+        cookies.set("userToken", responseData.message)
+        console.log(cookies.get('userToken'))
+        cookies.set("userName", responseData.identityUsers[0].userName)
+        console.log(cookies.get('userName'))
+        navigate('/')
+        window.location.reload(true);
+      }, 3000);
 
       
     }
@@ -63,7 +77,11 @@ function Login() {
 
   return (
     <>
-      <div id="cocktailImage" style={{ backgroundImage: `url(${cocktail})`,width: "100%",
+      <div
+        id="cocktailImage"
+        style={{
+          backgroundImage: `url(${cocktail})`,
+          width: "100%",
           padding: "0px",
           height: "100%",
           display: "block",
@@ -71,7 +89,23 @@ function Login() {
           backgroundSize: "cover",
           backgroundPosition: "center",
           color: "white",
-          fontSize: 30, }}>
+          fontSize: 30,
+        }}
+      >
+        {showGoodAlert && (
+          <AlertWithProgressBar
+            title="Succes"
+            severity="success"
+            children="You sucessfully Logged in!"
+          />
+        )}
+        {showBadAlert && (
+          <AlertWithProgressBar
+            title="Error"
+            severity="error"
+            children="Something went wrong"
+          />
+        )}
         <div id="registerContainer">
           <div className="brown-div"></div>
           <div className="form" style={{ color: "white" }}>
