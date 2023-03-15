@@ -117,6 +117,7 @@ namespace El_Proyecte_Grande.Models.Data
                 IdDrink = comment.IdDrink,
                 Message = comment.Message,
                 AuthorName = userName,
+                DateTime = DateTime.Now
 
             };
 

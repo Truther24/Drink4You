@@ -96,153 +96,164 @@ function Navbar() {
   };
 
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            Drink4You
-          </Typography>
-
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: "block", md: "none" },
-              }}
-            >
-              {leftOptions.map((page) => (
-                <MenuItem
-                  key={page.name}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigate(page.route);
-                  }}
-                >
+      <AppBar position="static" style={{ zIndex: "1" }}>
+          <Container maxWidth="xl" style={{ zIndex: "1" }}>
+              <Toolbar disableGutters style={{ zIndex: "1" }}>
                   <Typography
-                    textAlign="center"
-                    
+                      variant="h6"
+                      noWrap
+                      component="a"
+                      href="/"
+                      sx={{
+                          mr: 2,
+                          display: { xs: "none", md: "flex" },
+                          fontFamily: "monospace",
+                          fontWeight: 700,
+                          letterSpacing: ".3rem",
+                          color: "inherit",
+                          textDecoration: "none",
+                      }}
                   >
-                    {page.name}
+                      Drink4You
                   </Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            onClick={(e) => {
-              e.preventDefault();
-              navigate("/");
-            }}
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            Drink4You
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {leftOptions.map((page) => (
-              <Button
-                key={page.name}
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate(page.route);
-                }}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page.name}
-              </Button>
-            ))}
-          </Box>
 
-          <Typography>{loggedInAs}&nbsp;</Typography>
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt={`${username}`} src="/static/images/avatar/3.jpg" />
-              </IconButton>
-            </Tooltip>
+                  <Box
+                      sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
+                  >
+                      <IconButton
+                          size="large"
+                          aria-label="account of current user"
+                          aria-controls="menu-appbar"
+                          aria-haspopup="true"
+                          onClick={handleOpenNavMenu}
+                          color="inherit"
+                      >
+                          <MenuIcon />
+                      </IconButton>
+                      <Menu
+                          id="menu-appbar"
+                          anchorEl={anchorElNav}
+                          anchorOrigin={{
+                              vertical: "bottom",
+                              horizontal: "left",
+                          }}
+                          keepMounted
+                          transformOrigin={{
+                              vertical: "top",
+                              horizontal: "left",
+                          }}
+                          open={Boolean(anchorElNav)}
+                          onClose={handleCloseNavMenu}
+                          sx={{
+                              display: { xs: "block", md: "none" },
+                          }}
+                      >
+                          {leftOptions.map((page) => (
+                              <MenuItem
+                                  key={page.name}
+                                  onClick={(e) => {
+                                      e.preventDefault();
+                                      navigate(page.route);
+                                  }}
+                              >
+                                  <Typography textAlign="center">
+                                      {page.name}
+                                  </Typography>
+                              </MenuItem>
+                          ))}
+                      </Menu>
+                  </Box>
+                  <AdbIcon
+                      sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
+                  />
+                  <Typography
+                      variant="h5"
+                      noWrap
+                      component="a"
+                      onClick={(e) => {
+                          e.preventDefault();
+                          navigate("/");
+                      }}
+                      href=""
+                      sx={{
+                          mr: 2,
+                          display: { xs: "flex", md: "none" },
+                          flexGrow: 1,
+                          fontFamily: "monospace",
+                          fontWeight: 700,
+                          letterSpacing: ".3rem",
+                          color: "inherit",
+                          textDecoration: "none",
+                      }}
+                  >
+                      Drink4You
+                  </Typography>
+                  <Box
+                      sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
+                  >
+                      {leftOptions.map((page) => (
+                          <Button
+                              key={page.name}
+                              onClick={(e) => {
+                                  e.preventDefault();
+                                  navigate(page.route);
+                              }}
+                              sx={{ my: 2, color: "white", display: "block" }}
+                          >
+                              {page.name}
+                          </Button>
+                      ))}
+                  </Box>
 
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {rightOptions.map((setting) => (
-                <MenuItem
-                  key={setting.name}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigate(setting.route);
-                  }}
-                >
-                  <Typography textAlign="center">{setting.name} </Typography>
-                  <br />
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
+                  <Typography>{loggedInAs}&nbsp;</Typography>
+                  <Box sx={{ flexGrow: 0 }}>
+                      <Tooltip title="Open settings">
+                          <IconButton
+                              onClick={handleOpenUserMenu}
+                              sx={{ p: 0 }}
+                          >
+                              <Avatar
+                                  alt={`${username}`}
+                                  src="/static/images/avatar/3.jpg"
+                              />
+                          </IconButton>
+                      </Tooltip>
+
+                      <Menu
+                          sx={{ mt: "45px" }}
+                          id="menu-appbar"
+                          anchorEl={anchorElUser}
+                          anchorOrigin={{
+                              vertical: "top",
+                              horizontal: "right",
+                          }}
+                          keepMounted
+                          transformOrigin={{
+                              vertical: "top",
+                              horizontal: "right",
+                          }}
+                          open={Boolean(anchorElUser)}
+                          onClose={handleCloseUserMenu}
+                      >
+                          {rightOptions.map((setting) => (
+                              <MenuItem
+                                  key={setting.name}
+                                  onClick={(e) => {
+                                      e.preventDefault();
+                                      navigate(setting.route);
+                                  }}
+                              >
+                                  <Typography textAlign="center">
+                                      {setting.name}{" "}
+                                  </Typography>
+                                  <br />
+                              </MenuItem>
+                          ))}
+                      </Menu>
+                  </Box>
+              </Toolbar>
+          </Container>
+      </AppBar>
   );
 }
 export default Navbar;

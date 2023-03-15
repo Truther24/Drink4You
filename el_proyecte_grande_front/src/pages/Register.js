@@ -16,8 +16,31 @@ function Register() {
   }
 
   const addUserToDatabase = async (event) => {
-    // code to add user to database
-  };
+    const requestOption = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: `${event.target.email.value}`,
+        username: `${event.target.username.value}`,
+        password: `${event.target.password.value}`
+      })
+    }
+
+
+    const response = await fetch(`https://localhost:7090/add-user`, requestOption)
+    const responseData = await response.json();
+    console.log(responseData);
+    if (responseData.status === 400) {
+      alert("not good")
+    }
+    else {
+      navigate("/login")
+    }
+
+  }
+  
 
   useEffect(() => {
     const container = document.querySelector("#registerContainer");

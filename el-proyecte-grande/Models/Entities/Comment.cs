@@ -8,6 +8,8 @@
 
         public string Message { get; set; }
 
+        public DateTime DateTime { get; set; }
+
 
         public string AuthorName { get; set; }
 

@@ -15,6 +15,7 @@ import Logout from "./pages/Logout";
 
 import { green, brown } from "@mui/material/colors";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Footer from "./pages/Footer";
 
 const theme = createTheme({
   palette: {
@@ -29,28 +30,29 @@ const theme = createTheme({
 
 function App() {
   return (
-    <>
-      <ThemeProvider theme={theme}>
-        <Navbar />
-      </ThemeProvider>
-      <div className="container">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/categories" element={<Categories />} />
-          <Route path="/categories/:category" element={<Category />} />
-          <Route
-            path="/categories/:category/:drinkName/:drinkId"
-            element={<Drink />}
-          />
-          <Route path="/about" element={<About />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/user" element={<User />} />
-          <Route path="/addDrink" element={<AddDrink />}></Route>
-          <Route path="/logout" element={<Logout />}></Route>
-        </Routes>
+      <>
+          <ThemeProvider theme={theme}>
+              <Navbar />
+          </ThemeProvider>
+          <div className="container">
+              <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/categories" element={<Categories />} />
+                  <Route path="/categories/:category" element={<Category />} />
+                  <Route
+                      path="/categories/:category/:drinkName/:drinkId"
+                      element={<Drink />}
+                  />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/user" element={<User />} />
+                  <Route path="/addDrink" element={<AddDrink />}></Route>
+                  <Route path="/logout" element={<Logout />}></Route>
+              </Routes>
       </div>
-    </>
+      <Footer/>
+      </>
   );
 }
 

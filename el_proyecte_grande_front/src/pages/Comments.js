@@ -129,7 +129,9 @@ export default function Comments(props) {
                                         lineHeight: "28px",
                                     }}
                                 >
-                                    posted 1 minute ago
+                                    {comment.dateTime.slice(0, 10)} &nbsp;
+                                    &nbsp;
+                                    {comment.dateTime.slice(11, 19)}
                                 </p>
                             </Grid>
                         </Grid>
