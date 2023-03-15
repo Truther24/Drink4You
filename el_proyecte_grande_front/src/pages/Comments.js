@@ -1,10 +1,8 @@
 import React from "react";
 import "../style/Modal.css";
 import { useEffect, useState } from "react";
-import Typography from "@material-ui/core/Typography";
 import { Cookies } from "react-cookie";
 import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
-import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 import { Grid, Divider, Paper } from "@material-ui/core";
 
 export default function Comments(props) {

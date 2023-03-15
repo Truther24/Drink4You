@@ -1,79 +1,68 @@
-import "../style/Register.css"
+import "../style/Register.css";
 import cocktail from "../images/ash-edmonds-fsI-_MRsic0-unsplash.jpg";
-import { Cookies } from 'react-cookie';
-import { useNavigate } from "react-router-dom"
-import React, { useEffect,useState } from "react";
+import { Cookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import AlertWithProgressBar from "./AlertWithProgressBar.js";
 
-
-
-
 function Login() {
-
-
-
-const [showGoodAlert, setShowGoodAlert] = useState(false);
-const [showBadAlert, setShowBadAlert] = useState(false);
+  const [showGoodAlert, setShowGoodAlert] = useState(false);
+  const [showBadAlert, setShowBadAlert] = useState(false);
   const navigate = useNavigate();
-
 
   const cookies = new Cookies();
 
-  function checkData(event) {
-    event.preventDefault()
-    checkForUser(event)
+  function waitForGoodAlert() {
+    
   }
 
-  const checkForUser = async (data)=>{
+  function checkData(event) {
+    event.preventDefault();
+    checkForUser(event);
+  }
+
+  const checkForUser = async (data) => {
     const requestOption = {
-        method: "POST",
-        credentials: "same-origin",
-        headers: {
-            Authorization: "Bearer " + cookies.get("userToken"),
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            username: `${data.target.username.value}`,
-            password: `${data.target.password.value}`,
-            StrIngredients: []
-        }),
+      method: "POST",
+      credentials: "same-origin",
+      headers: {
+        Authorization: "Bearer " + cookies.get("userToken"),
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: `${data.target.username.value}`,
+        password: `${data.target.password.value}`,
+        StrIngredients: [],
+      }),
     };
 
-    const response = await fetch(`https://localhost:7090/login`, requestOption)
-    const responseData = await response.json(); 
-    console.log(responseData)
-    
+    const response = await fetch(`https://localhost:7090/login`, requestOption);
+    const responseData = await response.json();
+    console.log(responseData);
+    debugger
+
     if (responseData.isSuccess === false) {
-      setShowBadAlert(true);
-      setTimeout(() => {
-        debugger
-        setShowBadAlert(() => false);
-
-      }, 3000);
-    }
-    else {
-
+        setShowBadAlert(true);
+        
+    } else {
       setShowGoodAlert(true);
       setTimeout(() => {
-        setShowGoodAlert(() => false);
-        cookies.set("userToken", responseData.message)
-        console.log(cookies.get('userToken'))
-        cookies.set("userName", responseData.identityUsers[0].userName)
-        console.log(cookies.get('userName'))
-        navigate('/')
+
+        
+        cookies.set("userToken", responseData.message);
+        console.log(cookies.get("userToken"));
+        cookies.set("userName", responseData.identityUsers[0].userName);
+        console.log(cookies.get("userName"));
+        navigate("/");
         window.location.reload(true);
-      }, 3000);
-
-      
+      }, 4000);
     }
-
-  }
+  };
 
   useEffect(() => {
     const container = document.querySelector("#registerContainer");
     container.classList.add("show");
   }, []);
-
 
   return (
     <>
@@ -97,6 +86,8 @@ const [showBadAlert, setShowBadAlert] = useState(false);
             title="Succes"
             severity="success"
             children="You sucessfully Logged in!"
+            time="1000"
+            onClose={setShowGoodAlert}
           />
         )}
         {showBadAlert && (
@@ -104,6 +95,8 @@ const [showBadAlert, setShowBadAlert] = useState(false);
             title="Error"
             severity="error"
             children="Something went wrong"
+            time="1000"
+            onClose={setShowBadAlert}
           />
         )}
         <div id="registerContainer">
@@ -150,4 +143,4 @@ const [showBadAlert, setShowBadAlert] = useState(false);
   );
 }
 
-export default Login
+export default Login;

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ElProyecteGrande.Migrations
 {
     /// <inheritdoc />
-    public partial class alexgettingmishachanges : Migration
+    public partial class alexgettingmishacommentstime : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -77,6 +77,7 @@ namespace ElProyecteGrande.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdDrink = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     AuthorName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>

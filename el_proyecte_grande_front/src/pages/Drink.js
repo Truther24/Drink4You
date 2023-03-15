@@ -107,7 +107,7 @@ export default function Drink() {
           className="drink-page-container-image"
           style={{
               position: "relative",
-              zIndex: "0"
+              zIndex: "-2"
           }}
       >
       <Box

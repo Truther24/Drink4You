@@ -1,11 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import "../style/Register.css";
 import cocktail from "../images/ash-edmonds-fsI-_MRsic0-unsplash.jpg";
+import AlertWithProgressBar from "./AlertWithProgressBar.js";
+
 
 import { useNavigate } from "react-router-dom";
 
 function Register() {
   const navigate = useNavigate();
+
+  const [showGoodAlert, setShowGoodAlert] = useState(false);
+  const [showBadAlert, setShowBadAlert] = useState(false);
 
   function getData(event) {
     event.preventDefault();
@@ -33,10 +38,13 @@ function Register() {
     const responseData = await response.json();
     console.log(responseData);
     if (responseData.status === 400) {
-      alert("not good")
+       setShowBadAlert(true);
     }
     else {
-      navigate("/login")
+      setShowGoodAlert(true);
+      setTimeout(() => {
+        navigate("/login");
+      }, 4000);
     }
 
   }
@@ -63,6 +71,24 @@ function Register() {
         fontSize: 30,
       }}
     >
+      {showGoodAlert && (
+        <AlertWithProgressBar
+          title="Succes"
+          severity="success"
+          children="You sucessfully Registered!"
+          time="1000"
+          onClose={setShowGoodAlert}
+        />
+      )}
+      {showBadAlert && (
+        <AlertWithProgressBar
+          title="Error"
+          severity="error"
+          children="Something went wrong"
+          time="1000"
+          onClose={setShowBadAlert}
+        />
+      )}
       <div id="registerContainer">
         <div className="brown-div"></div>
         <div className="form" style={{ color: "white" }}>

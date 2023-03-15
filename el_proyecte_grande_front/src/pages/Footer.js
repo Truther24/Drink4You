@@ -5,6 +5,7 @@ const year = new Date().getFullYear();
 return (
     <footer
         style={{
+            zIndex:"99",
             position: "fixed",
             backgroundColor: " #795548",
             opacity:"0.6",

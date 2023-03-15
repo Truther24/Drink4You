@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElProyecteGrande.Migrations
 {
     [DbContext(typeof(DrinkContext))]
-    [Migration("20230309082700_alex getting misha changes")]
-    partial class alexgettingmishachanges
+    [Migration("20230315094637_alex getting misha comments time")]
+    partial class alexgettingmishacommentstime
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -77,6 +77,9 @@ namespace ElProyecteGrande.Migrations
                     b.Property<string>("AuthorName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("IdDrink")
                         .IsRequired()

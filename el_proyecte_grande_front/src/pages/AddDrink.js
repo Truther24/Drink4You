@@ -177,21 +177,17 @@ export default function AddDrink() {
     console.log(responseData2);
     if (responseData2.status != undefined) {
       setShowBadAlert(true);
-      setTimeout(() => {
-        setShowBadAlert(() => false);
-      }, 3000);
+      
     }
     else {
-      
       setShowGoodAlert(true);
       setTimeout(() => {
-        setShowGoodAlert(()=>false)
         navigate(
           `/categories/${
             responseData2?.strCategory
           }/${responseData2?.strDrink?.replace("/", "+")}/${responseData2?.idDrink}`
         );
-      },3000)
+      },4000)
     }
 
 
@@ -258,6 +254,8 @@ export default function AddDrink() {
             title="Succes"
             severity="success"
             children="The drink was added"
+            time="1000"
+            onClose={setShowGoodAlert}
           />
         )}
         {showBadAlert && (
@@ -265,6 +263,8 @@ export default function AddDrink() {
             title="Error"
             severity="error"
             children="Something went wrong"
+            time="1000"
+            onClose={setShowBadAlert}
           />
         )}
         <form onSubmit={addDrink}>
@@ -383,7 +383,7 @@ export default function AddDrink() {
           </Box>
           <Button variant="contained" component="label" required>
             Upload Drink Photo
-            <input hidden accept="image/*"  type="file" />
+            <input hidden accept="image/*" type="file" />
           </Button>
           <br />
           <br />
