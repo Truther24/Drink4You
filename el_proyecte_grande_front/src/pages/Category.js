@@ -15,6 +15,7 @@ export default function Category() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
+    window.scrollTo(0,0);
     setisLoading(true);
 
     const fetcher = async () => {

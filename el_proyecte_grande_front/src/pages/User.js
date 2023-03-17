@@ -31,21 +31,21 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    color: "white",
+    
   },
   brown: {
-    color: brown,
-    backgroundColor: "transparent",
+    color: "white",
     width: "100%",
     marginBottom: "200px",
-    padding: "40px",
     borderRadius: "10px",
     boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.5)",
-    backgroundColor:
-      "rgba(121,85,72,0.4)" /* sets the background color with 50% opacity */,
+    backgroundColor: "rgba(121, 85, 72, 0.4)",
   },
   paper: {
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+    color: "white",
   },
   carousel: {
     width: "70%",
@@ -240,7 +240,11 @@ const UserProfile = () => {
           Edit Profile
         </Button>
         <Modal
+          style={{backgroundColor:"white"}}
           className={classes.modal}
+          InputProps={{
+            style: { color: "white" },
+          }}
           open={open}
           onClose={handleClose}
           aria-labelledby="edit-profile"
@@ -254,8 +258,11 @@ const UserProfile = () => {
               <br />
 
               <TextField
-                InputLabelProps={{ style: { color: "black" } }}
+                InputLabelProps={{ style: { color: "white" } }}
                 id="name"
+                InputProps={{
+                  style: { color: "white" },
+                }}
                 label="Name"
                 value={username}
                 onChange={handleUsernameChange}
@@ -263,9 +270,12 @@ const UserProfile = () => {
               <br />
               <br />
               <TextField
-                InputLabelProps={{ style: { color: "black" } }}
+                InputLabelProps={{ style: { color: "white" } }}
                 id="email"
                 label="Email"
+                InputProps={{
+                  style: { color: "white" },
+                }}
                 value={email}
                 onChange={handleEmailChange}
               />
@@ -273,7 +283,7 @@ const UserProfile = () => {
               <br />
 
               <TextField
-                InputLabelProps={{ style: { color: "black" } }}
+                InputLabelProps={{ style: { color: "white" } }}
                 id="oldPass"
                 label="Old Password"
                 type={showOldPassword ? "oldPassword" : "password"}
@@ -298,7 +308,7 @@ const UserProfile = () => {
               <br />
 
               <TextField
-                InputLabelProps={{ style: { color: "black" } }}
+                InputLabelProps={{ style: { color: "white" } }}
                 id="newPass"
                 label="New Password"
                 type={showNewPassword ? "newPassword" : "password"}
