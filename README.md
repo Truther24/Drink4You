@@ -1,5 +1,9 @@
 # Drink4You
+![CategotyExample](https://github.com/Mishanschi/Drink4You/blob/misha/Screenshot_1.png)
 Drink4You is an online platform that allows you to browse a variety of drink categories and drinks. You can also add drinks to your favorites and like them. The platform displays information about the drinks such as ingredients and images. Additionally, the website has a login feature that enables users to create accounts, log in, and log out. Admins can also add new drinks to the platform.
+
+ <img src=https://github.com/Mishanschi/Drink4You/blob/misha/Screenshot_2.png class="img-class">
+
 
 
 # Table of Contents
@@ -47,3 +51,13 @@ Create a new branch for your changes.
 Make your changes and commit them.
 Push your changes to your fork.
 Open a pull request
+
+
+<style>
+.img-class {
+    width: "50%"; /* adjust this value to your preference */
+    height: "50%";
+    float: left;
+    padding: "10px"; /* add padding to create space between images */
+}
+</style>
