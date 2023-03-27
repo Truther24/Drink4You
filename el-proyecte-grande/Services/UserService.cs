@@ -178,7 +178,7 @@ namespace El_Proyecte_Grande.Services
 
             if (!(resultAfterChangingPass.Succeeded))
             {
-                return new Response { IsSuccess = false, Message = "Old pass is not correct"};
+                return new Response { IsSuccess = false, Errors=resultAfterChangingPass.Errors};
             }
 
 
@@ -203,13 +203,13 @@ namespace El_Proyecte_Grande.Services
 
             if (identityUser == null)
             {
-                return new Response { IsSuccess = false, Message = "could not find an user with such a username" };
+                return new Response { IsSuccess = false, Message = "Could not find an user with that username." };
 
             }
 
             if (!await _userManager.CheckPasswordAsync(identityUser, user.Password))
             {
-                return new Response { IsSuccess = false, Message = "could not find an user with such a password" };
+                return new Response { IsSuccess = false, Message = "Could not find an user with that password." };
             }
 
             var usersRoleResult = await _roleService.GetAllRolesForUser(user.Username);

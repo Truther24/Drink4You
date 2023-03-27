@@ -8,6 +8,8 @@ import AlertWithProgressBar from "./AlertWithProgressBar.js";
 function Login() {
   const [showGoodAlert, setShowGoodAlert] = useState(false);
   const [showBadAlert, setShowBadAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+
   const navigate = useNavigate();
 
   const cookies = new Cookies();
@@ -39,12 +41,25 @@ function Login() {
     const response = await fetch(`https://localhost:7090/login`, requestOption);
     const responseData = await response.json();
     console.log(responseData);
-    debugger
+    
 
-    if (responseData.isSuccess === false) {
+    if (!responseData.isSuccess) {
+      let messageErrors = "";
+      if (!responseData.errors) {
+        messageErrors = responseData?.message; 
+        
+      }
+      else{
+          responseData?.errors?.forEach((error) => {
+              messageErrors += "\r" + error.description;
+          });
+      }
+      setAlertMessage(messageErrors);
+
         setShowBadAlert(true);
         
     } else {
+
       setShowGoodAlert(true);
       setTimeout(() => {
 
@@ -94,7 +109,7 @@ function Login() {
           <AlertWithProgressBar
             title="Error"
             severity="error"
-            children="Something went wrong"
+            children={alertMessage}
             time="1000"
             onClose={setShowBadAlert}
           />

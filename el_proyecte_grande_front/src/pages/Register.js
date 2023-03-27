@@ -138,7 +138,7 @@ function Register() {
               <b>Password</b>
             </label>
             <input
-              type="text"
+              type="password"
               placeholder="Password"
               name="password"
               id="pass"
