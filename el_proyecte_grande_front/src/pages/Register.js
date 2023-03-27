@@ -1,14 +1,14 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../style/Register.css";
 import cocktail from "../images/ash-edmonds-fsI-_MRsic0-unsplash.jpg";
 import AlertWithProgressBar from "./AlertWithProgressBar.js";
-
 
 import { useNavigate } from "react-router-dom";
 
 function Register() {
   const navigate = useNavigate();
 
+  const [alertMessage, setAlertMessage] = useState("");
   const [showGoodAlert, setShowGoodAlert] = useState(false);
   const [showBadAlert, setShowBadAlert] = useState(false);
 
@@ -24,31 +24,45 @@ function Register() {
     const requestOption = {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         email: `${event.target.email.value}`,
         username: `${event.target.username.value}`,
-        password: `${event.target.password.value}`
-      })
-    }
+        password: `${event.target.password.value}`,
+      }),
+    };
 
-
-    const response = await fetch(`https://localhost:7090/add-user`, requestOption)
+    const response = await fetch(
+      `https://localhost:7090/add-user`,
+      requestOption
+    );
     const responseData = await response.json();
     console.log(responseData);
-    if (responseData.status === 400) {
-       setShowBadAlert(true);
-    }
-    else {
+    if (!responseData.isSuccess) {
+
+      let messageErrors = "";
+      if (!responseData?.errors) {
+        messageErrors = responseData?.message 
+      }
+      else {
+        
+        responseData?.errors?.forEach((error) => {
+            messageErrors += "\r" + error.description;
+          
+        });
+      }
+      setAlertMessage(messageErrors);
+
+      setShowBadAlert(true);
+    } else {
+      setAlertMessage("You sucessfully Registered!");
       setShowGoodAlert(true);
       setTimeout(() => {
         navigate("/login");
       }, 4000);
     }
-
-  }
-  
+  };
 
   useEffect(() => {
     const container = document.querySelector("#registerContainer");
@@ -75,7 +89,7 @@ function Register() {
         <AlertWithProgressBar
           title="Succes"
           severity="success"
-          children="You sucessfully Registered!"
+          children={alertMessage}
           time="1000"
           onClose={setShowGoodAlert}
         />
@@ -84,7 +98,7 @@ function Register() {
         <AlertWithProgressBar
           title="Error"
           severity="error"
-          children="Something went wrong"
+          children={alertMessage}
           time="1000"
           onClose={setShowBadAlert}
         />

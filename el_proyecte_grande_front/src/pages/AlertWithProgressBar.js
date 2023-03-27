@@ -44,7 +44,10 @@ export default function AlertWithProgressBar(props) {
         }}
       >
         <AlertTitle>{props.title}</AlertTitle>
+
         {props.children}
+        <br />
+        <br />
         <LinearProgress
           className={classes.progress}
           variant="determinate"

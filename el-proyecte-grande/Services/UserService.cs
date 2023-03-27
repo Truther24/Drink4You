@@ -41,6 +41,14 @@ namespace El_Proyecte_Grande.Services
 
         public async Task<Response> AddUser(RegisterViewModel user)
         {
+            if(user.Username.Length  < 5 || user.Username.Length > 12)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = "The length of your username must be between 5-12 characters."
+                };
+            }
             IdentityUser identityUserSameEmail = await _userManager?.FindByEmailAsync(user.Email);
             IdentityUser identityUserSameUsername = await _userManager?.FindByNameAsync(user.Username);
 
@@ -49,7 +57,7 @@ namespace El_Proyecte_Grande.Services
                 return new Response
                 {
                     IsSuccess = false,
-                    Message = "there is already an user with the same email"
+                    Message = "There is already an user with the same email."
                 };
             }
 
@@ -58,7 +66,7 @@ namespace El_Proyecte_Grande.Services
                 return new Response
                 {
                     IsSuccess = false,
-                    Message = "there is already an user with the same username "
+                    Message = "There is already an user with the same username "
                 };
             }
 
@@ -70,6 +78,16 @@ namespace El_Proyecte_Grande.Services
             };
 
             IdentityResult result = await _userManager.CreateAsync(identityUser, user.Password);
+
+            if(!result.Succeeded)
+            {
+                return new Response
+                {
+                    IsSuccess = result.Succeeded,
+                    Errors = result.Errors,
+                    Message = "Something went wrong"
+                };
+            }
 
             var roleResult = await _roleService.AssignUserToRole(user.Username, "User");
 
@@ -89,13 +107,13 @@ namespace El_Proyecte_Grande.Services
                 return new Response
                 {
                     IsSuccess = true,
-                    Message = "successfuly added an user"
+                    Message = "Successfuly added an user"
                 };
             }
             return new Response
             {
                 IsSuccess = false,
-                Message = "could not add user",
+                Message = "Could not add user",
                 Errors = result.Errors
             };
 
