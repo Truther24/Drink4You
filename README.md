@@ -53,11 +53,4 @@ Push your changes to your fork.
 Open a pull request
 
 
-<style>
-.img-class {
-    width: "50%"; /* adjust this value to your preference */
-    height: "50%";
-    float: left;
-    padding: "10px"; /* add padding to create space between images */
-}
-</style>
+
