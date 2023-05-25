@@ -10,17 +10,11 @@ import {
   List,
   ListItem,
   ListItemText,
-  Checkbox,
-  ListItemIcon,
-  Grid,
   CircularProgress,
-  Divider,
-  Paper,
 } from "@material-ui/core";
 import Comments from "./Comments";
 
 export default function Drink() {
-  const location = useLocation();
   const { drinkId } = useParams();
   const cookies = new Cookies();
 
@@ -30,8 +24,6 @@ export default function Drink() {
   const [afterPost, setAfterPost] = useState(0);
 
   const addComment = async (event) => {
-      console.log(event)
-
     const requestOption = {
       method: "POST",
       credentials: "same-origin",
@@ -70,7 +62,6 @@ export default function Drink() {
         `https://localhost:7090/getAllCommentsBasedOnDrink/${drinkId}`,
         requestOption
       );
-      console.log("went in getAllCommentsBasedOnDrink");
       const responseData = await response.json();
       console.log(responseData);
       setComments(responseData);
@@ -94,8 +85,6 @@ export default function Drink() {
         requestOption
       );
       const responseData = await response.json();
-      console.log("went in fetch getDrinkById");
-      console.log(responseData);
       setData(responseData);
       setIsLoading(false);
     };

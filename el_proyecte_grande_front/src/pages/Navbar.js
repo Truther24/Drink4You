@@ -1,5 +1,5 @@
 import jwtDecode from "jwt-decode";
-import { Link, useMatch, useResolvedPath, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Cookies, useCookies } from "react-cookie";
 import * as React from "react";
@@ -110,7 +110,6 @@ function Navbar() {
                           fontFamily: "monospace",
                           fontWeight: 700,
                           letterSpacing: ".3rem",
-                          color: "inherit",
                           textDecoration: "none",
                       }}
                   >

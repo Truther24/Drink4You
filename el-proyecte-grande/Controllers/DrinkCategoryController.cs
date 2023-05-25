@@ -159,11 +159,5 @@ namespace El_Proyecte_Grande.Controllers
             return Ok(result);
         }
 
-
-
-
-
-
-
     }
 }

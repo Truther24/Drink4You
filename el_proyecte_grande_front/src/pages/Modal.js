@@ -47,7 +47,10 @@ export default function SimpleModal(props) {
         Add Comment
       </Button>
       <Modal open={open} onClose={handleClose}>
-        <div className={classes.paper}>
+        <div
+          className={classes.paper}
+          style={{ maxWidth: "250px", margin: "auto" }}
+        >
           <h2 id="simple-modal-title">Add your comment down here</h2>
           <form onSubmit={handleSubmit}>
             <TextField

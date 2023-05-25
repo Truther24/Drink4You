@@ -203,13 +203,13 @@ namespace El_Proyecte_Grande.Services
 
             if (identityUser == null)
             {
-                return new Response { IsSuccess = false, Message = "Could not find an user with that username." };
+                return new Response { IsSuccess = false, Message = "Credentials Incorrect!" };
 
             }
 
             if (!await _userManager.CheckPasswordAsync(identityUser, user.Password))
             {
-                return new Response { IsSuccess = false, Message = "Could not find an user with that password." };
+                return new Response { IsSuccess = false, Message = "Credentials Incorrect!" };
             }
 
             var usersRoleResult = await _roleService.GetAllRolesForUser(user.Username);
